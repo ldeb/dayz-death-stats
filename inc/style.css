@@ -1,0 +1,104 @@
+/***************************************/
+/* MAP */
+/***************************************/
+.map {
+	font-size: 12px;
+	line-height:1.2em;
+	/*clear:both;*/
+	position:relative;
+
+	background-image:url(../img/Chernarus4.jpg);
+	background-position:28px 22px;
+
+	background-repeat:no-repeat;
+
+
+	width:1500px;
+	margin:20px auto;
+}
+
+.map a:link, .map a:visited, .map a:active {
+	text-decoration: none;
+	color:#069;
+}
+.map a:hover {
+	text-decoration: underline;
+	color: #069;
+}
+
+.grille {
+
+	background-image:url(../img/cadriage.png);
+	background-repeat:repeat;
+
+
+	width:1500px;
+	height:1500px;
+
+	border-right:1px solid #000;
+	border-bottom:1px solid #000;
+
+	/*display:none;*/
+
+}
+
+/*********************/
+/* ELEMS */
+/*********************/
+.map .elem {
+	position:absolute;
+	/*border:1px dotted #f00;*/
+}
+
+.map .elem:hover {
+	z-index:2;
+}
+/*.map .elem .content {
+	position:relative;
+	border:1px dotted #000;
+
+	min-width:16px;
+	min-height:16px;
+}
+*/
+
+/*********************/
+/* POINT */
+/*********************/
+.map .elem .point {
+  cursor: help;
+	background-color:#ff0000;
+	position:absolute;
+	left:-4px;
+	top:-4px;
+	width:7px;
+	height:7px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	border:1px solid #000;
+  z-index: 2;
+}
+.map .elem.killer .point {
+	background-color:#0000ff;
+  opacity: 0.5;
+}
+.map .elem.player .point,
+.map .elem.building .point {
+	left:-3px;
+	top:-3px;
+	width:6px;
+	height:6px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.map .elem.proprio .point {
+	background-color:#F00;
+}
+.map .elem.building .point {
+	background-color:#09F;
+}
+.map .elem.player .point {
+	background-color:#0F0;
+}
