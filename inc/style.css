@@ -93,7 +93,7 @@ section {
   z-index: 2;
 }
 .map .elem.killer .point {
-	background-color:#0000ff;
+	background-color:#00ff00;
   opacity: 0.5;
 }
 .map .elem.player .point,

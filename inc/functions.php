@@ -40,6 +40,11 @@ function parse_log($CONFIG) {
   $pattern_user_id_pos = '(?\'user1_name\'.+)\s\(steam64id=(?\'user1_id\'.+)\spos=<(?\'user1_pos\'.+)>\)';
   $pattern_user_id_pos2 = '(?\'user2_name\'.+)\s\(steam64id=(?\'user2_id\'.+)\spos=<(?\'user2_pos\'.+)>\)';
 
+  // detect file encoding
+  $info = finfo_open(FILEINFO_MIME_ENCODING);
+  $file_encoding = finfo_buffer($info, file_get_contents($filename));
+  finfo_close($info);
+
   $handle = @fopen($filename, 'r');
   $results = array();
   $i = 0;
@@ -99,8 +104,13 @@ function parse_log($CONFIG) {
         // Commun operations
         /////////////////////
         if( isset($matches['time']) )  $matches['time'] = set_time($matches['time'], $log_date);  // update datetime
-        if( isset($matches['user1_name']) )  $matches['user1_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user1_name']); // convert username charset
-        if( isset($matches['user2_name']) )  $matches['user2_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user2_name']);
+
+        if( $file_encoding != 'utf-8' && isset($matches['user1_name']) && mb_detect_encoding($matches['user1_name'], 'Windows-1251') == 'Windows-1251' ) {
+          $matches['user1_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user1_name']); // convert username charset
+        }
+        if( $file_encoding != 'utf-8' && isset($matches['user2_name']) && mb_detect_encoding($matches['user2_name'], 'Windows-1251') == 'Windows-1251' ) {
+          $matches['user2_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user2_name']);
+        }
 
         // var_dump($matches);
 
@@ -153,7 +163,7 @@ function generate_table($results) {
         <th>date</th>
         <th>killer</th>
         <th>victim</th>
-        <th>weapon</th>
+        <th>cause</th>
         <th>distance</th>
       </tr>
     </thead>
@@ -203,19 +213,20 @@ function show_deaths_on_map($CONFIG, $results) {
 	foreach($results as $action){
 
     $killerInvolve = isset($action['user1_name']);
+    $legend_date = $action['time'];
     $legend = '';
 
     if( $CONFIG['show_death_details_on_map'] ) {
-      $legend = $killerInvolve ? $action['user2_name']. ' killed by '. $action['user1_name'] : $action['user2_name'].' died';
+      $legend = $killerInvolve ? $legend_date.' | '.$action['user2_name']. ' killed by '. $action['user1_name'] : $action['user2_name'].' died';
       $legend.=' ('.$action['reason'].')';
       if( isset($action['dist']) ) $legend.= ' ['.$action['dist'].'m]';
       // else if($killerInvolve) $legend.= ' [bled out]';  // bled out
     }
     show_player_on_map($action['user2_name'], $action['user2_id'], $action['user2_pos'], $legend, false);
 
-    if( $killerInvolve ) {  // there is a killer involve
+    if( $killerInvolve ) {  // there is a killer involve, show him
       if( $CONFIG['show_death_details_on_map'] ) {
-        $legend = $action['user1_name']. ' killed '. $action['user2_name'];
+        $legend = $legend_date.' | '.$action['user1_name']. ' killed '. $action['user2_name'];
         $legend.=' ('.$action['reason'].')';
         if( isset($action['dist']) ) $legend.= ' ['.$action['dist'].'m]';
         // else $legend.= ' [bled out]';  // bled out
