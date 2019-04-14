@@ -62,7 +62,7 @@ function parse_log($CONFIG) {
         // Kills
         /////////////////////
         // time | killer killed victim (with/while driving) ...
-        if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\skilled+\s'.$pattern_user_id_pos2.'\s(?>with|while\sdriving)+\s(?\'line_end\'.+)\./', $line, $matches) == 1 ) {
+        if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\skilled\s'.$pattern_user_id_pos2.'\s(?>with|while\sdriving)\s(?\'line_end\'.+)\./', $line, $matches) == 1 ) {
           if( preg_match('/^(?\'reason\'.+)\s\[(?\'dist\'\d+)m\]/', $matches['line_end'], $matches2) == 1 ) {           // reason [distm]
             $matches['reason'] = $matches2['reason'];                               // reason (weapon)
             if( isset($matches2['dist']) ) $matches['dist'] = $matches2['dist'];    // distance
@@ -80,14 +80,14 @@ function parse_log($CONFIG) {
         // Kills (bled out from)
         /////////////////////
         // time | victim bled out from killer's reason
-        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\sbled\sout\sfrom+\s'.$pattern_user_id_pos2.'\'s\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
+        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\sbled\sout\sfrom\s'.$pattern_user_id_pos2.'\'s\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
           $matches = invert_victim($matches); // invert victim/killer
         }
         /////////////////////
         // Death only
         /////////////////////
         // time | victim (died due to/died to/bled out from cuts by/died/woke with open wounds and) reason
-        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom\scuts\sby|died|woke\swith\sopen\swounds\sand)+\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
+        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom\scuts\sby|died|woke\swith\sopen\swounds\sand)\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
           $matches = invert_victim($matches); // invert victim/killer
         }
         /////////////////////
