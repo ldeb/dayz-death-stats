@@ -1,0 +1,22 @@
+{
+  "name": "dayzstats",
+  "version": "1.0.0",
+  "description": "Parses Cleetus KillFeed mod https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567 log file\r Generates a sortable table and a map view of players deaths onto a webpage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldeb/dayzstats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldeb/dayzstats/issues"
+  },
+  "homepage": "https://github.com/ldeb/dayzstats#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}

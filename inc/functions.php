@@ -115,10 +115,10 @@ function parse_log($CONFIG) {
         // var_dump($matches);
 
         // 1 => string '21:33:10' (length=8)
-        // 2 => string 'STUPEAD' (length=7)
+        // 2 => string 'KILLERNAME' (length=7)
         // 3 => string '76 561 198 050 277 984' (length=17)
         // 4 => string '1648.1, 3593.0, 133.2' (length=21)
-        // 5 => string 'Grego' (length=5)
+        // 5 => string 'VICTIMNAME' (length=5)
         // 6 => string '76561198422180913' (length=17)
         // 7 => string '1675.1, 3597.0, 133.6' (length=21)
         // 8 => string 'SK 59/66' (length=8)

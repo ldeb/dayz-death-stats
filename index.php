@@ -10,6 +10,7 @@ include('inc/functions.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>ElCanu's ABFW DayZ server</title>
+    <link rel="icon" href="img/avatar.png" type="image/png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -44,6 +45,9 @@ include('inc/functions.php');
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#killmap">KillFeed Map</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger discord_test" href="#">Discord test msg</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -60,6 +64,17 @@ include('inc/functions.php');
       </div>
     </header>
 
+    <?php
+    /*if( isset($_GET['discord_test']) && $_GET['discord_test'] == 1) : ?>
+      <div class="container alert alert-warning alert-dismissible fade show" role="alert">
+        Sending a message to discord...
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php
+  endif;*/
+    ?>
     <section id="infos" class="">
       <div class="container">
         <div class="row">
@@ -126,7 +141,11 @@ include('inc/functions.php');
     <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/cr-1.5.0/fh-3.1.4/sl-1.3.0/datatables.min.js"></script>
 
+    <!-- Discord -->
+    <script type="text/javascript" src="inc/discord.11.4.2.min.js"></script>
+    <script type="text/javascript" src="config.js"></script>
     <script type="text/javascript" src="inc/script.js"></script>
+    <!-- <script type="text/javascript" src="inc/index.js"></script> -->
 
   </body>
 </html>
