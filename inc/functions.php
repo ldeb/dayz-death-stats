@@ -140,7 +140,7 @@ function parse_log($CONFIG) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generete_user_link($label, $user_steamid) {
-  $link = ( is_numeric($user_steamid) ) ? '<a href="https://steamcommunity.com/profiles/'.$user_steamid.'" target="_blank">'.$label.'</a>' : '';
+  $link = ( is_numeric($user_steamid) ) ? '<a href="https://steamcommunity.com/profiles/'.$user_steamid.'" target="_blank" title="View Steam profile">'.$label.'</a>' : '';
   return $link;
 }
 
