@@ -14,6 +14,7 @@
 ## Requirements
 - web server running PHP (Apache, nginx, ...)
 - access to *KillFeed.log*'s DayZ SA server file (perhaps a symbolic link)
+
 [optional for posting to Discord]
 - to be able to create a webhook on the desired channel of a Discord server
 
@@ -24,7 +25,7 @@
 
 ## [optional] Installation for posting to a Discord channel
 - Rename *config.default.json* to *config.json* and edit necessary variables
-- Create a Discord webhook on your discord server channel, then update your webhook URL in *config.js* (`webhook_url_errors` variable is optional)
+- Create a Discord webhook on your discord server channel, then update your webhook URL in *config.json* (`webhook_url_errors` variable is optional)
 - [install node.js](https://nodejs.org/en/download/) on your server
 - go to the current cloned directory and install script dependencies with `npm install`
 - run script with command `node server.js`
