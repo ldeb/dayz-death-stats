@@ -45,9 +45,6 @@ include('inc/functions.php');
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#killmap">KillFeed Map</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger discord_test" href="#">Discord test msg</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -64,22 +61,11 @@ include('inc/functions.php');
       </div>
     </header>
 
-    <?php
-    /*if( isset($_GET['discord_test']) && $_GET['discord_test'] == 1) : ?>
-      <div class="container alert alert-warning alert-dismissible fade show" role="alert">
-        Sending a message to discord...
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <?php
-  endif;*/
-    ?>
     <section id="infos" class="">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
-            <h2 class="my-3">Info</h2>
+            <h2 class="my-3">Info (Lorem Ipsum)</h2>
             <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
             <ul>
               <li>Clickable nav links that smooth scroll to page sections</li>
@@ -103,7 +89,7 @@ include('inc/functions.php');
           </div>
           <div class="col-lg-12 mx-auto my-4">
             <?php
-            generate_table($results);
+            generate_table($CONFIG, $results);
             ?>
           </div>
         </div>
@@ -116,10 +102,9 @@ include('inc/functions.php');
           <div class="col-lg-12 mx-auto">
             <h2 class="container my-3">KillFeed Map <small>(<?=count($results)?> deaths)</small></h2>
               <div class="map">
-            	  <div class="grille"></div>
+                <div class="grille"></div>
                 <?php show_deaths_on_map($CONFIG, $results); ?>
               </div>
-
           </div>
         </div>
       </div>
@@ -138,14 +123,9 @@ include('inc/functions.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Datatable -->
-    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/cr-1.5.0/fh-3.1.4/sl-1.3.0/datatables.min.js"></script>
 
-    <!-- Discord -->
-    <script type="text/javascript" src="inc/discord.11.4.2.min.js"></script>
-    <script type="text/javascript" src="config.js"></script>
     <script type="text/javascript" src="inc/script.js"></script>
-    <!-- <script type="text/javascript" src="inc/index.js"></script> -->
 
   </body>
 </html>

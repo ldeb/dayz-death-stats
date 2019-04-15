@@ -1,31 +1,7 @@
 <?php
-// NOTE:
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PARSE LOGFILE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function invert_victim($matches) {
-  $victim['name'] = $matches['user1_name'];
-  $victim['id'] = $matches['user1_id'];
-  $victim['pos'] = $matches['user1_pos'];
-  if( isset($matches['user2_name']) && isset($matches['user2_id']) && isset($matches['user2_pos']) ) {
-    $matches['user1_name'] = $matches['user2_name'];
-    $matches['user1_id'] = $matches['user2_id'];
-    $matches['user1_pos'] = $matches['user2_pos'];
-  } else {
-    unset($matches['user1_name']);
-    unset($matches['user1_id']);
-    unset($matches['user1_pos']);
-  }
-  $matches['user2_name'] = $victim['name'];
-  $matches['user2_id'] = $victim['id'];
-  $matches['user2_pos'] = $victim['pos'];
-  unset($victim);
-
-  return $matches;
-}
-
 function set_time($death_time, $current_datetime) {  // the time (00:01:00) can change in the middle a log file
   $death_datetime = new DateTime( $current_datetime->format('Y-m-d').' '.$death_time);
   if( $death_datetime->format('H:i:s') < $current_datetime->format('H:i:s') ) { // next day
@@ -80,15 +56,15 @@ function parse_log($CONFIG) {
         // Kills (bled out from)
         /////////////////////
         // time | victim bled out from killer's reason
-        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\sbled\sout\sfrom\s'.$pattern_user_id_pos2.'\'s\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
-          $matches = invert_victim($matches); // invert victim/killer
+        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos2.'\sbled\sout\sfrom\s'.$pattern_user_id_pos.'\'s\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
+          // $matches = invert_victim($matches); // invert victim/killer
         }
         /////////////////////
         // Death only
         /////////////////////
         // time | victim (died due to/died to/bled out from cuts by/died/woke with open wounds and) reason
-        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom\scuts\sby|died|woke\swith\sopen\swounds\sand)\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
-          $matches = invert_victim($matches); // invert victim/killer
+        else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos2.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom\scuts\sby|died|woke\swith\sopen\swounds\sand)\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
+          // $matches = invert_victim($matches); // invert victim/killer
         }
         /////////////////////
         // parse failed
@@ -131,7 +107,6 @@ function parse_log($CONFIG) {
     fclose($handle);
 
     // var_dump($results);
-    // generate_table($results);
 
     // DEBUG: Parse errors
     if( $CONFIG['DEBUG'] ){
@@ -148,13 +123,12 @@ function parse_log($CONFIG) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DATATABLE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function generete_user_link($label, $user_steamid) {
-  $link = ( is_numeric($user_steamid) ) ? '<a href="https://steamcommunity.com/profiles/'.$user_steamid.'" target="_blank" title="View Steam profile">'.$label.'</a>' : '';
+  $link = ( is_numeric($user_steamid) ) ? '<a href="https://steamcommunity.com/profiles/'.$user_steamid.'" target="_blank" title="View Steam profile">'.$label.'</a>' : $label;
   return $link;
 }
 
-function generate_table($results) {
+function generate_table($CONFIG, $results) {
   $nc_char = '-';
   ?>
   <table class="datatable table table-striped table-sm table-bordered">
@@ -171,8 +145,20 @@ function generate_table($results) {
       <?php foreach ($results as $i => $action): ?>
         <tr>
           <td><?= isset($action['time']) ? $action['time'] : $nc_char; ?></td>
-          <td><?= isset($action['user1_name']) ? $action['user1_name'].' '.generete_user_link('+', $action['user1_id']) : $nc_char; ?></td>
-          <td><?= isset($action['user2_name']) ? $action['user2_name'].' '.generete_user_link('+', $action['user2_id']) : $nc_char; ?></td>
+          <td>
+            <?php if( isset($action['user1_name']) ) {
+              echo $action['user1_name'];
+              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['user1_id']) : '';
+            } else echo $nc_char;
+            ?>
+          </td>
+          <td>
+            <?php if( isset($action['user2_name']) ) {
+              echo $action['user2_name'];
+              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['user2_id']) : '';
+            } else echo $nc_char;
+            ?>
+          </td>
           <td><?= isset($action['reason']) ? $action['reason'] : $nc_char; ?></td>
           <td><?= isset($action['dist']) ? $action['dist'] : $nc_char; ?></td>
         </tr>
@@ -187,17 +173,17 @@ function generate_table($results) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // $worldspace = '2167.5, 4369.4, 209.4'
 function coord2px($worldspace){
-	$y_diff = 15360;
-	$coords = explode(', ', $worldspace);
-	if( count($coords)==3 ) {
-		$result = array();
-		$result[0] = floatval( $coords[0] ) / 10;
-		$result[1] = ($y_diff - floatval( $coords[1] )) / 10;
-		$result[2] = floatval( $coords[2] );
-		return $result;
-	} else {
-		return array(0,0,0);
-	}
+  $y_diff = 15360;
+  $coords = explode(', ', $worldspace);
+  if( count($coords)==3 ) {
+    $result = array();
+    $result[0] = floatval( $coords[0] ) / 10;
+    $result[1] = ($y_diff - floatval( $coords[1] )) / 10;
+    $result[2] = floatval( $coords[2] );
+    return $result;
+  } else {
+    return array(0,0,0);
+  }
 }
 
 function show_player_on_map($player_name, $player_id, $player_pos, $legend, $is_a_killer) {
@@ -210,7 +196,7 @@ function show_player_on_map($player_name, $player_id, $player_pos, $legend, $is_
 }
 
 function show_deaths_on_map($CONFIG, $results) {
-	foreach($results as $action){
+  foreach($results as $action){
 
     $killerInvolve = isset($action['user1_name']);
     $legend_date = $action['time'];
@@ -233,5 +219,5 @@ function show_deaths_on_map($CONFIG, $results) {
       }
       show_player_on_map($action['user1_name'], $action['user1_id'], $action['user1_pos'], $legend, true);
     }
-	}
+  }
 }

@@ -1,0 +1,15 @@
+{
+  "development": {
+    "filename": "KillFeed/test.log",
+    "webhook_url": "https://discordapp.com/api/webhooks/xxx/xxxxx",
+    "webhook_url_errors": "https://discordapp.com/api/webhooks/xxx/xxxxx",
+    "tail_interval": 2000,
+    "tail_blockSize": 1024
+  },
+  "staging": {
+    "filename": "KillFeed/KillFeed.log"
+  },
+  "production": {
+    "filename": "KillFeed/KillFeed.log"
+  }
+}
