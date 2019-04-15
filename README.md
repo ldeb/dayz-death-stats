@@ -1,6 +1,7 @@
 # dayzstats
 
 **Work currently in progress...** (made for ElCanu's ABFW DayZ SA server)
+![Screenshot](/screenshot.png?raw=true "Screenshot")
 
 ## Functionalities
 - Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) log file
