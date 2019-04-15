@@ -9,14 +9,15 @@
 **TO DO**
 - Save data to a database
 - Generate specific player statistics
-- Sends a message to a Discord server, using webhooks, when KillFeed.log updates [optional]
+- [optional] Sends a message to a Discord server, using webhooks, when *KillFeed.log* updates
 
 ## Requirements
 - web server running PHP (Apache, nginx, ...)
-- access to *KillFeed.log*'s DayZ SA server file (perhaps a symbolic link)
+- access to *KillFeed.log*'s DayZ SA server file ([symbolic link](https://www.google.com/search?q=symbolic+link) recommended)
 
 [optional for posting to Discord]
 - to be able to create a webhook on the desired channel of a Discord server
+- node.js installed onto your server
 
 ## Installation
 - git clone to your desired folder
