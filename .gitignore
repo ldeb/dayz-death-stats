@@ -90,7 +90,7 @@ script.js
 config.json
 conf*.js
 index.js
-server.js
+#server.js
 EX/
 Thumbs.db
 img/map.png
