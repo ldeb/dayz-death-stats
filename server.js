@@ -3,7 +3,7 @@
 process.env.NODE_ENV = 'development';
 
 const nice_datetime_format = 'YYYY-MM-DD HH:mm:ss';
-const iso_datetime_format = 'YYYY-MM-DDTHH:mm:ss';
+const sql_datetime_format = 'YYYY-MM-DDTHH:mm:ss';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // get config variables
@@ -177,7 +177,7 @@ async function mysql_process_death(details) {
   }
   // THE DEATH
   // console.log('Player(s) are in db, inserting death log...');
-  await mysql_insert_death(details.time.format(iso_datetime_format), victim_id, details.user2_pos, killer_id, details.user1_pos, details.reason, details.dist); // insert death log
+  await mysql_insert_death(details.time.format(sql_datetime_format), victim_id, details.user2_pos, killer_id, details.user1_pos, details.reason, details.dist); // insert death log
 };
 
 // Queue system

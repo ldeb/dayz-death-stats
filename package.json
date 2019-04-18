@@ -19,6 +19,7 @@
   "dependencies": {
     "always-tail": "^0.2.0",
     "discord.js": "^11.4.2",
+    "moment": "^2.24.0",
     "mysql": "^2.16.0"
   }
 }

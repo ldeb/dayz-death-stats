@@ -12,13 +12,14 @@
 - [optional] Sends a message to a Discord server, using webhooks, when *KillFeed.log* updates
 - [optional] Save data to a database
 
-**TO DO**
+**TO DO:**
 - Possibility to load data from the database
 - Generate specific player statistics
 - Automatically add necessary tables to the database if not present
 
-**ISSUES with server.js**
+**TO FIX: *server.js***
 - crashes when *KillFeed.log* is renamed or deleted
+- datetime logs could be wrong if no kills not restart of the game server happens in more then 24h
 
 ## Requirements
 - web server running PHP (Apache, nginx, ...)
@@ -57,3 +58,4 @@
   - [always-tail](https://github.com/jandre/always-tail)
   - [discord.js](https://github.com/discordjs/discord.js)
   - [mysql](https://github.com/mysqljs/mysql)
+  - [moment](https://github.com/moment/moment)
