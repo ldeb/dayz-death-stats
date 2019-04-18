@@ -8,6 +8,7 @@
 
 ## Functionalities
 - Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) log file
+- possibility to specify *logfile* parameter in URL to use a different logfile path, exemple : `?logfile=KillFeed_2019-03.log`
 - Generates a sortable table and a map view of players deaths onto a webpage
 - [optional] Sends a message to a Discord server, using webhooks, when *KillFeed.log* updates
 - [optional] Save data to a database

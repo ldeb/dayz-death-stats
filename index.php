@@ -1,6 +1,9 @@
 <?php
 include('config.php');
 include('inc/functions.php');
+if( isset( $_GET['logfile']) ) {
+  $CONFIG['logfile'] = $_GET['logfile'];
+}
 ?>
 <!doctype html>
 <html lang="en">
