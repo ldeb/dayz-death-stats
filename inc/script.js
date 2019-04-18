@@ -54,6 +54,6 @@
 
     "lengthMenu": [ 10, 25, 50, 100, 200, 300, 500 ]
   });
-  table.column('0').order('desc').draw();=
+  table.column('0').order('desc').draw();
 
 })(jQuery); // End of use strict

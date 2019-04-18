@@ -92,3 +92,5 @@ conf*.js
 index.js
 server.js
 EX/
+Thumbs.db
+img/map.png
