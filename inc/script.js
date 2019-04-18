@@ -29,9 +29,9 @@
   // Bootstrap
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $('[data-toggle="tooltip"]').tooltip({
-    boundary: 'window'
+    // container: 'body',
+    // boundary: 'window'
   });
-
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Datatable
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,11 +49,45 @@
 
     processing: true,
     // autoWidth: false,
-    // stateSave: true,
+    stateSave: true,
     deferRender: true,  // ajax
 
     "lengthMenu": [ 10, 25, 50, 100, 200, 300, 500 ]
   });
-  table.column('0').order('desc').draw();=
+  table.column('0').order('desc').draw();
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // MAP options
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  $('input[name="btn_map_type"').on('change', function(){
+    // $('.map').attr('class', 'map ' + $(this).val() );
+    $('.map').removeClass(function (index, className) {
+        return (className.match (/(^|\s)type_\S+/g) || []).join(' ');
+    });
+    $('.map').addClass('type_'+ $(this).val());
+  });
+  $('input[name="btn_map_zoom"').on('change', function(){
+    // $('.map').attr('class', 'map ' + $(this).val() );
+    $('.map').removeClass(function (index, className) {
+        return (className.match (/(^|\s)zoom_\S+/g) || []).join(' ');
+    });
+    $('.map').addClass('zoom_'+ $(this).val());
+  });
+
+  // tooltip rollout
+  var elem_with_click_tooltips = $('.elem[data-toggle="tooltip"][data-trigger="click"]');
+  function rollout_tooltips() {
+    elem_with_click_tooltips.tooltip('hide');
+  }
+  $('.map').on('click', function(){
+    rollout_tooltips();
+  });
+  $('.elem[data-toggle="tooltip"][data-trigger="click"]').each(function( index, elem ){
+    $(this).on('click', function(e){
+      // e.preventDefault();
+      e.stopPropagation();
+      elem_with_click_tooltips.not($(this)).tooltip('hide');
+    });
+  });
 
 })(jQuery); // End of use strict

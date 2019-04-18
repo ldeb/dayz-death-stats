@@ -10,7 +10,21 @@ header {
 section {
   padding: 20px 0;
 }
-
+/***************************************/
+/* MAP OPITIONS */
+/***************************************/
+.map_options {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.map_container {
+  width: 1570px;
+  height: 750px;
+  overflow: scroll;
+}
 /***************************************/
 /* MAP */
 /***************************************/
@@ -19,16 +33,50 @@ section {
 	line-height:1.2em;
 	/*clear:both;*/
 	position:relative;
+	background-image:url(../img/map_1536px.jpg);
+  background-position: top left;
+	background-repeat: no-repeat;
+  background-size: 100%;
 
-	background-image:url(../img/Chernarus4.jpg);
-	background-position:28px 22px;
+	width:1536px;
+	height:1536px;
+	/* margin:20px auto; */
+  z-index: 1;
 
-	background-repeat:no-repeat;
-
-
-	width:1500px;
-	margin:20px auto;
+  transform-origin: top left;
+  transform: scale(1, 1);
 }
+.map.zoom_half {
+  /* width:3072px; */
+  transform: scale(0.5, 0.5);
+}
+.map.zoom_2 {
+  /* width:3072px; */
+  transform: scale(2, 2);
+}
+.map.zoom_4 {
+  /* width:6144px; */
+  transform: scale(4, 4);
+}
+
+/* DayZ mod */
+.map.type_mod {
+	width:1500px;
+  background-image:url(../img/Chernarus4.jpg);
+  background-position:28px 22px;
+  background-size: 1473px;
+}
+/* .map.type_mod.zoom_2 {
+	width:3000px;
+  background-position:56px 44px;
+  background-size: 2946px;
+}
+.map.type_mod.zoom_4 {
+	width:6000px;
+  background-position:112px 88px;
+  background-size: 5892px;
+} */
+
 
 .map a:link, .map a:visited, .map a:active {
 	text-decoration: none;
@@ -40,19 +88,22 @@ section {
 }
 
 .grille {
-
 	background-image:url(../img/cadriage.png);
 	background-repeat:repeat;
-
-
-	width:1500px;
-	height:1500px;
-
-	border-right:1px solid #000;
-	border-bottom:1px solid #000;
-
-	/*display:none;*/
-
+  width:1536px;
+	height:1536px;
+	/* border-right:1px solid #000;
+	border-bottom:1px solid #000; */
+}
+.map.zoom_2 > .grille {
+	/* width:3072px;
+	height:3072px;
+  background-size: 200px; */
+}
+.map.zoom_4 > .grille {
+	/* width:6144px;
+	height:6144px;
+  background-size: 400px; */
 }
 
 /*********************/
@@ -79,24 +130,41 @@ section {
 /* POINT */
 /*********************/
 .map .elem .point {
-  cursor: help;
+  cursor: pointer;
 	background-color:#ff0000;
 	position:absolute;
-	left:-4px;
-	top:-4px;
+	/* left:-3px;
+	top:-3px;
 	width:7px;
 	height:7px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	border-radius: 6px;
-	border:1px solid #000;
+	border-radius: 6px; */
+
+	left:-2px;
+	top:-2px;
+	width:4px;
+	height:4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+  opacity: 0.7;
+
+	/* border:1px solid #000; */
+  /* border: none; */
   z-index: 2;
 }
 .map .elem.killer .point {
 	background-color:#00ff00;
-  opacity: 0.5;
+	/* border:1px solid #fff; */
 }
-.map .elem.player .point,
+.map .elem .point:hover,
+.map .elem .point:focus  {
+	/* background-color:#000; */
+	border:1px solid #fff;
+}
+/* .map .elem.player .point,
 .map .elem.building .point {
 	left:-3px;
 	top:-3px;
@@ -105,7 +173,7 @@ section {
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-}
+} */
 .map .elem.proprio .point {
 	background-color:#F00;
 }

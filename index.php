@@ -65,6 +65,7 @@ include('inc/functions.php');
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
+
             <h2 class="my-3">Info (Lorem Ipsum)</h2>
             <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
             <ul>
@@ -82,6 +83,7 @@ include('inc/functions.php');
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
+
             <h2 class="my-3">KillFeed Stats</h2>
             <?php
             $results = parse_log($CONFIG);
@@ -97,17 +99,67 @@ include('inc/functions.php');
     </section>
 
     <section id="killmap" class="">
-      <div class="container-fluid">
+
+      <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
-            <h2 class="container my-3">KillFeed Map <small>(<?=count($results)?> deaths)</small></h2>
-              <div class="map">
-                <div class="grille"></div>
-                <?php show_deaths_on_map($CONFIG, $results); ?>
-              </div>
+            <h2 class="my-3">KillFeed Map <small>(<?=count($results)?> deaths)</small></h2>
           </div>
         </div>
       </div>
+
+      <div class="container-fluid position-relative mx-auto map_container">
+
+        <div class="map_options">
+          <!-- <label>Maps options :</label> -->
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-primary btn-sm active">
+              <input type="radio" name="btn_map_type" value="dayz" autocomplete="off" checked> DayZ SA
+            </label>
+            <label class="btn btn-primary btn-sm">
+              <input type="radio" name="btn_map_type" value="mod" autocomplete="off"> DayZ mod
+            </label>
+          </div>
+
+          <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="btn_map_zoom">Zoom &times;</label>
+            </div>
+            <label class="btn btn-secondary btn-sm">
+              <input type="radio" name="btn_map_zoom" value="half" autocomplete="off"> ½
+            </label>
+            <label class="btn btn-secondary btn-sm active">
+              <input type="radio" name="btn_map_zoom" value="1" autocomplete="off" checked> 1
+            </label>
+            <label class="btn btn-secondary btn-sm">
+              <input type="radio" name="btn_map_zoom" value="2" autocomplete="off"> 2
+            </label>
+            <label class="btn btn-secondary btn-sm">
+              <input type="radio" name="btn_map_zoom" value="4" autocomplete="off"> 4
+            </label>
+          </div>
+
+          <!-- <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="btn_map_zoom">Players:</label>
+            </div>
+            <label class="btn btn-danger btn-sm">
+              <input type="checkbox" name="btn_map_victim" value="1" autocomplete="off" checked> victim
+            </label>
+            <label class="btn btn-success btn-sm">
+              <input type="checkbox" name="btn_map_killer" value="1" autocomplete="off" checked> killer
+            </label>
+          </div> -->
+
+        </div>
+
+        <div class="map">
+          <div class="grille"></div>
+          <?php show_deaths_on_map($CONFIG, $results); ?>
+        </div>
+
+      </div>
+
     </section>
 
     <!-- Footer -->
