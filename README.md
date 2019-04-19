@@ -8,9 +8,9 @@
 
 ## Functionalities
 - Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) log file
-- possibility to specify *logfile* parameter in URL to use a different logfile path, exemple : `?logfile=KillFeed_2019-03.log`
-- Generates a sortable table and a map view of players deaths onto a webpage
-- [optional] Sends a message to a Discord server, using webhooks, when *KillFeed.log* updates
+- [optional] Generates a sortable table and a map view of players deaths onto a webpage
+- [optional] possibility to specify *logfile* parameter in URL to use a different log file path, exemple : `index.php?logfile=KillFeed_2019-03.log`
+- [optional] Sends a message to a Discord server, using webhooks, when log file updates
 - [optional] Save data to a database
 
 **TO DO:**
@@ -23,8 +23,9 @@
 - datetime logs could be wrong if no kills not restart of the game server happens in more then 24h
 
 ## Requirements
-- web server running PHP (Apache, nginx, ...)
 - access to *KillFeed.log*'s DayZ SA server file ([symbolic link](https://www.google.com/search?q=symbolic+link) recommended)
+- **[optional] Installation for browsing results in a web server**
+  - web server running PHP (Apache, nginx, ...)
 - **[optional for posting to Discord]**
   - to be able to create a webhook on the desired channel of a Discord server
   - Node.js installed onto your server
@@ -33,21 +34,21 @@
   - Node.js installed onto your server
 
 ## Installation
-- git clone to your desired folder
-- host newly created folder with your web server
-- Edit *config.php* to set the filepath of the default log file and other options
-
-### [optional] Installation for posting to a Discord channel / logging to a database
-- Rename *config.default.json* to *config.json* and edit necessary variables and activate desired functionalities (`"LOG_TO_DISCORD": true`, `"LOG_TO_DATABASE": true`)
-- **[optional for posting to Discord]**
-  - Create a Discord webhook on your discord server channel, then update your webhook URL in *config.json* (`webhook_url_errors` variable is optional)
-- **[optional for logging to a database]**
-  - Create a new database on your MySQL server, then update your connection info in *config.json* (`db_host`, `db_base`, `db_user`, `db_pass`)
-  - Excecute [dayzstats.sql](https://github.com/ldeb/dayzstats/blob/master/dayzstats.sql) script in your database to create the necessary tables
-- [install node.js](https://nodejs.org/en/download/) on your server
-- go to the current cloned directory and install script dependencies with `npm install`
-- run script with command `node server.js`
-- **NOTE:** At the moment, logging will only start when a fresh *KillFeed.log* file is generated
+- `git clone https://github.com/ldeb/dayzstats.git` to your desired folder
+- **[optional] Installation for browsing results in a web server**
+  - host newly created folder with your web server
+  - Edit *config.php* to set the filepath of the default log file and other options
+- **[optional] Installation for posting to a Discord channel / logging to a database**
+  - Rename *config.default.json* to *config.json* and edit necessary variables and activate desired functionalities (`"LOG_TO_DISCORD": true`, `"LOG_TO_DATABASE": true`)
+  - **[optional for posting to Discord]**
+    - Create a Discord webhook on your discord server channel, then update your webhook URL in *config.json* (`webhook_url_errors` variable is optional)
+  - **[optional for logging to a database]**
+    - Create a new database on your MySQL server, then update your connection info in *config.json* (`db_host`, `db_base`, `db_user`, `db_pass`)
+    - Excecute [dayzstats.sql](https://github.com/ldeb/dayzstats/blob/master/dayzstats.sql) script in your database to create the necessary tables
+  - [install node.js](https://nodejs.org/en/download/) on your server
+  - go to the current cloned directory and install script dependencies with `npm install`
+  - run script with command `node server.js`
+  - **NOTE:** At the moment, logging will only start when a fresh *KillFeed.log* file is generated or a new log file date time is detected
 
 ## Credits
 - [DayZ Stand Alone](https://store.steampowered.com/agecheck/app/221100/)'s [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567)
