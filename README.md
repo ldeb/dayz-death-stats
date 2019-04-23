@@ -43,7 +43,7 @@
   - **[optional for posting to Discord]**
     - Create a Discord webhook on your discord server channel, then update your webhook URL in *config.json* (`webhook_url_errors` variable is optional)
   - **[optional for logging to a database]**
-    - Create a new database on your MySQL server, then update your connection info in *config.json* (`db_host`, `db_base`, `db_user`, `db_pass`)
+    - Create a new database on your MySQL server (using an utf8 charset, exemple: `utf8_general_ci`), then update your connection info in *config.json* (`db_host`, `db_base`, `db_user`, `db_pass`)
     - Excecute [dayzstats.sql](https://github.com/ldeb/dayzstats/blob/master/dayzstats.sql) script in your database to create the necessary tables
   - [install node.js](https://nodejs.org/en/download/) on your server
   - go to the current cloned directory and install script dependencies with `npm install`

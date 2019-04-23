@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `death` (
   `reason` varchar(100) DEFAULT NULL,
   `distance` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Structure de la table `player`
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `hero` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `steam_id` (`steam_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 COMMIT;
 
