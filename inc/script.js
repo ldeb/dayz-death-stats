@@ -59,19 +59,36 @@
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // MAP options
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  $('input[name="btn_map_type"').on('change', function(){
-    // $('.map').attr('class', 'map ' + $(this).val() );
+  // Map style
+  $('input[name="btn_map_type"]').on('change', function(){
     $('.map').removeClass(function (index, className) {
-        return (className.match (/(^|\s)type_\S+/g) || []).join(' ');
+      return (className.match (/(^|\s)type_\S+/g) || []).join(' ');
     });
     $('.map').addClass('type_'+ $(this).val());
   });
-  $('input[name="btn_map_zoom"').on('change', function(){
-    // $('.map').attr('class', 'map ' + $(this).val() );
+  // Zoom
+  $('input[name="btn_map_zoom"]').on('change', function(){
     $('.map').removeClass(function (index, className) {
-        return (className.match (/(^|\s)zoom_\S+/g) || []).join(' ');
+      return (className.match (/(^|\s)zoom_\S+/g) || []).join(' ');
     });
     $('.map').addClass('zoom_'+ $(this).val());
+
+    if( $(this).val() == 'half' ) { // go to top when switching to half map
+      $('.map_container').scrollTop(0);
+    }
+  });
+  // Hide/show victims/killers/grid
+  $('input[name="btn_map_victims"]').on('change', function(){
+    if( $(this).prop('checked') ) $('.map').addClass('show_victims');
+    else $('.map').removeClass('show_victims');
+  });
+  $('input[name="btn_map_killers"]').on('change', function(){
+    if( $(this).prop('checked') ) $('.map').addClass('show_killers');
+    else $('.map').removeClass('show_killers');
+  });
+  $('input[name="btn_map_grid"]').on('change', function(){
+    if( $(this).prop('checked') ) $('.map').addClass('show_grid');
+    else $('.map').removeClass('show_grid');
   });
 
   // tooltip rollout

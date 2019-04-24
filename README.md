@@ -7,7 +7,7 @@
 ![Screenshot](/screenshot.png?raw=true)
 
 ## Functionalities
-- Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) log file
+- Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) (v3.0) log file
 - [optional] Generates a sortable table and a map view of players deaths onto a webpage
 - [optional] possibility to specify *logfile* parameter in URL to use a different log file path, exemple : `index.php?logfile=KillFeed_2019-03.log`
 - [optional] Sends a message to a Discord server, using webhooks, when log file updates
@@ -17,6 +17,7 @@
 - Possibility to load data from the database
 - Generate specific player statistics
 - Automatically add necessary tables to the database if not present
+- Show relation between victim/killer on map
 
 **TO FIX: *server.js***
 - crashes when *KillFeed.log* is renamed or deleted
@@ -61,3 +62,4 @@
   - [discord.js](https://github.com/discordjs/discord.js)
   - [mysql](https://github.com/mysqljs/mysql)
   - [moment](https://github.com/moment/moment)
+  - [lodash](https://github.com/lodash/lodash)

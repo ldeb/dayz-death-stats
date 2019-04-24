@@ -43,7 +43,7 @@ if( isset( $_GET['logfile']) ) {
               <a class="nav-link js-scroll-trigger" href="#infos">Infos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#killstats">KillFeed Stats</a>
+              <a class="nav-link js-scroll-trigger" href="#killlogs">KillFeed logs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#killmap">KillFeed Map</a>
@@ -82,19 +82,43 @@ if( isset( $_GET['logfile']) ) {
       </div>
     </section>
 
-    <section id="killstats" class="">
+    <section id="killlogs" class="">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
 
-            <h2 class="my-3">KillFeed Stats</h2>
+            <h2 class="my-3">KillFeed logs</h2>
             <?php
             $results = parse_log($CONFIG);
-            ?>
+            // var_dump($results);
+
+            // DEBUG: Parse errors
+            if( $CONFIG['DEBUG'] && isset($results) && isset($results['skipped']) && ! empty($results['skipped']) ) : ?>
+              <div class="card">
+                <div class="card-header" id="headingMissed">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseMissed" aria-expanded="false" aria-controls="collapseMissed">
+                      <?=count($results['skipped'])?> parsing deaths missed!</strong>
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseMissed" class="collapse" aria-labelledby="headingMissed">
+                  <div class="card-body">
+                    <?php var_dump($results['skipped']); ?>
+                  </div>
+                </div>
+              </div>
+            <?php endif; ?>
           </div>
+
           <div class="col-lg-12 mx-auto my-4">
             <?php
-            generate_table($CONFIG, $results);
+            if( isset($results) && isset($results['matches']) && ! empty($results['matches']) ) {
+              $nbtot = count($results['matches']);
+              generate_table($CONFIG, $results['matches']);
+            } else {
+              $nbtot = 0;
+            }
             ?>
           </div>
         </div>
@@ -106,7 +130,7 @@ if( isset( $_GET['logfile']) ) {
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
-            <h2 class="my-3">KillFeed Map <small>(<?=count($results)?> deaths)</small></h2>
+            <h2 class="my-3">KillFeed Map <small>(<?=$nbtot?> deaths)</small></h2>
           </div>
         </div>
       </div>
@@ -142,23 +166,26 @@ if( isset( $_GET['logfile']) ) {
             </label>
           </div>
 
-          <!-- <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
+          <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="btn_map_zoom">Players:</label>
+              <label class="input-group-text">Show</label>
             </div>
-            <label class="btn btn-danger btn-sm">
-              <input type="checkbox" name="btn_map_victim" value="1" autocomplete="off" checked> victim
+            <label class="btn btn-secondary text-danger btn-sm active">
+              <input type="checkbox" name="btn_map_victims" value="1" autocomplete="off" checked> <strong>victims</strong>
             </label>
-            <label class="btn btn-success btn-sm">
-              <input type="checkbox" name="btn_map_killer" value="1" autocomplete="off" checked> killer
+            <label class="btn btn-secondary text-success btn-sm active">
+              <input type="checkbox" name="btn_map_killers" value="1" autocomplete="off" checked> <strong>killers</strong>
             </label>
-          </div> -->
+            <label class="btn btn-secondary text-white0 btn-sm">
+              <input type="checkbox" name="btn_map_grid" value="1" autocomplete="off"> grid
+            </label>
+          </div>
 
         </div>
 
-        <div class="map">
-          <div class="grille"></div>
-          <?php show_deaths_on_map($CONFIG, $results); ?>
+        <div class="map show_victims show_killers">
+          <div class="grid"></div>
+          <?php if( $nbtot > 0 ) show_deaths_on_map($CONFIG, $results['matches']); ?>
         </div>
 
       </div>

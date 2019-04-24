@@ -24,16 +24,11 @@ function parse_log($CONFIG) {
   $handle = @fopen($filename, 'r');
   $results = array();
   $i = 0;
-  $skipped = array();
   if ($handle) {
     while (($line = fgets($handle)) !== false) {
       $i++;
-      // if( $i == 1 ) { // first line
-      //   preg_match('/^Log\sCreated\son\s(\d{4}-\d{2}-\d{2})\sat\s(\d{2}:\d{2}:\d{2})/', $line, $matches); // logfile datetime
-      //   $log_date = new DateTime($matches[1].'T'.$matches[2].'Z');
-      //   echo '<strong>Log file starting date: '.$log_date->format('Y-m-d H:i:s').'</strong><br />';
-      //
-      // } else
+      $matches = null;
+
       if($line != PHP_EOL ) {
           // var_dump($line);
         /////////////////////
@@ -79,59 +74,64 @@ function parse_log($CONFIG) {
           // parse failed
           /////////////////////
           else {
-            $skipped[] = $line;
+            $results['skipped'][] = $line;
           }
-
-          // clean array, only keep string keys
-          foreach ($matches as $key => $value) if( is_int($key) ) unset($matches[$key]);
 
           /////////////////////
           // Commun operations
           /////////////////////
-          if( isset($matches['time']) ) {
-            $matches['time'] = set_time($matches['time'], $log_date);  // update datetime
-            $log_date = clone $matches['time'];
-            $matches['time'] = $matches['time']->format('Y-m-d H:i:s');
-          }
+          if( isset($matches) && $matches != null ) {
 
-          if( $file_encoding != 'utf-8' && isset($matches['user1_name']) && mb_detect_encoding($matches['user1_name'], 'Windows-1251') == 'Windows-1251' ) {
-            $matches['user1_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user1_name']); // convert username charset
-          }
-          if( $file_encoding != 'utf-8' && isset($matches['user2_name']) && mb_detect_encoding($matches['user2_name'], 'Windows-1251') == 'Windows-1251' ) {
-            $matches['user2_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user2_name']);
-          }
+            // clean array, only keep string keys
+            foreach ($matches as $key => $value) if( is_int($key) ) unset($matches[$key]);
 
-          // var_dump($matches);
+            if( isset($matches['time']) ) {
+              $matches['time'] = set_time($matches['time'], $log_date);  // update datetime
+              $log_date = clone $matches['time'];
+              $matches['time'] = $matches['time']->format('Y-m-d H:i:s');
+            }
 
-          // 1 => string '21:33:10' (length=8)
-          // 2 => string 'KILLERNAME' (length=7)
-          // 3 => string '76 561 198 050 277 984' (length=17)
-          // 4 => string '1648.1, 3593.0, 133.2' (length=21)
-          // 5 => string 'VICTIMNAME' (length=5)
-          // 6 => string '76561198422180913' (length=17)
-          // 7 => string '1675.1, 3597.0, 133.6' (length=21)
-          // 8 => string 'SK 59/66' (length=8)
-          // 9 => string '27' (length=2)
+            if( $file_encoding != 'utf-8' && isset($matches['user1_name']) && mb_detect_encoding($matches['user1_name'], 'Windows-1251') == 'Windows-1251' ) {
+              $matches['user1_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user1_name']); // convert username charset
+            }
+            if( $file_encoding != 'utf-8' && isset($matches['user2_name']) && mb_detect_encoding($matches['user2_name'], 'Windows-1251') == 'Windows-1251' ) {
+              $matches['user2_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user2_name']);
+            }
 
-          // add to results
-          $results[] = $matches;
+            // var_dump($matches);
+
+            // 1 => string '21:33:10' (length=8)
+            // 2 => string 'KILLERNAME' (length=7)
+            // 3 => string '76 561 198 050 277 984' (length=17)
+            // 4 => string '1648.1, 3593.0, 133.2' (length=21)
+            // 5 => string 'VICTIMNAME' (length=5)
+            // 6 => string '76561198422180913' (length=17)
+            // 7 => string '1675.1, 3597.0, 133.6' (length=21)
+            // 8 => string 'SK 59/66' (length=8)
+            // 9 => string '27' (length=2)
+
+            // add to results
+            $results['matches'][] = $matches;
           } else {
-            // no log datetime defined
+            // parse failed
           }
         } else {
-        // empty line
+          // no log datetime defined
         }
-      } // end while
+      } else {
+        // empty line
+      }
+    } // end while
     fclose($handle);
 
     // var_dump($results);
-
-    // DEBUG: Parse errors
-    if( $CONFIG['DEBUG'] && count($skipped) > 0 ){
-      echo '<strong>'. count($skipped) .' parsing deaths missed!</strong>';
-      // if( count($skipped) > 0 )
-      var_dump($skipped);
-    }
+    //
+    // // DEBUG: Parse errors
+    // if( $CONFIG['DEBUG'] && count($skipped) > 0 ){
+    //   echo '<strong>'. count($skipped) .' parsing deaths missed!</strong>';
+    //   // if( count($skipped) > 0 )
+    //   var_dump($skipped);
+    // }
 
   } else {
     echo '<span class="text-danger">Error opening file <strong>'.$filename.'</strong></span>';
@@ -208,9 +208,9 @@ function coord2px($worldspace){
 function show_player_on_map($player_name, $player_id, $player_pos, $legend, $is_a_killer) {
   $coef = 1;
   $coords = coord2px($player_pos);
-  $class = $is_a_killer ? ' killer' : '';
+  $class = $is_a_killer ? ' killer' : ' victim';
   echo '<div class="elem'.$class.'" title="'.$legend.'" data-toggle="tooltip" data-trigger="click" style="left:'.($coords[0] * $coef).'px; top:'.($coords[1] * $coef).'px;">';
-    echo '<div class="point"></div>';
+    // echo '<div class="point"></div>';
   echo '</div>';
 }
 
