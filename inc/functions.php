@@ -63,14 +63,19 @@ function parse_log($CONFIG) {
           // time | victim killed by killer.
           else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?>bled\sout\sfrom|bled\sout\sdue\sto\sdamage\sfrom|killed\sby|was\sexploded\sby|was\scut\sdeep\sby(?>\sbarbed\swire\son\sa)?)\s'.$pattern_killer_id_pos.'(?>\'s|\swith)?\s?(?\'reason\'.+)?\./', $line, $matches) == 1 ) {
           }
-          // time | victim (stepped on a reason) laid by killer and died.
-          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?\'reason\'.+)(?>\slaid\sby)\s'.$pattern_killer_id_pos.'(?>\sand\sdied)\./', $line, $matches) == 1 ) {
+          // time | victim stepped on a WeaponName laid by (killer) and died.
+          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?\'reason\'.+)\slaid\sby\s'.$pattern_killer_id_pos.'\sand\sdied\./', $line, $matches) == 1 ) {
+          }
+          // time | victim stepped on a WeaponName laid by Unknown Survivor and died.
+          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?\'reason\'.+)\slaid\sby\s(?\'killer_name\'Unknown\sSurvivor)\sand\sdied\./', $line, $matches) == 1 ) {
+            $matches['killer_id'] = null;
+            $matches['killer_pos'] = null;
           }
           /////////////////////
           // Death only
           /////////////////////
-          // time | victim (died due to/died to/bled out from( cuts by)/died/woke with open wounds and/killed themselves in) reason (somehow)
-          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom(?>\scuts\sby)?|died|woke\swith\sopen\swounds\sand|killed\sthemselves\sin)\s(?\'reason\'.+)(?>\ssomehow)?\./', $line, $matches) == 1 ) {
+          // time | victim (died due to/died to/bled out from( cuts by)/died/died with/woke with open wounds and/killed themselves in) reason (somehow)
+          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom(?>\scuts\sby)?|died\swith|died|woke\swith\sopen\swounds\sand|killed\sthemselves\sin)\s(?\'reason\'.+)(?>\ssomehow)?\./', $line, $matches) == 1 ) {
           }
           // time | victim bled out from [SHOULD BE FIXED BY FURTHER VERSION OF KILLFEED]
           else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?>bled\sout\sfrom\s)/', $line, $matches) == 1 ) {
@@ -164,7 +169,7 @@ function generate_table($CONFIG, $results) {
         <th>killer</th>
         <th>victim</th>
         <th>cause</th>
-        <th>distance</th>
+        <th>distance (m)</th>
       </tr>
     </thead>
     <tbody>
@@ -174,14 +179,14 @@ function generate_table($CONFIG, $results) {
           <td>
             <?php if( isset($action['killer_name']) ) {
               echo $action['killer_name'];
-              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['killer_id']) : '';
+              echo ( $CONFIG['link_to_user_steam_profile'] && isset($action['killer_id']) ) ? ' '.generete_user_link('+', $action['killer_id']) : '';
             } else echo $nc_char;
             ?>
           </td>
           <td>
             <?php if( isset($action['victim_name']) ) {
               echo $action['victim_name'];
-              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['victim_id']) : '';
+              echo ( $CONFIG['link_to_user_steam_profile'] && isset($action['victim_id']) ) ? ' '.generete_user_link('+', $action['victim_id']) : '';
             } else echo $nc_char;
             ?>
           </td>
@@ -236,7 +241,7 @@ function show_deaths_on_map($CONFIG, $results) {
     }
     show_player_on_map($action['victim_name'], $action['victim_id'], $action['victim_pos'], $legend, false);
 
-    if( $killerInvolve ) {  // there is a killer involve, show him
+    if( $killerInvolve && isset($action['killer_pos']) ) {  // there is a killer involve, show him
       if( $CONFIG['show_death_details_on_map'] ) {
         $legend = $legend_date.' | '.$action['killer_name']. ' killed '. $action['victim_name'];
         $legend.= isset($action['reason']) ? ' ('.$action['reason'].')' : '';

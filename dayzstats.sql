@@ -25,11 +25,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `death`
+-- Structure de la table `deaths`
 --
 
-DROP TABLE IF EXISTS `death`;
-CREATE TABLE IF NOT EXISTS `death` (
+DROP TABLE IF EXISTS `deaths`;
+CREATE TABLE IF NOT EXISTS `deaths` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime DEFAULT NULL,
   `victim_id` int(11) NOT NULL,
@@ -42,11 +42,11 @@ CREATE TABLE IF NOT EXISTS `death` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
--- Structure de la table `player`
+-- Structure de la table `players`
 --
 
-DROP TABLE IF EXISTS `player`;
-CREATE TABLE IF NOT EXISTS `player` (
+DROP TABLE IF EXISTS `players`;
+CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `steam_id` varchar(50) NOT NULL,
