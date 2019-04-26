@@ -84,8 +84,9 @@ typings/
 .dynamodb/
 
 
-# KillFeed
-KillFeed/
+# KillFeed / dayzstats
+KillFeed/*
+!KillFeed/KillFeed_test.log
 script.js
 config.json
 conf*.js

@@ -13,12 +13,12 @@ function set_time($death_time, $current_datetime) {  // the time (00:01:00) can 
 function parse_log($CONFIG) {
   $filename = $CONFIG['logfile'];
   $pattern_time = '(?\'time\'\d{2}:\d{2}:\d{2})';
-  $pattern_user_id_pos = '(?\'user1_name\'.+)\s\(steam64id=(?\'user1_id\'.+)\spos=<(?\'user1_pos\'.+)>\)';
-  $pattern_user_id_pos2 = '(?\'user2_name\'.+)\s\(steam64id=(?\'user2_id\'.+)\spos=<(?\'user2_pos\'.+)>\)';
+  $pattern_killer_id_pos = '(?\'killer_name\'.+)\s\(steam64id=(?\'killer_id\'.+)\spos=<(?\'killer_pos\'.+)>\)';
+  $pattern_victim_id_pos = '(?\'victim_name\'.+)\s\(steam64id=(?\'victim_id\'.+)\spos=<(?\'victim_pos\'.+)>\)';
 
   // detect file encoding
   $info = finfo_open(FILEINFO_MIME_ENCODING);
-  $file_encoding = finfo_buffer($info, file_get_contents($filename));
+  $file_encoding = finfo_buffer($info, @file_get_contents($filename));
   finfo_close($info);
 
   $handle = @fopen($filename, 'r');
@@ -41,8 +41,8 @@ function parse_log($CONFIG) {
           /////////////////////
           // Kills
           /////////////////////
-          // time | killer killed victim (with/while driving) ...
-          if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos.'\skilled\s'.$pattern_user_id_pos2.'\s(?>with|while\sdriving)\s(?\'line_end\'.+)\./', $line, $matches) == 1 ) {
+          // time | killer killed victim (with/while driving/in) ...
+          if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_killer_id_pos.'\skilled\s'.$pattern_victim_id_pos.'\s(?\'action\'with|while\sdriving|in)\s(?\'line_end\'.+)\./', $line, $matches) == 1 ) {
             if( preg_match('/^(?\'reason\'.+)\s\[(?\'dist\'\d+)m\]/', $matches['line_end'], $matches2) == 1 ) {           // reason [distm]
               $matches['reason'] = $matches2['reason'];                               // reason (weapon)
               if( isset($matches2['dist']) ) $matches['dist'] = $matches2['dist'];    // distance
@@ -57,21 +57,28 @@ function parse_log($CONFIG) {
             }
           }
           /////////////////////
-          // Kills (bled out from)
+          // Other kills
           /////////////////////
-          // time | victim bled out from killer's reason
-          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos2.'\sbled\sout\sfrom\s'.$pattern_user_id_pos.'\'s\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
-            // $matches = invert_victim($matches); // invert victim/killer
+          // time | victim (bled out from/bled out due to damage from/killed/was exploded by/was cut deep by (barbed wire on a)) killer('s )(reason).
+          // time | victim killed by killer.
+          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?>bled\sout\sfrom|bled\sout\sdue\sto\sdamage\sfrom|killed\sby|was\sexploded\sby|was\scut\sdeep\sby(?>\sbarbed\swire\son\sa)?)\s'.$pattern_killer_id_pos.'(?>\'s|\swith)?\s?(?\'reason\'.+)?\./', $line, $matches) == 1 ) {
+          }
+          // time | victim (stepped on a reason) laid by killer and died.
+          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?\'reason\'.+)(?>\slaid\sby)\s'.$pattern_killer_id_pos.'(?>\sand\sdied)\./', $line, $matches) == 1 ) {
           }
           /////////////////////
           // Death only
           /////////////////////
-          // time | victim (died due to/died to/bled out from cuts by/died/woke with open wounds and) reason
-          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_user_id_pos2.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom\scuts\sby|died|woke\swith\sopen\swounds\sand)\s(?\'reason\'.+)\./', $line, $matches) == 1 ) {
-            // $matches = invert_victim($matches); // invert victim/killer
+          // time | victim (died due to/died to/bled out from( cuts by)/died/woke with open wounds and/killed themselves in) reason (somehow)
+          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?>died\sdue\sto|died\sto|bled\sout\sfrom(?>\scuts\sby)?|died|woke\swith\sopen\swounds\sand|killed\sthemselves\sin)\s(?\'reason\'.+)(?>\ssomehow)?\./', $line, $matches) == 1 ) {
+          }
+          // time | victim bled out from [SHOULD BE FIXED BY FURTHER VERSION OF KILLFEED]
+          else if( preg_match('/^'.$pattern_time.'\s\|\s'.$pattern_victim_id_pos.'\s(?>bled\sout\sfrom\s)/', $line, $matches) == 1 ) {
+            $matches['reason'] = 'bled out';
+            // var_dump($line);
           }
           /////////////////////
-          // parse failed
+          // parse failed, probably hits only
           /////////////////////
           else {
             $results['skipped'][] = $line;
@@ -91,11 +98,11 @@ function parse_log($CONFIG) {
               $matches['time'] = $matches['time']->format('Y-m-d H:i:s');
             }
 
-            if( $file_encoding != 'utf-8' && isset($matches['user1_name']) && mb_detect_encoding($matches['user1_name'], 'Windows-1251') == 'Windows-1251' ) {
-              $matches['user1_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user1_name']); // convert username charset
+            if( $file_encoding != 'utf-8' && isset($matches['killer_name']) && mb_detect_encoding($matches['killer_name'], 'Windows-1251') == 'Windows-1251' ) {
+              $matches['killer_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['killer_name']); // convert username charset
             }
-            if( $file_encoding != 'utf-8' && isset($matches['user2_name']) && mb_detect_encoding($matches['user2_name'], 'Windows-1251') == 'Windows-1251' ) {
-              $matches['user2_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['user2_name']);
+            if( $file_encoding != 'utf-8' && isset($matches['victim_name']) && mb_detect_encoding($matches['victim_name'], 'Windows-1251') == 'Windows-1251' ) {
+              $matches['victim_name'] = iconv("Windows-1251", "UTF-8//TRANSLIT", $matches['victim_name']);
             }
 
             // var_dump($matches);
@@ -143,7 +150,7 @@ function parse_log($CONFIG) {
 // DATATABLE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function generete_user_link($label, $user_steamid) {
-  $link = ( is_numeric($user_steamid) ) ? '<a href="https://steamcommunity.com/profiles/'.$user_steamid.'" target="_blank" title="View Steam profile">'.$label.'</a>' : $label;
+  $link = ( is_numeric($user_steamid) ) ? '<a href="https://steamcommunity.com/profiles/'.$user_steamid.'" target="_blank" title="View Steam profile">'.$label.'</a>' : '';
   return $link;
 }
 
@@ -165,16 +172,16 @@ function generate_table($CONFIG, $results) {
         <tr>
           <td><?= isset($action['time']) ? $action['time'] : $nc_char; ?></td>
           <td>
-            <?php if( isset($action['user1_name']) ) {
-              echo $action['user1_name'];
-              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['user1_id']) : '';
+            <?php if( isset($action['killer_name']) ) {
+              echo $action['killer_name'];
+              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['killer_id']) : '';
             } else echo $nc_char;
             ?>
           </td>
           <td>
-            <?php if( isset($action['user2_name']) ) {
-              echo $action['user2_name'];
-              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['user2_id']) : '';
+            <?php if( isset($action['victim_name']) ) {
+              echo $action['victim_name'];
+              echo ( $CONFIG['link_to_user_steam_profile'] ) ? ' '.generete_user_link('+', $action['victim_id']) : '';
             } else echo $nc_char;
             ?>
           </td>
@@ -217,26 +224,26 @@ function show_player_on_map($player_name, $player_id, $player_pos, $legend, $is_
 function show_deaths_on_map($CONFIG, $results) {
   foreach($results as $action){
 
-    $killerInvolve = isset($action['user1_name']);
+    $killerInvolve = isset($action['killer_name']);
     $legend_date = $action['time'];
     $legend = '';
 
     if( $CONFIG['show_death_details_on_map'] ) {
-      $legend = $killerInvolve ? $legend_date.' | '.$action['user2_name']. ' killed by '. $action['user1_name'] : $action['user2_name'].' died';
-      $legend.=' ('.$action['reason'].')';
+      $legend = $killerInvolve ? $legend_date.' | '.$action['victim_name']. ' killed by '. $action['killer_name'] : $action['victim_name'].' died';
+      $legend.= isset($action['reason']) ? ' ('.$action['reason'].')' : '';
       if( isset($action['dist']) ) $legend.= ' ['.$action['dist'].'m]';
       // else if($killerInvolve) $legend.= ' [bled out]';  // bled out
     }
-    show_player_on_map($action['user2_name'], $action['user2_id'], $action['user2_pos'], $legend, false);
+    show_player_on_map($action['victim_name'], $action['victim_id'], $action['victim_pos'], $legend, false);
 
     if( $killerInvolve ) {  // there is a killer involve, show him
       if( $CONFIG['show_death_details_on_map'] ) {
-        $legend = $legend_date.' | '.$action['user1_name']. ' killed '. $action['user2_name'];
-        $legend.=' ('.$action['reason'].')';
+        $legend = $legend_date.' | '.$action['killer_name']. ' killed '. $action['victim_name'];
+        $legend.= isset($action['reason']) ? ' ('.$action['reason'].')' : '';
         if( isset($action['dist']) ) $legend.= ' ['.$action['dist'].'m]';
         // else $legend.= ' [bled out]';  // bled out
       }
-      show_player_on_map($action['user1_name'], $action['user1_id'], $action['user1_pos'], $legend, true);
+      show_player_on_map($action['killer_name'], $action['killer_id'], $action['killer_pos'], $legend, true);
     }
   }
 }

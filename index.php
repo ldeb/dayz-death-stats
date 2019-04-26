@@ -98,13 +98,18 @@ if( isset( $_GET['logfile']) ) {
                 <div class="card-header" id="headingMissed">
                   <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseMissed" aria-expanded="false" aria-controls="collapseMissed">
-                      <?=count($results['skipped'])?> parsing deaths missed!</strong>
+                      <?=count($results['skipped'])?> parsing deaths missed <em>(probably hits only)</em></strong>
                     </button>
                   </h2>
                 </div>
                 <div id="collapseMissed" class="collapse" aria-labelledby="headingMissed">
                   <div class="card-body">
-                    <?php var_dump($results['skipped']); ?>
+                    <?php
+                    //var_dump($results['skipped']);
+                    foreach ($results['skipped'] as $key => $value) {
+                      echo '<small>'.$value.'</small><br>';
+                    }
+                    ?>
                   </div>
                 </div>
               </div>

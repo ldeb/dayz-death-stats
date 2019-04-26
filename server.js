@@ -133,7 +133,10 @@ async function mysql_update_player(id, name, is_victim = true) {
   // return false;
 }
 async function mysql_insert_death(datetime, victim_id, victim_pos, killer_id, killer_pos, reason, distance){
-  let sql = "INSERT INTO death (date, victim_id, victim_pos, killer_id, killer_pos, reason, distance) VALUES ('"+ datetime +"',"+ victim_id +",'"+ victim_pos +"',"+ killer_id +",'"+ killer_pos +"','"+ reason +"',"+ distance +")";
+  let sql_killer_pos = (killer_pos == null || killer_pos == undefined) ? "null" :  "'" + killer_pos + "'";
+  let sql_reason = (reason == null || reason == undefined) ? "null" :  "'" + reason + "'";
+  let sql = "INSERT INTO death (date, victim_id, victim_pos, killer_id, killer_pos, reason, distance) VALUES ('"+ datetime +"',"+ victim_id +",'"+ victim_pos +"',"+ killer_id +","+ sql_killer_pos +","+ sql_reason +","+ distance +")";
+  console.log(sql);
   try {
     var result = await pool.query(sql)
   } catch(err) {
@@ -145,39 +148,39 @@ async function mysql_insert_death(datetime, victim_id, victim_pos, killer_id, ki
 }
 // EXEMPLE:
 // time: '21:33:10',
-// user1_name: 'Player1 name',
-// user1_id: 'xxxxxxxxx',
-// user1_pos: '1648.1, 3593.0, 133.2',
-// user2_name: 'Player2 name',
-// user2_id: 'xxxxxxxx',
-// user2_pos: '1675.1, 3597.0, 133.6',
+// killer_name: 'Player1 name',
+// killer_id: 'xxxxxxxxx',
+// killer_pos: '1648.1, 3593.0, 133.2',
+// victim_name: 'Player2 name',
+// victim_id: 'xxxxxxxx',
+// victim_pos: '1675.1, 3597.0, 133.6',
 // action: 'with',
 // reason: 'SK 59/66',
 // dist: '27'
 
 async function mysql_process_death(details) {
   // THE VICTIM
-  let victim_id = await mysql_get_player(details.user2_id);                               // victim already in db ?
+  let victim_id = await mysql_get_player(details.victim_id);                               // victim already in db ?
   if( victim_id == null ){                                                                // victim not in db
     // TODO: get user steam infos via Steam API
-    victim_id = await mysql_insert_player(details.user2_name, details.user2_id, 1, 0);    // add victim to db with deaths=1
+    victim_id = await mysql_insert_player(details.victim_name, details.victim_id, 1, 0);    // add victim to db with deaths=1
   } else {                                                                                // victim already in db
-    await mysql_update_player(victim_id, details.user2_name, true);                       // update name and deaths count
+    await mysql_update_player(victim_id, details.victim_name, true);                       // update name and deaths count
   }
   // THE KILLER
   let killer_id = null;
-  if( details.user1_name != null && details.user1_id != null ) {                          // is there's a killer involved ?
-    killer_id = await mysql_get_player(details.user1_id);                                 // killer already in db ?
+  if( details.killer_name != null && details.killer_id != null ) {                          // is there's a killer involved ?
+    killer_id = await mysql_get_player(details.killer_id);                                 // killer already in db ?
     if( killer_id == null ){                                                              // killer not in db
       // TODO: get user steam infos via Steam API
-      killer_id = await mysql_insert_player(details.user1_name, details.user1_id, 0, 1);  // add killer to db with kills=1
+      killer_id = await mysql_insert_player(details.killer_name, details.killer_id, 0, 1);  // add killer to db with kills=1
     } else {                                                                              // killer already in db
-      await mysql_update_player(killer_id, details.user1_name, false);                    // update name and kills count
+      await mysql_update_player(killer_id, details.killer_name, false);                    // update name and kills count
     }
   }
   // THE DEATH
   // console.log('Player(s) are in db, inserting death log...');
-  await mysql_insert_death(details.time.format(sql_datetime_format), victim_id, details.user2_pos, killer_id, details.user1_pos, details.reason, details.dist); // insert death log
+  await mysql_insert_death(details.time.format(sql_datetime_format), victim_id, details.victim_pos, killer_id, details.killer_pos, details.reason, details.dist); // insert death log
 };
 
 // Queue system
@@ -209,8 +212,8 @@ async function mysql_process_queue() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const moment = require('moment');
 const pattern_time = "(?<time>\\d{2}:\\d{2}:\\d{2})";
-const pattern_user_id_pos = "(?<user1_name>.+)\\s\\(steam64id=(?<user1_id>.+)\\spos=<(?<user1_pos>.+)>\\)";
-const pattern_user_id_pos2 = "(?<user2_name>.+)\\s\\(steam64id=(?<user2_id>.+)\\spos=<(?<user2_pos>.+)>\\)";
+const pattern_killer_id_pos = "(?<killer_name>.+)\\s\\(steam64id=(?<killer_id>.+)\\spos=<(?<killer_pos>.+)>\\)";
+const pattern_victim_id_pos = "(?<victim_name>.+)\\s\\(steam64id=(?<victim_id>.+)\\spos=<(?<victim_pos>.+)>\\)";
 let log_datetime = null;
 
 function convert_time_to_datetime(log_datetime, time) {
@@ -234,8 +237,8 @@ function parse_killfeed_line(data){
     /////////////////////
     // Kills
     /////////////////////
-    // time | killer killed victim (with/while driving) ...
-    let kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_user_id_pos + "\\skilled\\s" + pattern_user_id_pos2 + "\\s(?<action>with|while\\sdriving)\\s(?<line_end>.+)\\.") );
+    // time | killer killed victim (with/while driving/in) ...
+    let kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_killer_id_pos + "\\skilled\\s" + pattern_victim_id_pos + "\\s(?<action>with|while\\sdriving|in)\\s(?<line_end>.+)\\.") );
     if( kill_parsed != null && Object.keys(kill_parsed).length >= 9 && kill_parsed.groups.line_end != null ) {
       let kill_parsed2 = kill_parsed.groups.line_end.match( /^(?<reason>.+)\s\[(?<dist>\d+)m\]/ );  // reason [distm]
       if( kill_parsed2 != null ) {
@@ -256,33 +259,52 @@ function parse_killfeed_line(data){
       }
     }
     /////////////////////
-    // Kills (bled out from)
+    // Other kills
     /////////////////////
-    // time | victim bled out from killer's reason
+    // time | victim (bled out from/bled out due to damage from/killed/was exploded by/was cut deep by (barbed wire on a)) killer('s )(reason).
+    // time | victim killed by killer.
     else {
-      kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_user_id_pos2 + "\\s(?<action>bled\\sout\\sfrom)\\s" + pattern_user_id_pos + "\\'s\\s(?<reason>.+)\\.") );
+      kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_victim_id_pos + "\\s(?<action>bled\\sout\\sfrom|bled\\sout\\sdue\\sto\\sdamage\\sfrom|killed\\sby|was\\sexploded\\sby|was\\scut\\sdeep\\sby(?:\\sbarbed\\swire\\son\\sa)?)\\s" + pattern_killer_id_pos + "(\\'s|\\swith)?\\s?(?<reason>.+)?\\.") );
       if( kill_parsed != null ) {
         kill_parsed.groups.dist = null;
       }
-      /////////////////////
-      // Death only
-      /////////////////////
-      // time | victim (died due to/died to/bled out from cuts by/died/woke with open wounds and) reason
+      // time | victim (stepped on a reason) laid by killer and died.
       else {
-        kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_user_id_pos2 + "\\s(?<action>died\\sdue\\sto|died\\sto|bled\\sout\\sfrom\\scuts\\sby|died|woke\\swith\\sopen\\swounds\\sand)\\s(?<reason>.+)\\.") );
+        kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_victim_id_pos + "\\s(?<reason>.+)(?:\\slaid\\sby)\\s" + pattern_killer_id_pos + "(?:\\sand\\sdied)\\.") );
         if( kill_parsed != null ) {
-          kill_parsed.groups.user1_id = null;
-          kill_parsed.groups.user1_name = null;
-          kill_parsed.groups.user1_pos = null;
           kill_parsed.groups.dist = null;
         }
         /////////////////////
-        // parse failed
+        // Death only
         /////////////////////
+        // time | victim (died due to/died to/bled out from( cuts by)/died/woke with open wounds and/killed themselves in) reason (somehow)
         else {
-          let message = "Unabled to parse line:" + data;
-          console.log(message);
-          if( webhook_errors != null ) Discord_send( webhook_errors, message );
+          kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_victim_id_pos + "\\s(?<action>died\\sdue\\sto|died\\sto|bled\\sout\\sfrom(?:\\scuts\\sby)?|died|woke\\swith\\sopen\\swounds\\sand|killed\\sthemselves\\sin)\\s(?<reason>.+)(?:\\ssomehow)?\\.") );
+          if( kill_parsed != null ) {
+            kill_parsed.groups.killer_id = null;
+            kill_parsed.groups.killer_name = null;
+            kill_parsed.groups.killer_pos = null;
+            kill_parsed.groups.dist = null;
+          }
+          // time | victim bled out from [SHOULD BE FIXED BY FURTHER VERSION OF KILLFEED]
+          else {
+            kill_parsed = data.match( new RegExp("^"+ pattern_time + "\\s\\|\\s" + pattern_victim_id_pos + "\\s(?:bled\\sout\\sfrom\\s)") );
+            if( kill_parsed != null ) {
+              kill_parsed.groups.reason = 'bled out';
+              kill_parsed.groups.killer_id = null;
+              kill_parsed.groups.killer_name = null;
+              kill_parsed.groups.killer_pos = null;
+              kill_parsed.groups.dist = null;
+            }
+            /////////////////////
+            // parse failed, probably hits only
+            /////////////////////
+            else {
+              let message = "UNABLED to parse line:" + data;
+              console.log(message);
+              if( webhook_errors != null ) Discord_send( webhook_errors, message );
+            }
+          }
         }
       }
     }
@@ -290,7 +312,7 @@ function parse_killfeed_line(data){
     /////////////////////
     // Commun operations
     /////////////////////
-    if( kill_parsed != null ) {
+    if( kill_parsed != null && log_datetime != null ) {
       kill_parsed.groups.time = convert_time_to_datetime(log_datetime, kill_parsed.groups.time);  // convert time to datetime
       log_datetime = kill_parsed.groups.time.clone();
 
@@ -298,12 +320,16 @@ function parse_killfeed_line(data){
 
       // console.log(kill_parsed.groups);
 
-      if( kill_parsed.groups.user2_name != null ) { // victim
-        if( kill_parsed.groups.user1_name != null ) { // killer
-          message+= '**' + kill_parsed.groups.user1_name + '** killed **' + kill_parsed.groups.user2_name + '** ' + kill_parsed.groups.action + ' *' + kill_parsed.groups.reason + '*';
+      if( kill_parsed.groups.victim_name != null ) { // victim
+        if( kill_parsed.groups.killer_name != null ) { // killer
+          message+= '**' + kill_parsed.groups.killer_name + '** killed **' + kill_parsed.groups.victim_name + '**';
+          message+= ( kill_parsed.groups.action != null ) ? ' ' + kill_parsed.groups.action : '';
+          message+= ( kill_parsed.groups.reason != null ) ? ' *' + kill_parsed.groups.reason + '*' : '';
           message+= ( kill_parsed.groups.dist != null ) ? ' ['+ kill_parsed.groups.dist +'m]' : '';
         } else {
-          message+= '**' + kill_parsed.groups.user2_name + '** '+ kill_parsed.groups.action + ' *' + kill_parsed.groups.reason +'*';
+          message+= '**' + kill_parsed.groups.victim_name + '**';
+          message+= ( kill_parsed.groups.action != null ) ? ' ' + kill_parsed.groups.action : '';
+          message+= ( kill_parsed.groups.reason != null ) ? ' *' + kill_parsed.groups.reason + '*' : '';
         }
         message+= '.';
         console.log(message);

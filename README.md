@@ -9,9 +9,10 @@
 ## Functionalities
 - Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) (v3.0) log file
 - [optional] Generates a sortable table and a map view of players deaths onto a webpage
-- [optional] possibility to specify *logfile* parameter in URL to use a different log file path, exemple : `index.php?logfile=KillFeed_2019-03.log`
+- [optional] possibility to specify a *logfile* parameter in URL to use a different log file path, exemple : `index.php?logfile=KillFeed/KillFeed_2019-03.log`
 - [optional] Sends a message to a Discord server, using webhooks, when log file updates
-- [optional] Save data to a database
+- [optional] Save data to a database (MySQL)
+- Generate a test log file from KillFeed.json using [test_conf.php](/test_conf.php) for development purposes
 
 **TO DO:**
 - Possibility to load data from the database
@@ -19,8 +20,8 @@
 - Automatically add necessary tables to the database if not present
 - Show relation between victim/killer on map
 
-**TO FIX: *server.js***
-- crashes when *KillFeed.log* is renamed or deleted
+**FLAWS/TO FIX: *server.js***
+- can crashes when *KillFeed.log* is renamed or deleted
 - datetime logs could be wrong if no kills not restart of the game server happens in more then 24h
 
 ## Requirements

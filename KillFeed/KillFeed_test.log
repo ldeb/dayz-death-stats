@@ -1,0 +1,42 @@
+Log Created on 2019-04-24 at 22:46:00
+22:46:01 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) in Melee combat.
+22:46:02 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName.
+22:46:03 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName [6m].
+22:46:04 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) stepped on a WeaponName laid by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) and died.
+22:46:05 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was exploded by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s exploding WeaponName.
+22:46:06 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was cut deep by barbed wire on a Player_killer_barbed_wired (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>).
+22:46:06 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was cut deep by Player_killer_barbed_wired (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s barbed wire.
+22:46:07 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died to the Infected.
+22:46:08 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died to the Wildlife.
+22:46:09 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died from a fall.
+22:46:10 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) while driving VehicleName.
+22:46:11 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died to Sickness.
+22:46:12 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died due to Starvation.
+22:46:13 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died due to Dehydration.
+22:46:14 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died from suicide.
+22:46:15 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from cuts by the Infected.
+22:46:16 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from cuts by the Wildlife.
+22:46:17 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s fists.
+22:46:18 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName.
+22:46:19 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s trap: WeaponName.
+22:46:20 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName exploding.
+22:46:21 | Player_victim_unkown_killer (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from 
+22:46:21 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from barbed wire.
+22:46:22 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) woke with open wounds and bled out.
+22:46:23 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) attacked Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) in Melee combat.
+22:46:24 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) attacked Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName.
+22:46:25 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) attacked Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName [6m].
+22:46:26 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was injured by stepping on Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName.
+22:46:27 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was injured by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName.
+22:46:28 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was caught up in barbed wire from a Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>).
+22:46:29 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was attacked by the Infected.
+22:46:30 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was attacked by the Wildlife.
+22:46:31 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) fell hard and survived.
+22:46:32 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) hit Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) while driving VehicleName.
+22:46:33 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died with stats unable to be fetched.
+22:46:34 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) killed by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>).
+22:46:35 | Player/Object does not exist.
+22:46:36 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) killed themselves in Melee somehow.
+22:46:37 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was hit by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) (Not Caught).
+22:46:38 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was damaged by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) with WeaponName.
+22:46:39 | Player_victim_spe (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out due to damage from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) with WeaponName.
