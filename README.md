@@ -8,17 +8,18 @@
 
 ## Functionalities
 - Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) (v3.0) log file
-- [optional] Generates a sortable table and a map view of players deaths onto a webpage
+- [optional] Generates a sortable table and a map view of players deaths on a webpage
 - [optional] possibility to specify a *logfile* parameter in URL to use a different log file path, exemple : `index.php?logfile=KillFeed/KillFeed_2019-03.log`
 - [optional] Sends a message to a Discord server, using webhooks, when log file updates
 - [optional] Save data to a database (MySQL)
+- [optional] Load data from the database (MySQL)
 - Generate a test log file from KillFeed.json using [test_conf.php](/test_conf.php) for development purposes
 
 **TO DO:**
-- Possibility to load data from the database
+- Update map when loading data from the database
 - Generate specific player statistics
-- Automatically add necessary tables to the database if not present
 - Show relation between victim/killer on map
+- Automatically add necessary tables to the database if not present
 
 **FLAWS/TO FIX: *server.js***
 - can crashes when *KillFeed.log* is renamed or deleted
@@ -30,10 +31,10 @@
   - web server running PHP (Apache, nginx, ...)
 - **[optional for posting to Discord]**
   - to be able to create a webhook on the desired channel of a Discord server
-  - Node.js installed onto your server
+  - Node.js installed on your server
 - **[optional for logging to a database]**
   - MySQL server
-  - Node.js installed onto your server
+  - Node.js installed on your server
 
 ## Installation
 - `git clone https://github.com/ldeb/dayzstats.git` to your desired folder

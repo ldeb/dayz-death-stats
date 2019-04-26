@@ -1,6 +1,6 @@
 {
   "development": {
-    "filename": "KillFeed/test.log",
+    "filename": "KillFeed/KillFeed_test.log",
     "LOG_TO_DISCORD": false,
     "webhook_url": "https://discordapp.com/api/webhooks/xxx/xxxxx",
     "webhook_url_errors": "https://discordapp.com/api/webhooks/xxx/xxxxx",

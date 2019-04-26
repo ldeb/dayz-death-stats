@@ -89,6 +89,7 @@ KillFeed/*
 !KillFeed/KillFeed_test.log
 script.js
 config.json
+errors.log
 conf*.js
 index.js
 #server.js

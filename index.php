@@ -89,41 +89,62 @@ if( isset( $_GET['logfile']) ) {
 
             <h2 class="my-3">KillFeed logs</h2>
             <?php
-            $results = parse_log($CONFIG);
-            // var_dump($results);
+            if( ! $CONFIG['use_database'] ) :
+              $results = parse_log($CONFIG);
+              // var_dump($results);
 
-            // DEBUG: Parse errors
-            if( $CONFIG['DEBUG'] && isset($results) && isset($results['skipped']) && ! empty($results['skipped']) ) : ?>
-              <div class="card">
-                <div class="card-header" id="headingMissed">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseMissed" aria-expanded="false" aria-controls="collapseMissed">
-                      <?=count($results['skipped'])?> parsing deaths missed <em>(probably hits only)</em></strong>
-                    </button>
-                  </h2>
-                </div>
-                <div id="collapseMissed" class="collapse" aria-labelledby="headingMissed">
-                  <div class="card-body">
-                    <?php
-                    //var_dump($results['skipped']);
-                    foreach ($results['skipped'] as $key => $value) {
-                      echo '<small>'.$value.'</small><br>';
-                    }
-                    ?>
+              // DEBUG: Parse errors
+              if( $CONFIG['DEBUG'] && isset($results) && isset($results['skipped']) && ! empty($results['skipped']) ) : ?>
+                <div class="card">
+                  <div class="card-header" id="headingMissed">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseMissed" aria-expanded="false" aria-controls="collapseMissed">
+                        <?=count($results['skipped'])?> parsing deaths missed <em>(probably hits only)</em></strong>
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseMissed" class="collapse" aria-labelledby="headingMissed">
+                    <div class="card-body">
+                      <?php
+                      //var_dump($results['skipped']);
+                      foreach ($results['skipped'] as $key => $value) {
+                        echo '<small>'.$value.'</small><br>';
+                      }
+                      ?>
+                    </div>
                   </div>
                 </div>
-              </div>
-            <?php endif; ?>
+              <?php
+              endif;
+            endif;?>
           </div>
 
           <div class="col-lg-12 mx-auto my-4">
             <?php
-            if( isset($results) && isset($results['matches']) && ! empty($results['matches']) ) {
-              $nbtot = count($results['matches']);
-              generate_table($CONFIG, $results['matches']);
-            } else {
-              $nbtot = 0;
-            }
+            if($CONFIG['use_database']) : ?>
+
+              <table class="datatable table table-striped table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <th>date</th>
+                    <th>killer</th>
+                    <th>victim</th>
+                    <th>cause</th>
+                    <th>distance (m)</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+
+            <?php
+            else :
+              if( isset($results) && isset($results['matches']) && ! empty($results['matches']) ) {
+                $nbtot = count($results['matches']);
+                generate_table($CONFIG, $results['matches']);
+              } else {
+                $nbtot = 0;
+              }
+            endif;
             ?>
           </div>
         </div>
@@ -135,7 +156,7 @@ if( isset( $_GET['logfile']) ) {
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
-            <h2 class="my-3">KillFeed Map <small>(<?=$nbtot?> deaths)</small></h2>
+            <h2 class="my-3">KillFeed Map<?php if( isset($nbtot) ): ?> <small>(<?=$nbtot?> deaths)</small><?php endif; ?></h2>
           </div>
         </div>
       </div>
@@ -190,7 +211,7 @@ if( isset( $_GET['logfile']) ) {
 
         <div class="map show_victims show_killers">
           <div class="grid"></div>
-          <?php if( $nbtot > 0 ) show_deaths_on_map($CONFIG, $results['matches']); ?>
+          <?php if( isset($nbtot) && $nbtot > 0 ) show_deaths_on_map($CONFIG, $results['matches']); ?>
         </div>
 
       </div>
@@ -213,6 +234,35 @@ if( isset( $_GET['logfile']) ) {
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/cr-1.5.0/fh-3.1.4/sl-1.3.0/datatables.min.js"></script>
 
     <script type="text/javascript" src="inc/script.js"></script>
+
+    <script>
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // Datatable
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      var table = $('.datatable').DataTable({
+        lengthMenu: [ 10, 25, 50, 100, 200, 300, 500 ],
+        order: [[ 0, 'desc' ]],
+        // scrollY: 400,
+        // paging: false,
+        // lengthChange: true,
+        fixedHeader: {
+          headerOffset: $('#mainNav').outerHeight(),
+          header: true,
+          footer: true
+        },
+        colReorder: true,
+        select: 'single',
+        // autoWidth: false,
+        stateSave: true,
+        deferRender: true,  // ajax
+        <?php if( $CONFIG['use_database'] ) : ?>
+        processing: true,
+        serverSide: true,
+        ajax: "inc/server_processing.php"
+        <?php endif; ?>
+      });
+      // table.column('0').order('desc').draw();
+    </script>
 
   </body>
 </html>
