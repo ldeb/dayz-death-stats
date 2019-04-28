@@ -5,7 +5,7 @@ $CONFIG['link_to_user_steam_profile'] = true;       // (Spoiler alert!)
 $CONFIG['show_death_details_on_map'] = true;        // show info about each kill on the map (who killed who, Spoiler alert!)
 
 // DATABASE connexion
-$CONFIG['use_database'] = true;                     // Load data from the database
+$CONFIG['use_database'] = false;                     // Load data from the database
 $CONFIG['db_host'] = 'localhost';                   // database host
 $CONFIG['db_base'] = 'dayzstats';                   // database name
 $CONFIG['db_user'] = 'root';                        // database Login
