@@ -42,6 +42,11 @@ if( isset( $_GET['logfile']) ) {
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#infos">Infos</a>
             </li>
+            <?php if( $CONFIG['use_database'] ) : ?>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#players">Player stats</a>
+            </li>
+            <?php endif; ?>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#killlogs">KillFeed logs</a>
             </li>
@@ -81,6 +86,33 @@ if( isset( $_GET['logfile']) ) {
         </div>
       </div>
     </section>
+
+    <?php if( $CONFIG['use_database'] ) : ?>
+    <section id="players" class="">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+
+            <h2 class="my-3">Player stats</h2>
+            <div class="col-lg-12 mx-auto my-4">
+              <table class="datatable table table-players table-striped table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <th>name</th>
+                    <th>kills</th>
+                    <th>deaths</th>
+                    <th>kill death ratio</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
 
     <section id="killlogs" class="">
       <div class="container">
@@ -123,7 +155,7 @@ if( isset( $_GET['logfile']) ) {
             <?php
             if($CONFIG['use_database']) : ?>
 
-              <table class="datatable table table-striped table-sm table-bordered">
+              <table class="datatable table table-killfeed table-striped table-sm table-bordered">
                 <thead>
                   <tr>
                     <th>date</th>
@@ -237,9 +269,9 @@ if( isset( $_GET['logfile']) ) {
 
     <script>
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // Datatable
+      // Datatable - killfeed
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      var table = $('.datatable').DataTable({
+      var table = $('.datatable.table-killfeed').DataTable({
         lengthMenu: [ 10, 25, 50, 100, 200, 300, 500 ],
         order: [[ 0, 'desc' ]],
         // scrollY: 400,
@@ -252,7 +284,6 @@ if( isset( $_GET['logfile']) ) {
         },
         colReorder: true,
         select: 'single',
-        // autoWidth: false,
         stateSave: true,
         deferRender: true,  // ajax
         <?php if( $CONFIG['use_database'] ) : ?>
@@ -261,7 +292,27 @@ if( isset( $_GET['logfile']) ) {
         ajax: "inc/server_processing.php"
         <?php endif; ?>
       });
-      // table.column('0').order('desc').draw();
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // Datatable - players
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      var table = $('.datatable.table-players').DataTable({
+        lengthMenu: [ 10, 25, 50, 100, 200, 300, 500 ],
+        order: [[ 3, 'asc' ]],
+        fixedHeader: {
+          headerOffset: $('#mainNav').outerHeight(),
+          header: true,
+          footer: true
+        },
+        colReorder: true,
+        select: 'single',
+        stateSave: true,
+        deferRender: true,  // ajax
+        <?php if( $CONFIG['use_database'] ) : ?>
+        processing: true,
+        serverSide: true,
+        ajax: "inc/server_processing_players.php"
+        <?php endif; ?>
+      });
     </script>
 
   </body>
