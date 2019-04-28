@@ -1,6 +1,6 @@
 {
   "development": {
-    "filename": "KillFeed/KillFeed_test.log",
+    "filename": "website/KillFeed/KillFeed_test.log",
     "LOG_TO_DISCORD": false,
     "webhook_url": "https://discordapp.com/api/webhooks/xxx/xxxxx",
     "webhook_url_errors": "https://discordapp.com/api/webhooks/xxx/xxxxx",
@@ -13,9 +13,9 @@
     "tail_blockSize": 1024
   },
   "staging": {
-    "filename": "KillFeed/KillFeed.log"
+    "filename": "website/KillFeed/KillFeed.log"
   },
   "production": {
-    "filename": "KillFeed/KillFeed.log"
+    "filename": "website/KillFeed/KillFeed.log"
   }
 }
