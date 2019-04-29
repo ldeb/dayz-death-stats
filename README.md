@@ -4,7 +4,7 @@
 
 **Work currently in progress...** (made for ElCanu's ABFW DayZ SA server)
 
-![Screenshot](/screenshot.png?raw=true)
+![Screenshot](/screenshot.jpg?raw=true)
 
 ## Functionalities
 - Parses [Cleetus KillFeed mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567) (v3.0) log file
