@@ -11,13 +11,14 @@
 - [optional] Generates a sortable table and a map view of players deaths on a webpage
 - [optional] possibility to specify a *logfile* parameter in URL to use a different log file path, exemple : `index.php?logfile=KillFeed/KillFeed_2019-03.log`
 - [optional] Sends a message to a Discord server, using webhooks, when log file updates
-- [optional] Save data to a database (MySQL)
+- [optional] Save data to a database (MySQL), enables different statistics (player kill/death ratio, death causes, ...)
 - [optional] Load data from the database (MySQL)
 - Generate a test log file from KillFeed.json using [test_conf.php](/test_conf.php) for development purposes
 
 **TO DO:**
+- show log starting date
 - Update map when loading data from the database
-- Generate specific player statistics
+- Generate more statistics
 - Show relation between victim/killer on map
 - Automatically add necessary tables to the database if not present
 
@@ -39,7 +40,7 @@
 ## Installation
 - `git clone https://github.com/ldeb/dayzstats.git` to your desired folder
 - **[optional] Installation for browsing results in a web server**
-  - host website/ folder with your web server
+  - host `website/` folder with your web server
   - Edit *config.php* to set the filepath of the default log file and other options
 - **[optional] Installation for posting to a Discord channel / logging to a database**
   - Rename *config.default.json* to *config.json* and edit necessary variables and activate desired functionalities (`"LOG_TO_DISCORD": true`, `"LOG_TO_DATABASE": true`)

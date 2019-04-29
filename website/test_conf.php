@@ -6,7 +6,8 @@ $conf_file = 'KillFeed/KillFeed.json';
 $dest_file = 'KillFeed/KillFeed_test.log';
 
 $messages = array();
-$strJsonFileContents = file_get_contents($conf_file);
+$strJsonFileContents = @file_get_contents($conf_file);
+if( $strJsonFileContents == false ) die('<strong>'.$conf_file.'</strong> not found!');
 $array = json_decode($strJsonFileContents, true);
 // var_dump($array);
 foreach ($array as $key => $value) {
@@ -26,4 +27,4 @@ foreach ($messages as $key => $value) {
 // echo $contents;
 file_put_contents($dest_file, $contents);
 
-echo $dest_file. ' generated.';
+echo '<strong>'.$dest_file.'</strong> generated.';

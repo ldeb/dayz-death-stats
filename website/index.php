@@ -44,7 +44,7 @@ if( isset( $_GET['logfile']) ) {
             </li>
             <?php if( $CONFIG['use_database'] ) : ?>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#players">Player stats</a>
+              <a class="nav-link js-scroll-trigger" href="#stats">Statistics</a>
             </li>
             <?php endif; ?>
             <li class="nav-item">
@@ -88,24 +88,51 @@ if( isset( $_GET['logfile']) ) {
     </section>
 
     <?php if( $CONFIG['use_database'] ) : ?>
-    <section id="players" class="">
+    <section id="stats" class="">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
 
-            <h2 class="my-3">Player stats</h2>
+            <h2 class="my-3">Statistics</h2>
             <div class="col-lg-12 mx-auto my-4">
-              <table class="datatable table table-players table-striped table-sm table-bordered">
-                <thead>
-                  <tr>
-                    <th>name</th>
-                    <th>kills</th>
-                    <th>deaths</th>
-                    <th>kill death ratio</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+            </div>
+
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="players-tab" data-toggle="tab" href="#players" role="tab" aria-controls="players" aria-selected="true">Player stats</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="causes-tab" data-toggle="tab" href="#causes" role="tab" aria-controls="causes" aria-selected="false">Death causes</a>
+              </li>
+            </ul>
+
+            <div class="tab-content mt-4" id="statsContent">
+              <div class="tab-pane fade show active" id="players" role="tabpanel" aria-labelledby="players-tab">
+                <table class="datatable table table-striped table-hover table-bordered table-sm table-responsive-sm0 small table-players" width="100%">
+                  <thead>
+                    <tr>
+                      <th>rank</th>
+                      <th>name</th>
+                      <th>kills</th>
+                      <th>deaths</th>
+                      <th>kill death ratio</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+
+              <div class="tab-pane fade" id="causes" role="tabpanel" aria-labelledby="causes-tab">
+                <table class="datatable table table-striped table-hover table-bordered table-sm table-responsive-sm0 small table-causes" width="100%">
+                  <thead>
+                    <tr>
+                      <th>count</th>
+                      <th>cause</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
             </div>
 
           </div>
@@ -155,7 +182,7 @@ if( isset( $_GET['logfile']) ) {
             <?php
             if($CONFIG['use_database']) : ?>
 
-              <table class="datatable table table-killfeed table-striped table-sm table-bordered">
+              <table class="datatable table table-striped table-hover table-bordered table-sm table-responsive-sm0 small table-killfeed" width="100%">
                 <thead>
                   <tr>
                     <th>date</th>
@@ -253,7 +280,11 @@ if( isset( $_GET['logfile']) ) {
     <!-- Footer -->
     <footer class="py-1 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; ABFW 2019</p>
+        <p class="m-0 text-center text-white">
+          &copy; 2019
+          <a href="https://github.com/ldeb/dayzstats">dayzstats</a> /
+          <a href="https://discord.gg/xgvrRff">ABFW</a> /
+          <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567">KillFeed</a></p>
       </div>
     </footer>
 
@@ -268,51 +299,57 @@ if( isset( $_GET['logfile']) ) {
     <script type="text/javascript" src="inc/script.js"></script>
 
     <script>
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // Datatable - killfeed
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      var table = $('.datatable.table-killfeed').DataTable({
-        lengthMenu: [ 10, 25, 50, 100, 200, 300, 500 ],
-        order: [[ 0, 'desc' ]],
-        // scrollY: 400,
-        // paging: false,
-        // lengthChange: true,
+      var common_options = {
         fixedHeader: {
           headerOffset: $('#mainNav').outerHeight(),
           header: true,
           footer: true
         },
-        colReorder: true,
+        // colReorder: true,
         select: 'single',
         stateSave: true,
         deferRender: true,  // ajax
-        <?php if( $CONFIG['use_database'] ) : ?>
-        processing: true,
-        serverSide: true,
-        ajax: "inc/server_processing.php"
-        <?php endif; ?>
-      });
+      };
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Datatable - players
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      var table = $('.datatable.table-players').DataTable({
-        lengthMenu: [ 10, 25, 50, 100, 200, 300, 500 ],
-        order: [[ 3, 'asc' ]],
-        fixedHeader: {
-          headerOffset: $('#mainNav').outerHeight(),
-          header: true,
-          footer: true
-        },
-        colReorder: true,
-        select: 'single',
-        stateSave: true,
-        deferRender: true,  // ajax
+      var players_options = Object.assign({
+        order: [[ 0, 'asc' ]],
         <?php if( $CONFIG['use_database'] ) : ?>
         processing: true,
         serverSide: true,
         ajax: "inc/server_processing_players.php"
         <?php endif; ?>
-      });
+      }, common_options);
+      var table = $('.datatable.table-players').DataTable(players_options);
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // Datatable - causes
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      var causes_options = Object.assign({
+        order: [[ 0, 'desc' ]],
+        <?php if( $CONFIG['use_database'] ) : ?>
+        ajax: {
+            url: 'inc/api.php?mode=causes',
+            dataSrc: ''
+        },
+        processing: true,
+        // serverSide: true,
+        // ajax: "inc/api.php?mode=causes"
+        <?php endif; ?>
+      }, common_options);
+      var table = $('.datatable.table-causes').DataTable(causes_options);
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // Datatable - killfeed
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      var killfeed_options = Object.assign({
+        order: [[ 0, 'desc' ]],
+        <?php if( $CONFIG['use_database'] ) : ?>
+        processing: true,
+        serverSide: true,
+        ajax: "inc/server_processing.php"
+        <?php endif; ?>
+      }, common_options);
+      var table = $('.datatable.table-killfeed').DataTable(killfeed_options);
     </script>
 
   </body>

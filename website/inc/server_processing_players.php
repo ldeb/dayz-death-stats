@@ -24,8 +24,9 @@ include('functions.php');
 $select_steam_ids = $CONFIG['link_to_user_steam_profile'] ? ", p.steam_id" : "";
 $table =
    "(
-      SELECT p.id, p.name, p.deaths, p.kills".$select_steam_ids."
-      FROM players p
+      SELECT (@row_number:=@row_number + 1) AS num, p.id, p.name, p.deaths, p.kills, IF(p.deaths=0, p.kills, p.kills/p.deaths) AS ratio".$select_steam_ids."
+      FROM players p, (SELECT @row_number:=0) AS t
+      ORDER BY ratio DESC
     ) res";
 
 // Table's primary key
@@ -36,40 +37,31 @@ $primaryKey = 'id';
 // parameter represents the DataTables column identifier. In this case simple
 // indexes
 $columns = array(
-  array( 'db' => 'kills', 'dt' => 1 ),
-  array( 'db' => 'deaths', 'dt' => 2 ),
-  array(
-      'db'        => 'deaths',
-      'dt'        => 3,
-      'formatter' => function( $d, $row ) {
-        $ratio = 0;
-        $deaths = intval($row['deaths']);
-        $kills = intval($row['kills']);
-        // if ( $kills > $deaths ) {
-        //   if ( $deaths > 0 ) {
-        //     $ratio = round( $kills / $deaths, 3 );
-        //   } else $ratio = $kills;
-        // }
-        // else if ( $deaths > $kills  ) {
-        //   if ( $kills > 0 ) {
-        //     $ratio = round( $deaths / $kills, 3 );
-        //   } else $ratio = $deaths;
-        //   $ratio = $ratio * -1;
-        // }
-        if ( $deaths > 0 ) {
-          $ratio = round( $kills / $deaths, 4 );
-        } else $ratio = $kills;
-        return $ratio;
-      }
-    )
+  array( 'db' => 'num', 'dt' => 0 ),
+  array( 'db' => 'kills', 'dt' => 2 ),
+  array( 'db' => 'deaths', 'dt' => 3 ),
+  array( 'db' => 'ratio', 'dt' => 4 ),
+  // array(
+  //     'db'        => 'deaths',  // doesn't matter
+  //     'dt'        => 4,
+  //     'formatter' => function( $d, $row ) {
+  //       $ratio = 0;
+  //       $deaths = intval($row['deaths']);
+  //       $kills = intval($row['kills']);
+  //       if ( $deaths > 0 ) {
+  //         $ratio = round( $kills / $deaths, 4 );
+  //       } else $ratio = $kills;
+  //       return $ratio;
+  //     }
+  //   )
 );
 
 if( ! $CONFIG['link_to_user_steam_profile'] ) {
-  array_push($columns, array( 'db' => 'name', 'dt' => 0 ));
+  array_push($columns, array( 'db' => 'name', 'dt' => 1 ));
 } else {
   array_push($columns, array(
       'db'        => 'name',
-      'dt'        => 0,
+      'dt'        => 1,
       'formatter' => function( $d, $row ) {
         $res = $row['name'];
         $res.= ( isset($row['steam_id']) ) ? ' '.generete_user_link('+', $row['steam_id']) : '';
