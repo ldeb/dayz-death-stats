@@ -5,6 +5,7 @@
 $conf_file = 'KillFeed/KillFeed.json';
 $dest_file = 'KillFeed/KillFeed_test.log';
 
+$y_diff = 15360;
 $messages = array();
 $strJsonFileContents = @file_get_contents($conf_file);
 if( $strJsonFileContents == false ) die('<strong>'.$conf_file.'</strong> not found!');
@@ -12,7 +13,9 @@ $array = json_decode($strJsonFileContents, true);
 // var_dump($array);
 foreach ($array as $key => $value) {
   if(is_array($value) && isset( $value['Message']) ) {
-    $msg = str_replace(['KillerInfo', 'VictimInfo', 'KillRange'], ['Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)', 'Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>)', '6'], $value['Message']);
+    $pos1 = rand(0, $y_diff) . ', ' . rand(0, $y_diff) . ', ' . rand(0, 100);
+    $pos2 = rand(0, $y_diff) . ', ' . rand(0, $y_diff) . ', ' . rand(0, 100);
+    $msg = str_replace(['KillerInfo', 'VictimInfo', 'KillRange'], ['Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<'.$pos1.'>)', 'Player_victim (steam64id=yyyyyyyyyyyyyy pos=<'.$pos2.'>)', '6'], $value['Message']);
     array_push($messages, $msg);
   }
 }

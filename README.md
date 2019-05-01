@@ -17,7 +17,7 @@
 
 **TO DO:**
 - show log starting date
-- Update map when loading data from the database
+- Possibility to generate a "deathmap" from all deaths in database
 - Generate more statistics
 - Show relation between victim/killer on map
 - Automatically add necessary tables to the database if not present

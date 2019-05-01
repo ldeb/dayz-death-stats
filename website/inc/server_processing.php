@@ -22,9 +22,10 @@ include('functions.php');
 // DB table to use
 // $table = 'deaths';
 $select_steam_ids = $CONFIG['link_to_user_steam_profile'] ? ", killer.steam_id AS killer_steam_id, victim.steam_id AS victim_steam_id" : "";
+$select_player_pos = $CONFIG['show_deaths_on_map'] ? ", d.victim_pos, d.killer_pos" : "";
 $table =
    "(
-      SELECT d.id, d.date, d.victim_pos, d.killer_pos, d.reason, d.distance, killer.name AS killer_name, victim.name AS victim_name".$select_steam_ids."
+      SELECT d.id, d.date, d.reason, d.distance, killer.name AS killer_name, victim.name AS victim_name".$select_player_pos.$select_steam_ids."
       FROM deaths d
       LEFT JOIN players killer ON killer.id = d.killer_id
       LEFT JOIN players victim ON victim.id = d.victim_id
@@ -39,38 +40,43 @@ $primaryKey = 'id';
 // indexes
 $columns = array(
   array( 'db' => 'date', 'dt' => 0 ),
+  array( 'db' => 'killer_name', 'dt' => 1 ),
+  array( 'db' => 'victim_name', 'dt' => 2 ),
   array( 'db' => 'reason', 'dt' => 3 ),
   array( 'db' => 'distance', 'dt' => 4 ),
 );
 
 if( ! $CONFIG['link_to_user_steam_profile'] ) {
-  array_push($columns, array( 'db' => 'killer_name', 'dt' => 1 ));
-  array_push($columns, array( 'db' => 'victim_name', 'dt' => 2 ));
+  // array_push($columns, array( 'db' => 'killer_name', 'dt' => 1 ));
+  // array_push($columns, array( 'db' => 'victim_name', 'dt' => 2 ));
 } else {
-  array_push($columns, array(
-      'db'        => 'killer_name',
-      'dt'        => 1,
-      'formatter' => function( $d, $row ) {
-        $res = $row['killer_name'];
-        $res.= ( isset($row['killer_steam_id']) ) ? ' '.generete_user_link('+', $row['killer_steam_id']) : '';
-        return $res;
-      }
-    )
-  );
-  array_push($columns, array(
-      'db'        => 'victim_name',
-      'dt'        => 2,
-      'formatter' => function( $d, $row ) {
-        $res = $row['victim_name'];
-        $res.= ( isset($row['victim_steam_id']) ) ? ' '.generete_user_link('+', $row['victim_steam_id']) : '';
-        return $res;
-      }
-    )
-  );
+  // array_push($columns, array(
+  //     'db'        => 'killer_name',
+  //     'dt'        => 1,
+  //     'formatter' => function( $d, $row ) {
+  //       $res = $row['killer_name'];
+  //       $res.= ( isset($row['killer_steam_id']) ) ? ' '.generete_user_link('+', $row['killer_steam_id']) : '';
+  //       return $res;
+  //     }
+  //   )
+  // );
+  // array_push($columns, array(
+  //     'db'        => 'victim_name',
+  //     'dt'        => 2,
+  //     'formatter' => function( $d, $row ) {
+  //       $res = $row['victim_name'];
+  //       $res.= ( isset($row['victim_steam_id']) ) ? ' '.generete_user_link('+', $row['victim_steam_id']) : '';
+  //       return $res;
+  //     }
+  //   )
+  // );
 	array_push($columns, array( 'db' => 'killer_steam_id', 'dt' => 5 ));
   array_push($columns, array( 'db' => 'victim_steam_id', 'dt' => 6 ));
 }
-
+if( $CONFIG['show_deaths_on_map'] ) {
+	array_push($columns, array( 'db' => 'killer_pos', 'dt' => 7 ));
+  array_push($columns, array( 'db' => 'victim_pos', 'dt' => 8 ));
+}
 // SQL server connection information
 $sql_details = array(
   'host' => $CONFIG['db_host'],

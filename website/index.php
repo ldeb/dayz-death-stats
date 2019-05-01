@@ -50,9 +50,11 @@ if( isset( $_GET['logfile']) ) {
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#killlogs">KillFeed logs</a>
             </li>
+            <?php if( $CONFIG['show_deaths_on_map'] ) : ?>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#killmap">KillFeed Map</a>
             </li>
+            <?php endif; ?>
           </ul>
         </div>
       </div>
@@ -179,103 +181,111 @@ if( isset( $_GET['logfile']) ) {
           </div>
 
           <div class="col-lg-12 mx-auto my-4">
-            <?php
-            if($CONFIG['use_database']) : ?>
 
-              <table class="datatable table table-striped table-hover table-bordered table-sm table-responsive-sm0 small table-killfeed" width="100%">
-                <thead>
-                  <tr>
-                    <th>date</th>
-                    <th>killer</th>
-                    <th>victim</th>
-                    <th>cause</th>
-                    <th>distance (m)</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+            <table class="datatable table table-striped table-hover table-bordered table-sm table-responsive-sm0 small table-killfeed" width="100%">
+              <thead>
+                <tr>
+                  <th>date</th>
+                  <th>killer</th>
+                  <th>victim</th>
+                  <th>cause</th>
+                  <th>distance (m)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                if( ! $CONFIG['use_database']) :
+                  if( isset($results) && isset($results['matches']) && ! empty($results['matches']) ) {
+                    $nbtot = count($results['matches']);
+                    generate_table_content($CONFIG, $results['matches']);
+                  } else {
+                    $nbtot = 0;
+                  }
+                endif;
+                ?>
+              </tbody>
+            </table>
 
-            <?php
-            else :
-              if( isset($results) && isset($results['matches']) && ! empty($results['matches']) ) {
-                $nbtot = count($results['matches']);
-                generate_table($CONFIG, $results['matches']);
-              } else {
-                $nbtot = 0;
-              }
-            endif;
-            ?>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="killmap" class="">
+    <?php if( $CONFIG['show_deaths_on_map'] ) : ?>
+      <section id="killmap" class="">
 
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h2 class="my-3">KillFeed Map<?php if( isset($nbtot) ): ?> <small>(<?=$nbtot?> deaths)</small><?php endif; ?></h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="container-fluid position-relative mx-auto map_container">
-
-        <div class="map_options">
-          <!-- <label>Maps options :</label> -->
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary btn-sm active">
-              <input type="radio" name="btn_map_type" value="dayz" autocomplete="off" checked> DayZ SA
-            </label>
-            <label class="btn btn-primary btn-sm">
-              <input type="radio" name="btn_map_type" value="mod" autocomplete="off"> DayZ mod
-            </label>
-          </div>
-
-          <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="btn_map_zoom">Zoom &times;</label>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="my-3">
+                KillFeed Map
+                <span class="nbtot small">
+                  <?php if( ! $CONFIG['use_database'] && isset($nbtot) ): ?>
+                    (<?=$nbtot?> deaths)
+                  <?php endif; ?>
+                </span>
+              </h2>
             </div>
-            <label class="btn btn-secondary btn-sm">
-              <input type="radio" name="btn_map_zoom" value="half" autocomplete="off"> ½
-            </label>
-            <label class="btn btn-secondary btn-sm active">
-              <input type="radio" name="btn_map_zoom" value="1" autocomplete="off" checked> 1
-            </label>
-            <label class="btn btn-secondary btn-sm">
-              <input type="radio" name="btn_map_zoom" value="2" autocomplete="off"> 2
-            </label>
-            <label class="btn btn-secondary btn-sm">
-              <input type="radio" name="btn_map_zoom" value="4" autocomplete="off"> 4
-            </label>
           </div>
+        </div>
 
-          <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
-            <div class="input-group-prepend">
-              <label class="input-group-text">Show</label>
+        <div class="container-fluid position-relative mx-auto map_container">
+
+          <div class="map_options">
+            <!-- <label>Maps options :</label> -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary btn-sm active">
+                <input type="radio" name="btn_map_type" value="dayz" autocomplete="off" checked> DayZ SA
+              </label>
+              <label class="btn btn-primary btn-sm">
+                <input type="radio" name="btn_map_type" value="mod" autocomplete="off"> DayZ mod
+              </label>
             </div>
-            <label class="btn btn-secondary text-danger btn-sm active">
-              <input type="checkbox" name="btn_map_victims" value="1" autocomplete="off" checked> <strong>victims</strong>
-            </label>
-            <label class="btn btn-secondary text-success btn-sm active">
-              <input type="checkbox" name="btn_map_killers" value="1" autocomplete="off" checked> <strong>killers</strong>
-            </label>
-            <label class="btn btn-secondary text-white0 btn-sm">
-              <input type="checkbox" name="btn_map_grid" value="1" autocomplete="off"> grid
-            </label>
+
+            <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="btn_map_zoom">Zoom &times;</label>
+              </div>
+              <label class="btn btn-secondary btn-sm">
+                <input type="radio" name="btn_map_zoom" value="half" autocomplete="off"> ½
+              </label>
+              <label class="btn btn-secondary btn-sm active">
+                <input type="radio" name="btn_map_zoom" value="1" autocomplete="off" checked> 1
+              </label>
+              <label class="btn btn-secondary btn-sm">
+                <input type="radio" name="btn_map_zoom" value="2" autocomplete="off"> 2
+              </label>
+              <label class="btn btn-secondary btn-sm">
+                <input type="radio" name="btn_map_zoom" value="4" autocomplete="off"> 4
+              </label>
+            </div>
+
+            <div class="btn-group btn-group-toggle input-group-sm" data-toggle="buttons">
+              <div class="input-group-prepend">
+                <label class="input-group-text">Show</label>
+              </div>
+              <label class="btn btn-secondary text-danger btn-sm active">
+                <input type="checkbox" name="btn_map_victims" value="1" autocomplete="off" checked> <strong>victims</strong>
+              </label>
+              <label class="btn btn-secondary text-success btn-sm active">
+                <input type="checkbox" name="btn_map_killers" value="1" autocomplete="off" checked> <strong>killers</strong>
+              </label>
+              <label class="btn btn-secondary text-white0 btn-sm">
+                <input type="checkbox" name="btn_map_grid" value="1" autocomplete="off"> grid
+              </label>
+            </div>
+
+          </div>
+
+          <div class="map show_victims show_killers">
+            <div class="grid"></div>
+            <?php if( ! $CONFIG['use_database'] && isset($nbtot) && $nbtot > 0 ) show_deaths_on_map($CONFIG, $results['matches']); ?>
           </div>
 
         </div>
 
-        <div class="map show_victims show_killers">
-          <div class="grid"></div>
-          <?php if( isset($nbtot) && $nbtot > 0 ) show_deaths_on_map($CONFIG, $results['matches']); ?>
-        </div>
-
-      </div>
-
-    </section>
+      </section>
+    <?php endif; ?>
 
     <!-- Footer -->
     <footer class="py-1 bg-dark">
@@ -296,10 +306,16 @@ if( isset( $_GET['logfile']) ) {
     <!-- Datatable -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/cr-1.5.0/fh-3.1.4/sl-1.3.0/datatables.min.js"></script>
 
+    <script>
+      var CONFIG_show_death_details_on_map = <?=( $CONFIG['show_death_details_on_map'] ) ? 'true' : 'false' ?>;
+      var CONFIG_link_to_user_steam_profile = <?=( $CONFIG['link_to_user_steam_profile'] ) ? 'true' : 'false' ?>;
+    </script>
+
     <script type="text/javascript" src="inc/script.js"></script>
 
     <script>
       var common_options = {
+        lengthMenu: [ 10, 25, 50, 100, 200, 300, 500 ],
         fixedHeader: {
           headerOffset: $('#mainNav').outerHeight(),
           header: true,
@@ -346,7 +362,25 @@ if( isset( $_GET['logfile']) ) {
         <?php if( $CONFIG['use_database'] ) : ?>
         processing: true,
         serverSide: true,
-        ajax: "inc/server_processing.php"
+        ajax: "inc/server_processing.php",
+        columnDefs: [
+          {
+            "targets": [1, 2], // killer, victim
+            "render":
+              function ( data, type, row, meta ) {
+                console.log(data, meta);
+                let name = data;
+                let steam_id_pos = meta.col + 4;
+                name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_link('+', row[steam_id_pos]) : '';
+                return name;
+              },
+          },
+        ],
+        drawCallback: function( settings ) {
+          var api = this.api();
+          // console.log( api.ajax.json().data );
+          show_deaths_on_map(api.ajax.json());
+        }
         <?php endif; ?>
       }, common_options);
       var table = $('.datatable.table-killfeed').DataTable(killfeed_options);

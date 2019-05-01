@@ -1,42 +1,152 @@
-Log Created on 2019-04-24 at 22:46:00
-22:46:01 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) in Melee combat.
-22:46:02 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName.
-22:46:03 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName [6m].
-22:46:04 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) stepped on a WeaponName laid by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) and died.
-22:46:05 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was exploded by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s exploding WeaponName.
-22:46:06 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was cut deep by barbed wire on a Player_killer_barbed_wired (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>).
-22:46:06 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was cut deep by Player_killer_barbed_wired (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s barbed wire.
-22:46:07 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died to the Infected.
-22:46:08 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died to the Wildlife.
-22:46:09 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died from a fall.
-22:46:10 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) killed Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) while driving VehicleName.
-22:46:11 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died to Sickness.
-22:46:12 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died due to Starvation.
-22:46:13 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died due to Dehydration.
-22:46:14 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died from suicide.
-22:46:15 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from cuts by the Infected.
-22:46:16 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from cuts by the Wildlife.
-22:46:17 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s fists.
-22:46:18 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName.
-22:46:19 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s trap: WeaponName.
-22:46:20 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName exploding.
-22:46:21 | Player_victim_unkown_killer (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from 
-22:46:21 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out from barbed wire.
-22:46:22 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) woke with open wounds and bled out.
-22:46:23 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) attacked Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) in Melee combat.
-22:46:24 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) attacked Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName.
-22:46:25 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) attacked Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) with WeaponName [6m].
-22:46:26 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was injured by stepping on Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName.
-22:46:27 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was injured by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>)'s WeaponName.
-22:46:28 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was caught up in barbed wire from a Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>).
-22:46:29 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was attacked by the Infected.
-22:46:30 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was attacked by the Wildlife.
-22:46:31 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) fell hard and survived.
-22:46:32 | Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) hit Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) while driving VehicleName.
-22:46:33 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) died with stats unable to be fetched.
-22:46:34 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) killed by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>).
-22:46:35 | Player/Object does not exist.
-22:46:36 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) killed themselves in Melee somehow.
-22:46:37 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was hit by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) (Not Caught).
-22:46:38 | Player_victim (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) was damaged by Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) with WeaponName.
-22:46:39 | Player_victim_spe (steam64id=yyyyyyyyyyyyyy pos=<1675.1, 3597.0, 133.6>) bled out due to damage from Player_killer (steam64id=xxxxxxxxxxxxxxxx pos=<1648.1, 3593.0, 133.2>) with WeaponName.
+Log Created on 2019-04-10 at 21:27:10
+21:33:10 | STUPEAD (steam64id=76561198050277984 pos=<1648.1, 3593.0, 133.2>) killed Grego (steam64id=76561198422180913 pos=<1675.1, 3597.0, 133.6>) with SK 59/66 [27m].
+21:35:54 | PeRcIfLeUr (steam64id=76561197960360797 pos=<11951.9, 9168.9, 54.0>) killed Inritus (steam64id=76561198013785589 pos=<11893.9, 9164.0, 54.0>) with BK-18 [58m].
+21:36:29 | [CC] DomsterDK (steam64id=76561198007925819 pos=<1719.7, 3570.2, 134.2>) killed Orzelo (steam64id=76561198840019940 pos=<1722.0, 3570.4, 134.4>) with CR-61 Skorpion [2m].
+21:38:15 | Mike (steam64id=76561197994553685 pos=<12933.9, 10174.5, 5.9>) killed TheLoudos98 (steam64id=76561198376051317 pos=<12938.4, 10175.4, 5.9>) with BK-133 [5m].
+21:39:12 | Pedestrian (steam64id=76561198067994982 pos=<4937.2, 2468.5, 10.0>) killed ZaKill (steam64id=76561197997206418 pos=<4941.4, 2467, 10.0>) with BK-133 [5m].
+21:42:24 | Собака (steam64id=76561198349305872 pos=<1880.6, 2301.6, 9.2>) killed Shroud(Deniz) (steam64id=76561198039275311 pos=<1880.5, 2299.7, 9.2>) with SK 59/66 [2m].
+21:42:48 | NeXTeR (steam64id=76561198119071898 pos=<3628.7, 2171.2, 6.0>) killed Survivor (2) (steam64id=76561198066245070 pos=<3627.7, 2173.1, 6.0>) with SK 59/66 [2m].
+21:42:52 | Soul Crazy (steam64id=76561198116971997 pos=<10287.1, 2096.4, 6.6>) killed NaRRk0 (steam64id=76561198352431440 pos=<10282.2, 2102.8, 6.5>) with BK-133 [8m].
+21:43:17 | Pedestrian (steam64id=76561198067994982 pos=<4859.7, 2609.9, 9.8>) killed MrDal (steam64id=76561198015149426 pos=<4869.6, 2610.6, 9.8>) with BK-133 [10m].
+21:43:54 | Pedestrian (steam64id=76561198067994982 pos=<4878.1, 2588.7, 9.8>) killed Gawnie (steam64id=76561198127584082 pos=<4876.9, 2592.3, 9.8>) with BK-133 [4m].
+21:44:32 | {IHF} troxo (steam64id=76561198007160096 pos=<3536.0, 2466.1, 6.3>) killed Dimon (steam64id=76561198128175922 pos=<3536.1, 2460.4, 6.0>) with BK-133 [6m].
+21:44:36 | Soul Crazy (steam64id=76561198116971997 pos=<10270.9, 2095.9, 7.0>) killed NaRRk0 (steam64id=76561198352431440 pos=<10273.1, 2094.4, 7.0>) with BK-133 [3m].
+21:45:10 | Pedestrian (steam64id=76561198067994982 pos=<4811.3, 2456.6, 8.6>) killed ghovthegod (steam64id=76561198086975883 pos=<4810.2, 2458.5, 8.6>) with BK-133 [2m].
+21:46:33 | Xtrem_Aki (steam64id=76561198831322801 pos=<6315.5, 2540.3, 9.3>) killed Tj4y (steam64id=76561198403888826 pos=<6321.1, 2537.1, 9.3>) with IJ-70 [6m].
+21:46:40 | Ivar (steam64id=76561198235159648 pos=<10264.1, 2098.7, 6.0>) killed Soul Crazy (steam64id=76561198116971997 pos=<10279.9, 2106.4, 6.0>) with CR-61 Skorpion [18m].
+21:46:42 | NeXTeR (steam64id=76561198119071898 pos=<3590.0, 2169.2, 18.6>) killed cent_3 (steam64id=76561198125401922 pos=<3627.9, 2172.4, 6.0>) with M1A SOCOM [40m].
+21:47:39 | Pedestrian (steam64id=76561198067994982 pos=<4421.3, 2504.8, 6.7>) killed Dimon (steam64id=76561198128175922 pos=<4421.1, 2509.5, 6.6>) with BK-133 [5m].
+21:49:27 | NaRRk0 (steam64id=76561198352431440 pos=<10268.5, 2129.3, 6.0>) killed SilentGrip (steam64id=76561198052912581 pos=<10254.2, 2119.3, 6.0>) with BK-133 [18m].
+21:50:46 | Pedestrian (steam64id=76561198067994982 pos=<4413.8, 2475.8, 6.5>) killed Shroud(Deniz) (steam64id=76561198039275311 pos=<4412.1, 2471.5, 6.6>) with BK-133 [5m].
+21:50:48 | NaRRk0 (steam64id=76561198352431440 pos=<10325.8, 2072.3, 6.0>) killed McCain (steam64id=76561198018427933 pos=<10325, 2067.6, 6.0>) with BK-133 [5m].
+21:55:37 | Shroud(Deniz) (steam64id=76561198039275311 pos=<3514.2, 2148.6, 5.5>) killed Grego (steam64id=76561198422180913 pos=<3504.5, 2168.2, 6.0>) with AWM [22m].
+21:55:58 | mg fuckface (steam64id=76561198050146610 pos=<4731.3, 10534, 339.2>) killed weedc (steam64id=76561197985118227 pos=<4736.7, 10533.7, 339.3>) with SK 59/66 [5m].
+21:56:05 | NaRRk0 (steam64id=76561198352431440 pos=<10326.1, 2071.8, 6.0>) killed Ivar (steam64id=76561198235159648 pos=<10321.1, 2074.9, 6.0>) with BK-133 [6m].
+21:56:35 | cameronzack47 (steam64id=76561198087224855 pos=<2647.7, 5236.4, 199.1>) killed pat (steam64id=76561197963651569 pos=<2652.4, 5231.7, 199.1>) with CR-61 Skorpion [7m].
+22:02:09 | Pedestrian (steam64id=76561198067994982 pos=<4908.4, 2453.1, 9.5>) killed MrDal (steam64id=76561198015149426 pos=<4899.2, 2465.1, 9.4>) with BK-133 [15m].
+22:06:31 | Shroud(Deniz) (steam64id=76561198039275311 pos=<2578.3, 2023.8, 6.5>) killed [DA]Jorret (steam64id=76561198059500656 pos=<2575.2, 2005.3, 6.0>) with AWM [19m].
+22:06:38 | [CC] TheKlinge84 (steam64id=76561198095330107 pos=<2580.3, 5082.1, 208.4>) killed cameronzack47 (steam64id=76561198087224855 pos=<2582.3, 5083.3, 208.4>) with SG5-K [2m].
+22:07:11 | {$} Grizzly (steam64id=76561198845155385 pos=<1950.8, 2240.2, 5.9>) killed Survivor (steam64id=76561197978302482 pos=<1951.2, 2238.4, 5.9>) with Mosin 91/30 [2m].
+22:13:53 | NeXTeR (steam64id=76561198119071898 pos=<2587.6, 1288.4, 21.9>) killed wilau (steam64id=76561198121160606 pos=<2591.9, 1289.6, 21.9>) with KA-M [4m].
+22:19:40 | STUPEAD (steam64id=76561198050277984 pos=<1686.2, 3909, 144.6>) killed AAAAAA (steam64id=76561197987683500 pos=<1684.2, 3913.6, 144.6>) with SK 59/66 [5m].
+22:21:32 | [DA]Jorret (steam64id=76561198059500656 pos=<4854.9, 2598.6, 9.8>) bled out from Survivor (5) (steam64id=76561198016613779 pos=<4952.3, 2583.2, 9.6>)'s KA-M.
+22:24:35 | Thibault (steam64id=76561198172048113 pos=<3573.5, 2434.4, 14.6>) killed MightyKraken (steam64id=76561198028130982 pos=<3573.3, 2435.8, 14.6>) with Karabiner 98K [1m].
+22:25:59 | {IHF} troxo (steam64id=76561198007160096 pos=<3423.5, 2585.2, 27.7>) killed Thibault (steam64id=76561198172048113 pos=<3575.7, 2436.5, 10.8>) with M70 Tundra [213m].
+22:26:53 | Survivor (5) (steam64id=76561198016613779 pos=<4391.5, 2695.2, 6.9>) killed Survivor (2) (steam64id=76561198104064055 pos=<4384.2, 2697.1, 6.9>) with KA-M [8m].
+22:27:12 | Survivor (6) (steam64id=76561198199696870 pos=<3509.4, 2536.9, 12.8>) killed {IHF} troxo (steam64id=76561198007160096 pos=<3513.0, 2536.3, 12.6>) with BK-133 [4m].
+22:27:15 | Survivor (6) (steam64id=76561198199696870 pos=<3517.4, 2541.4, 12.4>) killed EllinasKopritis (steam64id=76561198256461605 pos=<3506.8, 2531.6, 12.6>) with BK-133 [14m].
+22:27:22 | Survivor (6) (steam64id=76561198199696870 pos=<3503.7, 2544.7, 13.0>) killed {IHF} PAVILION (steam64id=76561198342280031 pos=<3509.4, 2543.1, 12.8>) with BK-133 [6m].
+22:28:39 | SadeQuacks (steam64id=76561198078315037 pos=<6420.0, 2347.2, 7.4>) killed DollarmanPT (steam64id=76561198087690302 pos=<6413.5, 2340.2, 6.9>) with BK-133 [10m].
+22:28:50 | Survivor (6) (steam64id=76561198199696870 pos=<3510.9, 2529.1, 12.6>) killed {IHF} troxo (steam64id=76561198007160096 pos=<3517.5, 2537.7, 12.4>) with BK-133 [11m].
+22:30:25 | Survivor (6) (steam64id=76561198199696870 pos=<3509.0, 2532.5, 12.6>) killed [DA]Jorret (steam64id=76561198059500656 pos=<3508.3, 2528.0, 12.9>) with BK-133 [5m].
+22:31:19 | kezz (steam64id=76561198837644348 pos=<3505.8, 2529.1, 12.4>) killed Survivor (6) (steam64id=76561198199696870 pos=<3506.8, 2530.6, 12.5>) with BK-133 [2m].
+22:32:27 | {IHF} PAVILION (steam64id=76561198342280031 pos=<3529.6, 2529.3, 11.6>) killed PUNSHED (steam64id=76561198884003232 pos=<3523.7, 2523.7, 11.2>) with BK-133 [8m].
+22:33:59 | Survivor (5) (steam64id=76561198016613779 pos=<3641.0, 2537.0, 8.7>) killed {IHF} PAVILION (steam64id=76561198342280031 pos=<3640.6, 2538.7, 9.4>) with KA-M [2m].
+22:34:24 | STUPEAD (steam64id=76561198050277984 pos=<2167.2, 3301.2, 87.6>) killed AAAAAA (steam64id=76561197987683500 pos=<2168.2, 3300.9, 87.6>) with IJ-70 [1m].
+22:34:52 | Survivor (5) (steam64id=76561198016613779 pos=<3541.7, 2544.9, 11.5>) killed Awful (steam64id=76561198207917096 pos=<3548.7, 2549.0, 11.2>) with KA-M [8m].
+22:35:47 | Survivor (5) (steam64id=76561198016613779 pos=<3544.0, 2555.5, 12.5>) killed {IHF} troxo (steam64id=76561198007160096 pos=<3516.9, 2560.6, 13.9>) with KA-M [28m].
+22:35:49 | Thibault (steam64id=76561198172048113 pos=<3538.0, 2531.4, 11.5>) killed Survivor (5) (steam64id=76561198016613779 pos=<3544.8, 2554.5, 12.3>) with Karabiner 98K [24m].
+22:36:06 | cent_3 (steam64id=76561198125401922 pos=<5016.7, 2505.0, 9.6>) killed Survivor (2) (steam64id=76561198104064055 pos=<5014.3, 2506.6, 9.6>) with CR-75 [3m].
+22:37:03 | EllinasKopritis (steam64id=76561198256461605 pos=<3582.1, 2566.6, 12.0>) killed TrentReznor (steam64id=76561198260676037 pos=<3552.9, 2547.8, 11.1>) with BK-18 [35m].
+22:38:22 | Thibault (steam64id=76561198172048113 pos=<3552.9, 2570.2, 13.7>) killed kezz (steam64id=76561198837644348 pos=<3540.7, 2578.0, 14.2>) with KA-M [15m].
+22:40:06 | Thibault (steam64id=76561198172048113 pos=<3537.1, 2570.9, 14.3>) killed Survivor (6) (steam64id=76561198199696870 pos=<3531.4, 2560.9, 13.2>) with KA-M [12m].
+22:40:49 | CitizenZ (steam64id=76561198950925625 pos=<4596.5, 8217.9, 318.8>) killed Mr.ShitHawk (steam64id=76561197995302923 pos=<4611.9, 8222.1, 319.7>) with SK 59/66 [16m].
+22:43:24 | DollarmanPT (steam64id=76561198087690302 pos=<12941.7, 10179.9, 5.9>) killed Philcore (steam64id=76561198159318967 pos=<12940.7, 10179.2, 5.9>) with BK-133 [1m].
+22:43:42 | SUPER300 (steam64id=76561198067705672 pos=<12941.4, 10173.2, 5.9>) killed DollarmanPT (steam64id=76561198087690302 pos=<12938.5, 10165.8, 6.1>) with BK-133 [8m].
+22:44:46 | Survivor (4) (steam64id=76561198022635766 pos=<7980.7, 11621.9, 226.0>) killed Unknown Entity (steam64id=Unknown pos=<7967.8, 11674.2, 223.5>) with M4-A1 [54m].
+22:44:52 | Thibault (steam64id=76561198172048113 pos=<3559.4, 2560.6, 15.4>) killed kezz (steam64id=76561198837644348 pos=<3559.6, 2561.7, 15.4>) with AWM [1m].
+22:47:45 | SRK (steam64id=76561198043394090 pos=<4509.5, 4614.9, 234.6>) killed SadeQuacks (steam64id=76561198078315037 pos=<4494.1, 4618.1, 234.4>) with BK-133 [16m].
+22:48:44 | Awful (steam64id=76561198207917096 pos=<3553.8, 2563.2, 13.4>) killed kezz (steam64id=76561198837644348 pos=<3553.3, 2567.8, 13.6>) with KA-M [5m].
+22:49:51 | {IHF} troxo (steam64id=76561198007160096 pos=<3563.3, 2631.7, 20.1>) killed Thibault (steam64id=76561198172048113 pos=<3557.0, 2583.6, 14.5>) with BK-18 [49m].
+22:50:22 | {IHF} PAVILION (steam64id=76561198342280031 pos=<3595.0, 2585.7, 12.9>) killed DominykDelta (steam64id=76561198170461174 pos=<3588.6, 2581.7, 12.8>) with BK-18 [8m].
+22:50:52 | Dimon (steam64id=76561198128175922 pos=<4721.7, 2411.1, 7.0>) killed Funny (steam64id=76561198106822377 pos=<4720.8, 2409.5, 6.9>) with BK-133 [2m].
+22:51:01 | NeXTeR (steam64id=76561198119071898 pos=<2524.1, 5137.3, 193.5>) killed Boerns (steam64id=76561198336572444 pos=<2523.4, 5142.7, 196.3>) with KA-M [6m].
+22:51:04 | NeXTeR (steam64id=76561198119071898 pos=<2520.5, 5143.5, 196.6>) killed Moin (steam64id=76561198261835651 pos=<2518.3, 5143.1, 196.6>) with KA-M [2m].
+22:51:14 | Dimon (steam64id=76561198128175922 pos=<4689.0, 2387.1, 5.7>) killed Tiga (steam64id=76561198191533495 pos=<4695.4, 2387.1, 5.9>) with BK-133 [6m].
+22:51:16 | NeXTeR (steam64id=76561198119071898 pos=<2520.5, 5143.5, 196.6>) killed [CC] Paddy (steam64id=76561197998771979 pos=<2519.4, 5142.3, 196.6>) with KA-M [2m].
+22:51:20 | NeXTeR (steam64id=76561198119071898 pos=<2520.1, 5143.6, 196.6>) killed [CC] Esraicht (steam64id=76561198382111990 pos=<2520.1, 5139.4, 196.6>) with KA-M [4m].
+22:51:40 | H4ck3d0ff (steam64id=76561197961555885 pos=<2090.9, 3497.5, 109.5>) killed Survivor (5) (steam64id=76561197978302482 pos=<2097.3, 3493.4, 109.4>) with BK-133 [8m].
+22:52:14 | Dimon (steam64id=76561198128175922 pos=<4730.1, 2323.3, 6.2>) killed Tsuyo (steam64id=76561198164170337 pos=<4731.7, 2325.3, 6.2>) with BK-133 [2m].
+22:52:17 | Dimon (steam64id=76561198128175922 pos=<4723.4, 2325.4, 6.0>) killed ROGNAM (steam64id=76561198065653256 pos=<4722.1, 2328.3, 6.0>) with BK-133 [3m].
+22:52:30 | STUPEAD (steam64id=76561198050277984 pos=<2135.0, 2860.1, 70.9>) killed AAAAAA (steam64id=76561197987683500 pos=<2133.3, 2859.6, 70.9>) with IJ-70 [2m].
+22:53:05 | Dimon (steam64id=76561198128175922 pos=<4670, 2358.2, 6.0>) killed Survivor (2) (steam64id=76561198104064055 pos=<4665.2, 2360.3, 6.0>) with BK-133 [5m].
+22:53:31 | Sir 21 the Savage (steam64id=76561198121045575 pos=<4742.3, 2300.2, 7.2>) killed ROGNAM (steam64id=76561198065653256 pos=<4731.3, 2324.6, 6.2>) with BK-18 [27m].
+22:53:37 | [CC] Kathy (steam64id=76561198116656521 pos=<2566.7, 5081.3, 204.0>) killed Shroud(Deniz) (steam64id=76561198039275311 pos=<2522.4, 5135.9, 196.6>) with M16A4 [71m].
+22:54:20 | [CC] DomsterDK (steam64id=76561198007925819 pos=<2520.5, 5143.8, 193.5>) killed NeXTeR (steam64id=76561198119071898 pos=<2522.7, 5143.5, 193.5>) with BK-133 [2m].
+22:54:33 | [CC] Forrest (steam64id=76561198332322633 pos=<2520.1, 5142.5, 196.6>) killed {$} Trick$hot (steam64id=76561198128941140 pos=<2520.6, 5140.2, 196.6>) with KA-M [2m].
+22:54:35 | {$} Grizzly (steam64id=76561198845155385 pos=<2520.0, 5139.7, 196.6>) killed [CC] Forrest (steam64id=76561198332322633 pos=<2520.1, 5142.5, 196.6>) with KA-M [3m].
+22:54:35 | [CC] Forrest (steam64id=76561198332322633 pos=<2520.1, 5142.5, 196.5>) killed {$} Grizzly (steam64id=76561198845155385 pos=<2520.0, 5139.7, 196.6>) with KA-M [3m].
+22:55:11 | Instructor_Yolo (steam64id=76561198410185701 pos=<4475.6, 8252.7, 314.1>) killed peanut (steam64id=76561197998545728 pos=<4482.6, 8255.6, 314.3>) with BK-133 [8m].
+22:55:42 | |SH| Bembel (steam64id=76561197982565146 pos=<3089.2, 5292.7, 253.1>) killed [CC] Kathy (steam64id=76561198116656521 pos=<2570.2, 5078.8, 204.0>) with Mosin 91/30 [564m].
+22:55:57 | EllinasKopritis (steam64id=76561198256461605 pos=<3620.1, 2579.6, 12.1>) killed Thibault (steam64id=76561198172048113 pos=<3619.9, 2575.8, 11.8>) with BK-18 [4m].
+22:58:35 | wilau (steam64id=76561198121160606 pos=<2149.8, 3356.5, 100.3>) killed Survivor (8) (steam64id=76561197960592251 pos=<2147.8, 3359.2, 102.3>) with CR-75 [4m].
+22:58:51 | {IHF} troxo (steam64id=76561198007160096 pos=<3557.7, 2563.7, 15.4>) killed Awful (steam64id=76561198207917096 pos=<3558.9, 2563.3, 15.4>) with FX-45 [1m].
+22:58:52 | AAAAAA (steam64id=76561197987683500 pos=<1865.9, 2251.1, 6.5>) killed DanSkills (steam64id=76561198215922027 pos=<1866.6, 2247.3, 6.4>) with BK-18 [4m].
+22:58:59 | {IHF} troxo (steam64id=76561198007160096 pos=<3559.5, 2564.7, 15.4>) killed PUNSHED (steam64id=76561198884003232 pos=<3563.5, 2564.1, 15.4>) with SK 59/66 [4m].
+23:00:11 | {IHF} troxo (steam64id=76561198007160096 pos=<3560.7, 2560.8, 15.4>) killed Thibault (steam64id=76561198172048113 pos=<3562.9, 2558.6, 15.3>) with KA-M [3m].
+23:02:05 | {IHF} troxo (steam64id=76561198007160096 pos=<3455, 2569.2, 19.5>) killed Survivor (2) (steam64id=76561198104064055 pos=<3454.1, 2569.9, 19.8>) with KA-M [1m].
+23:03:06 | STUPEAD (steam64id=76561198050277984 pos=<2143.5, 3358.6, 102.3>) killed wilau (steam64id=76561198121160606 pos=<2147.4, 3359.9, 102.3>) with SK 59/66 [4m].
+23:03:19 | STUPEAD (steam64id=76561198050277984 pos=<2149.0, 3360.3, 98.8>) killed H4ck3d0ff (steam64id=76561197961555885 pos=<2148.1, 3353.4, 101.1>) with SK 59/66 [7m].
+23:03:41 | Tiga (steam64id=76561198191533495 pos=<6601.7, 2583.6, 6.0>) killed PEAKY_PF (steam64id=76561198128566954 pos=<6627.8, 2584.2, 19.0>) with BK-18 [29m].
+23:06:28 | NeXTeR (steam64id=76561198119071898 pos=<3533.9, 2682.7, 24.7>) killed {IHF} troxo (steam64id=76561198007160096 pos=<3552.1, 2684.8, 23.7>) with SK 59/66 [18m].
+23:06:41 | Shroud(Deniz) (steam64id=76561198039275311 pos=<3578.2, 2653.3, 19.3>) killed EllinasKopritis (steam64id=76561198256461605 pos=<3577.1, 2672.3, 20.5>) with Karabiner 98K [19m].
+23:07:00 | ROGNAM (steam64id=76561198065653256 pos=<4656.1, 2656.3, 10.5>) killed Picolini (steam64id=76561197988618036 pos=<4659.4, 2655.4, 10.8>) with BK-18 [3m].
+23:07:28 | ROGNAM (steam64id=76561198065653256 pos=<4646, 2652.9, 10.5>) killed Tsuyo (steam64id=76561198164170337 pos=<4649.2, 2652.7, 10.6>) with BK-18 [3m].
+23:09:18 | Shroud(Deniz) (steam64id=76561198039275311 pos=<3572.8, 2667.8, 20.8>) killed {IHF} troxo (steam64id=76561198007160096 pos=<3571.5, 2668.2, 21.0>) with Karabiner 98K [1m].
+23:11:40 | Picolini (steam64id=76561197988618036 pos=<3740.7, 2399.6, 6.3>) killed Survivor (7) (steam64id=76561198115859760 pos=<3740.7, 2399.6, 5.9>) with fists.
+23:11:45 | assface (steam64id=76561198023641000 pos=<10413.8, 2219.4, 6.0>) killed DanSkills (steam64id=76561198215922027 pos=<10414.8, 2221.3, 6.0>) with BK-133 [2m].
+23:12:11 | peanut (steam64id=76561197998545728 pos=<2753.1, 1284.3, 48.9>) killed Survivor (8) (steam64id=76561197960592251 pos=<2706.7, 1300.4, 22.9>) with SK 59/66 [56m].
+23:12:28 | Survivor (6) (steam64id=76561198199696870 pos=<1891.9, 2258.5, 10.0>) woke with open wounds and bled out.
+23:13:07 | NeXTeR (steam64id=76561198119071898 pos=<3281.0, 2569.2, 48.7>) killed {IHF} troxo (steam64id=76561198007160096 pos=<3340.9, 2573.5, 38.6>) with SK 59/66 [61m].
+23:15:41 | assface (steam64id=76561198023641000 pos=<10409.9, 2102.9, 6.0>) killed DanSkills (steam64id=76561198215922027 pos=<10408.2, 2104.2, 6.0>) with BK-133 [2m].
+23:23:32 | |SH| ElemenT (steam64id=76561197960982908 pos=<2304.6, 5769.5, 273.2>) killed SadeQuacks (steam64id=76561198078315037 pos=<2308.0, 5770.4, 273.4>) with SG5-K [4m].
+23:23:49 | Survivor (2) (steam64id=76561198104064055 pos=<10136.8, 2337.6, 27.6>) killed Survivor (8) (steam64id=76561197960592251 pos=<10139.3, 2338.2, 27.4>) with BK-133 [3m].
+23:24:21 | Sharkeyy (steam64id=76561198079573100 pos=<10169.9, 2342.3, 26.3>) killed Survivor (2) (steam64id=76561198104064055 pos=<10181.9, 2342.6, 25.3>) with BK-133 [12m].
+23:24:50 | |SH| ElemenT (steam64id=76561197960982908 pos=<2317.4, 5784.8, 275.5>) killed Mr.ShitHawk (steam64id=76561197995302923 pos=<2296.5, 5825.0, 284.4>) with M70 Tundra [46m].
+23:30:56 | ElCanu (steam64id=76561198086409926 pos=<1958.2, 2240.9, 9.1>) killed DiiMaHa (steam64id=76561197993291105 pos=<1960.5, 2240.7, 9.1>) with USG-45 [2m].
+23:32:34 | STUPEAD (steam64id=76561198050277984 pos=<1744.7, 3249.3, 103.9>) killed Soul Crazy (steam64id=76561198116971997 pos=<1721.2, 3327.3, 109.8>) with SK 59/66 [82m].
+23:32:55 | Mouz (steam64id=76561197984787262 pos=<4625.6, 10430.3, 353.5>) killed CitizenZ (steam64id=76561198950925625 pos=<4625.4, 10431.2, 353.5>) with SK 59/66 [1m].
+23:35:22 | Mouz (steam64id=76561197984787262 pos=<4626.4, 10429.6, 353.5>) killed Instructor_Yolo (steam64id=76561198410185701 pos=<4625.2, 10432.1, 353.5>) with SK 59/66 [3m].
+23:37:34 | STUPEAD (steam64id=76561198050277984 pos=<2148.4, 3435.5, 109.6>) killed Picolini (steam64id=76561197988618036 pos=<2152.2, 3358.9, 102.2>) with SK 59/66 [77m].
+23:37:38 | PEAKY_PF (steam64id=76561198128566954 pos=<2198.2, 3285.4, 101.5>) killed AAAAAA (steam64id=76561197987683500 pos=<2199.0, 3287.6, 101.5>) with SK 59/66 [2m].
+23:38:35 | {$} Trick$hot (steam64id=76561198128941140 pos=<2575.5, 1272.9, 20.0>) killed Zetpoint (steam64id=76561198026714944 pos=<2574.2, 1273.4, 20.1>) with FN SCAR-L [1m].
+23:39:51 | Dimon (steam64id=76561198128175922 pos=<2171.8, 3500.9, 111.3>) killed ROGNAM (steam64id=76561198065653256 pos=<2170.7, 3515.7, 110.8>) with FX-45 [15m].
+23:41:09 | cent_3 (steam64id=76561198125401922 pos=<2139.9, 3494.8, 110.6>) killed STUPEAD (steam64id=76561198050277984 pos=<2137.8, 3497.6, 110.3>) with CR-75 [3m].
+23:42:09 | Shroud(Deniz) (steam64id=76561198039275311 pos=<2585.6, 1295.4, 21.7>) killed Zetpoint (steam64id=76561198026714944 pos=<2584.7, 1294.3, 21.7>) with FN SCAR-L [1m].
+23:42:40 | NeXTeR (steam64id=76561198119071898 pos=<2588.0, 1287.5, 21.9>) killed Survivor (3) (steam64id=76561198127844607 pos=<2589.5, 1291.4, 21.9>) with SK 59/66 [4m].
+23:42:44 | Survivor (8) (steam64id=76561197960592251 pos=<1992.7, 2235.8, 8.0>) killed serra (steam64id=76561198003111761 pos=<1987.9, 2235.9, 8.0>) with BK-133 [5m].
+23:42:52 | Survivor (8) (steam64id=76561197960592251 pos=<1991.1, 2234.3, 8.0>) killed ElCanu (steam64id=76561198086409926 pos=<1985.2, 2234.8, 7.7>) with BK-133 [6m].
+23:43:12 | DiiMaHa (steam64id=76561197993291105 pos=<1994.0, 2236.6, 8.0>) killed Survivor (8) (steam64id=76561197960592251 pos=<1988.1, 2235.2, 8.0>) with KA-M [6m].
+23:44:03 | Drejk (steam64id=76561198143419472 pos=<2211.3, 3272.4, 96.1>) killed AAAAAA (steam64id=76561197987683500 pos=<2203.1, 3282.4, 96.1>) with BK-133 [13m].
+23:44:12 | Tiga (steam64id=76561198191533495 pos=<4572.7, 2369.6, 2.8>) killed peanut (steam64id=76561197998545728 pos=<4572.7, 2371, 2.8>) with BK-133 [1m].
+23:45:52 | Tiga (steam64id=76561198191533495 pos=<4575.5, 2368.9, 2.9>) killed Tsuyo (steam64id=76561198164170337 pos=<4571.5, 2370.3, 2.8>) with BK-133 [4m].
+23:46:21 | Funny (steam64id=76561198106822377 pos=<4556.0, 2376.8, 2.3>) killed ROGNAM (steam64id=76561198065653256 pos=<4556.6, 2377.2, 2.4>) with CR-75 [1m].
+23:47:31 | Tiga (steam64id=76561198191533495 pos=<4572.9, 2386.9, 3.0>) killed Survivor (5) (steam64id=76561197978156787 pos=<4572.7, 2387.9, 2.7>) with BK-133 [1m].
+23:47:41 | DiiMaHa (steam64id=76561197993291105 pos=<1935.3, 2241.4, 6.0>) killed PEAKY_PF (steam64id=76561198128566954 pos=<1940.8, 2260.3, 6.2>) with KA-M [20m].
+23:48:44 | ElCanu (steam64id=76561198086409926 pos=<1990.8, 2238.4, 8.0>) killed Zetpoint (steam64id=76561198026714944 pos=<1987.4, 2234.5, 8.0>) with USG-45 [5m].
+23:51:24 | cent_3 (steam64id=76561198125401922 pos=<2209.0, 3633.4, 126.1>) killed ast (steam64id=76561197970554510 pos=<2209.9, 3634.8, 126.3>) with SK 59/66 [2m].
+23:53:44 | Drejk (steam64id=76561198143419472 pos=<2201.2, 3282.7, 93.4>) killed AAAAAA (steam64id=76561197987683500 pos=<2204.6, 3279.2, 93.4>) with SK 59/66 [5m].
+23:54:11 | ElCanu (steam64id=76561198086409926 pos=<1975.6, 2243.4, 5.9>) killed PEAKY_PF (steam64id=76561198128566954 pos=<1968.2, 2255.0, 5.9>) with USG-45 [14m].
+23:57:18 | omikkao (steam64id=76561198123533754 pos=<4489.3, 2464.6, 5.7>) killed Funny (steam64id=76561198106822377 pos=<4485.3, 2470.5, 5.8>) with BK-133 [7m].
+23:58:04 | {$} Trick$hot (steam64id=76561198128941140 pos=<1790.9, 3545.8, 135.5>) killed Dimon (steam64id=76561198128175922 pos=<1792.8, 3549, 135.6>) with BK-133 [4m].
+23:58:23 | NeXTeR (steam64id=76561198119071898 pos=<1813.9, 3548.7, 135.0>) killed cent_3 (steam64id=76561198125401922 pos=<1820.7, 3536.0, 134.5>) with SK 59/66 [14m].
+23:58:31 | Drejk (steam64id=76561198143419472 pos=<2197.1, 3294.8, 92.0>) killed AAAAAA (steam64id=76561197987683500 pos=<2196.2, 3294.5, 92.0>) with SK 59/66 [1m].
+00:03:10 | NeXTeR (steam64id=76561198119071898 pos=<2075.7, 3419.9, 109.5>) killed HungryCapibara (steam64id=76561198141576913 pos=<2075.6, 3423.4, 109.7>) with SK 59/66 [4m].
+00:05:58 | peanut (steam64id=76561197998545728 pos=<4429.9, 2479.5, 6.5>) killed Tiga (steam64id=76561198191533495 pos=<4423.4, 2489.2, 6.6>) with FX-45 [12m].
+00:08:17 | 2.7 ou nada (steam64id=76561198000955401 pos=<1945.9, 2193.3, 6.0>) killed DiiMaHa (steam64id=76561197993291105 pos=<1941.2, 2259.0, 6.1>) with CR-527 [66m].
+00:08:30 | Survivor (10) (steam64id=76561198035668946 pos=<769.3, 1901.7, 6.1>) killed Survivor (9) (steam64id=76561198130532899 pos=<775.5, 1901.8, 6.1>) with BK-133 [6m].
+00:09:26 | ElCanu (steam64id=76561198086409926 pos=<1908.1, 2189.8, 6.1>) killed 2.7 ou nada (steam64id=76561198000955401 pos=<1901.4, 2199.9, 6.0>) with USG-45 [12m].
+00:14:22 | ElCanu (steam64id=76561198086409926 pos=<1899.6, 2268.3, 6.9>) killed Survivor (9) (steam64id=76561198035668946 pos=<1923.1, 2237.0, 8.5>) with M70 Tundra [39m].
+00:21:23 | ElCanu (steam64id=76561198086409926 pos=<2217.3, 3356.4, 92.5>) killed Pherno (steam64id=76561198045692286 pos=<2222.5, 3350.5, 92.5>) with USG-45 [8m].
+00:22:58 | Survivor (8) (steam64id=76561197960592251 pos=<2742.5, 1283.1, 30.1>) killed Zetpoint (steam64id=76561198026714944 pos=<2743.8, 1285.8, 30.1>) with BK-133 [3m].
+00:28:17 | 2.7 ou nada (steam64id=76561198000955401 pos=<1868.6, 2192.8, 5.1>) killed Tiga (steam64id=76561198191533495 pos=<1866.8, 2192.5, 5.0>) with BK-133 [2m].
+00:32:35 | Survivor (6) (steam64id=76561198069230870 pos=<2776.5, 1234.6, 29.2>) killed Zetpoint (steam64id=76561198026714944 pos=<2774.9, 1234.3, 29.2>) with SK 59/66 [2m].
+00:34:04 | Survivor (6) (steam64id=76561198069230870 pos=<2800.3, 1230.7, 26.0>) killed Survivor (8) (steam64id=76561197960592251 pos=<2794.6, 1236.5, 26.4>) with SK 59/66 [8m].
+00:46:17 | Survivor (6) (steam64id=76561198069230870 pos=<2642.2, 1317.2, 23.0>) killed DiiMaHa (steam64id=76561197993291105 pos=<2629.1, 1316.6, 22.4>) with SK 59/66 [13m].
+00:46:22 | ElCanu (steam64id=76561198086409926 pos=<2643.1, 1318.7, 23.0>) killed Survivor (6) (steam64id=76561198069230870 pos=<2643.5, 1319.4, 22.9>) with USG-45 [1m].
+00:49:51 | [DA] Midgetspinner (steam64id=76561198074810713 pos=<766.9, 1848.7, 6.1>) killed Funny (steam64id=76561198106822377 pos=<739.9, 1858.4, 6.1>) with SK 59/66 [29m].
+00:50:04 | [DA] Midgetspinner (steam64id=76561198074810713 pos=<770.7, 1859.6, 6.0>) killed Tiga (steam64id=76561198191533495 pos=<773.6, 1859.8, 6.0>) with SK 59/66 [3m].
+00:54:12 | Survivor (3) (steam64id=76561198101469085 pos=<6489.7, 2291.1, 5.9>) killed Fordy (steam64id=76561198133325715 pos=<6454.0, 2319.2, 7.2>) with IJ-70 [45m].
+01:04:52 | ElCanu (steam64id=76561198086409926 pos=<2716.6, 1189.0, 12.0>) killed Survivor (6) (steam64id=76561198069230870 pos=<2716.0, 1187.3, 11.5>) with USG-45 [2m].
+01:36:14 | ROOBINI (steam64id=76561198022660486 pos=<1163.2, 7215.8, 185.3>) killed KajMak64Bit (steam64id=76561198122033304 pos=<1158.2, 7211.6, 185.3>) with USG-45 [7m].
+01:44:22 | SpuckYz (steam64id=76561198930256778 pos=<2167.5, 4369.4, 209.4>) killed {RED}Knight (steam64id=76561198333553501 pos=<2033.3, 4374.1, 191.8>) with Mosin 91/30 [135m].

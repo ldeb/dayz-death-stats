@@ -158,45 +158,29 @@ function generete_user_link($label, $user_steamid) {
   $link = ( is_numeric($user_steamid) ) ? '<a href="https://steamcommunity.com/profiles/'.$user_steamid.'" target="_blank" title="View Steam profile">'.$label.'</a>' : '';
   return $link;
 }
-
-function generate_table($CONFIG, $results) {
+function generate_table_content($CONFIG, $results) {
   $nc_char = '-';
-  ?>
-  <table class="datatable table table-striped table-sm table-bordered">
-    <thead>
-      <tr>
-        <th>date</th>
-        <th>killer</th>
-        <th>victim</th>
-        <th>cause</th>
-        <th>distance (m)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($results as $i => $action): ?>
-        <tr>
-          <td><?= isset($action['time']) ? $action['time'] : $nc_char; ?></td>
-          <td>
-            <?php if( isset($action['killer_name']) ) {
-              echo $action['killer_name'];
-              echo ( $CONFIG['link_to_user_steam_profile'] && isset($action['killer_id']) ) ? ' '.generete_user_link('+', $action['killer_id']) : '';
-            } else echo $nc_char;
-            ?>
-          </td>
-          <td>
-            <?php if( isset($action['victim_name']) ) {
-              echo $action['victim_name'];
-              echo ( $CONFIG['link_to_user_steam_profile'] && isset($action['victim_id']) ) ? ' '.generete_user_link('+', $action['victim_id']) : '';
-            } else echo $nc_char;
-            ?>
-          </td>
-          <td><?= isset($action['reason']) ? $action['reason'] : $nc_char; ?></td>
-          <td><?= isset($action['dist']) ? $action['dist'] : $nc_char; ?></td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-  <?php
+  foreach ($results as $i => $action): ?>
+    <tr>
+      <td><?= isset($action['time']) ? $action['time'] : $nc_char; ?></td>
+      <td>
+        <?php if( isset($action['killer_name']) ) {
+          echo $action['killer_name'];
+          echo ( $CONFIG['link_to_user_steam_profile'] && isset($action['killer_id']) ) ? ' '.generete_user_link('+', $action['killer_id']) : '';
+        } else echo $nc_char;
+        ?>
+      </td>
+      <td>
+        <?php if( isset($action['victim_name']) ) {
+          echo $action['victim_name'];
+          echo ( $CONFIG['link_to_user_steam_profile'] && isset($action['victim_id']) ) ? ' '.generete_user_link('+', $action['victim_id']) : '';
+        } else echo $nc_char;
+        ?>
+      </td>
+      <td><?= isset($action['reason']) ? $action['reason'] : $nc_char; ?></td>
+      <td><?= isset($action['dist']) ? $action['dist'] : $nc_char; ?></td>
+    </tr>
+  <?php endforeach;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,10 +215,10 @@ function show_deaths_on_map($CONFIG, $results) {
 
     $killerInvolve = isset($action['killer_name']);
     $legend_date = $action['time'];
-    $legend = '';
+    $legend = $legend_date.' | ';
 
     if( $CONFIG['show_death_details_on_map'] ) {
-      $legend = $killerInvolve ? $legend_date.' | '.$action['victim_name']. ' killed by '. $action['killer_name'] : $action['victim_name'].' died';
+      $legend.= $killerInvolve ? $action['victim_name']. ' killed by '. $action['killer_name'] : $action['victim_name'].' died';
       $legend.= isset($action['reason']) ? ' ('.$action['reason'].')' : '';
       if( isset($action['dist']) ) $legend.= ' ['.$action['dist'].'m]';
       // else if($killerInvolve) $legend.= ' [bled out]';  // bled out
@@ -242,8 +226,9 @@ function show_deaths_on_map($CONFIG, $results) {
     show_player_on_map($action['victim_name'], $action['victim_id'], $action['victim_pos'], $legend, false);
 
     if( $killerInvolve && isset($action['killer_pos']) ) {  // there is a killer involve, show him
+      $legend = $legend_date.' | ';
       if( $CONFIG['show_death_details_on_map'] ) {
-        $legend = $legend_date.' | '.$action['killer_name']. ' killed '. $action['victim_name'];
+        $legend.= $action['killer_name']. ' killed '. $action['victim_name'];
         $legend.= isset($action['reason']) ? ' ('.$action['reason'].')' : '';
         if( isset($action['dist']) ) $legend.= ' ['.$action['dist'].'m]';
         // else $legend.= ' [bled out]';  // bled out
