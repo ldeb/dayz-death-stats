@@ -16,6 +16,7 @@
 - Generate a test log file from KillFeed.json using [test_conf.php](/test_conf.php) for development purposes
 
 **TO DO:**
+- fix problem with special characters from javascript fetching database's data
 - show log starting date
 - Possibility to generate a "deathmap" from all deaths in database
 - Generate more statistics

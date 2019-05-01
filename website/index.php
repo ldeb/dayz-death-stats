@@ -31,7 +31,7 @@ if( isset( $_GET['logfile']) ) {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="index.php">
-          <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/89/89783c79efdebec2cbacb438c39a1439e261abc9.jpg" alt="" title="ElCanu"> ElCanu's
+          <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/89/89783c79efdebec2cbacb438c39a1439e261abc9.jpg" alt=""> ElCanu's
           ABFW DayZ server
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -340,7 +340,6 @@ if( isset( $_GET['logfile']) ) {
             "targets": [1], // player
             "render":
               function ( data, type, row, meta ) {
-                // let name = data;
                 let name = generete_killfeed_search_link(data);
                 let steam_id_pos = meta.col + 4;
                 name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
@@ -378,8 +377,6 @@ if( isset( $_GET['logfile']) ) {
         drawCallback: function( settings ) {
           update_events();
         }
-        // serverSide: true,
-        // ajax: "inc/api.php?mode=causes"
         <?php endif; ?>
       }, common_options);
       var table_causes = $('.datatable.table-causes').DataTable(causes_options);
@@ -397,7 +394,6 @@ if( isset( $_GET['logfile']) ) {
             "targets": [1, 2], // killer, victim
             "render":
               function ( data, type, row, meta ) {
-                // let name = data;
                 let name = generete_killfeed_search_link(data);
                 let steam_id_pos = meta.col + 4;
                 name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
@@ -407,7 +403,6 @@ if( isset( $_GET['logfile']) ) {
         ],
         drawCallback: function( settings ) {
           var api = this.api();
-          // console.log( api.ajax.json().data );
           show_deaths_on_map(api.ajax.json());
           update_events();
         }

@@ -15,34 +15,32 @@ function update_events(){
       elem_with_click_tooltips.not($(this)).tooltip('hide');
     });
   });
-  // $('[data-toggle="tooltip"]').tooltip('dispose');
+  // $('[data-toggle="tooltip"]').tooltip('dispose'); // not working as expected
   $('.arrow, .tooltip-inner').remove();
   $('[data-toggle="tooltip"]').tooltip();
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // PLAYER link
+  // Related killfeed link
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $('.killfeed_search_for').on('click', function(e){
-    // e.preventDefault();
+    // e.preventDefault();  // --> try using smooth scroll instead
     let text = $(this).html();
     if(table_killfeed) {
       table_killfeed.search(text).draw();
       setTimeout(function() { $('#killlogs input[type="search"]').focus(); }, 100);
     }
   });
-
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Player links
+// Links
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// killfeed link
+// Related killfeed link
 function generete_killfeed_search_link(name) {
   return '<a href="#killlogs" class="killfeed_search_for" title="show related killfeed" data-toggle="tooltip">' + name + '</a>';
 }
-
-// Steam link
+// Player's Steam link
 function generete_user_steam_link(label, user_steamid) {
-  let link = ( parseInt(user_steamid) != NaN ) ? '<a href="https://steamcommunity.com/profiles/' + user_steamid + '" target="_blank" title="View Steam profile" data-toggle="tooltip">' + label + '</a>' : '';
+  let link = ( parseInt(user_steamid) != NaN ) ? '<a href="https://steamcommunity.com/profiles/' + user_steamid + '" target="_blank" title="view Steam profile" data-toggle="tooltip">' + label + '</a>' : '';
   return link;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,7 +76,6 @@ function show_player_on_map(player_pos, legend, is_a_killer) {
   let div_class = is_a_killer ? ' killer' : ' victim';
   let coords = coord2px(player_pos);
   let html = '<div class="elem' + div_class +'" title="'+ legend +'" data-toggle="tooltip" data-trigger="click" style="left:'+ (coords[0] * coef) + 'px; top:' + (coords[1] * coef) + 'px;">';
-  // console.log(html);
   $('.map').append(html);
 }
 function show_deaths_on_map(json){
@@ -154,7 +151,7 @@ function show_deaths_on_map(json){
     });
     $('.map').addClass('zoom_'+ $(this).val());
 
-    if( $(this).val() == 'half' ) { // go to top when switching to half map
+    if( $(this).val() == 'half' ) { // go to top when switching to half-sized map
       $('.map_container').scrollTop(0);
     }
   });
@@ -191,4 +188,4 @@ function show_deaths_on_map(json){
   //   });
   // });
 
-})(jQuery); // End of use strict
+})(jQuery);
