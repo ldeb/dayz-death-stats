@@ -334,10 +334,26 @@ if( isset( $_GET['logfile']) ) {
         <?php if( $CONFIG['use_database'] ) : ?>
         processing: true,
         serverSide: true,
-        ajax: "inc/server_processing_players.php"
+        ajax: "inc/server_processing_players.php",
+        columnDefs: [
+          {
+            "targets": [1], // player
+            "render":
+              function ( data, type, row, meta ) {
+                // let name = data;
+                let name = generete_user_killfeed_link(data);
+                let steam_id_pos = meta.col + 4;
+                name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
+                return name;
+              },
+          },
+        ],
+        drawCallback: function( settings ) {
+          update_events();
+        }
         <?php endif; ?>
       }, common_options);
-      var table = $('.datatable.table-players').DataTable(players_options);
+      var table_players = $('.datatable.table-players').DataTable(players_options);
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Datatable - causes
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -353,7 +369,7 @@ if( isset( $_GET['logfile']) ) {
         // ajax: "inc/api.php?mode=causes"
         <?php endif; ?>
       }, common_options);
-      var table = $('.datatable.table-causes').DataTable(causes_options);
+      var table_causes = $('.datatable.table-causes').DataTable(causes_options);
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Datatable - killfeed
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -368,10 +384,10 @@ if( isset( $_GET['logfile']) ) {
             "targets": [1, 2], // killer, victim
             "render":
               function ( data, type, row, meta ) {
-                console.log(data, meta);
-                let name = data;
+                // let name = data;
+                let name = generete_user_killfeed_link(data);
                 let steam_id_pos = meta.col + 4;
-                name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_link('+', row[steam_id_pos]) : '';
+                name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
                 return name;
               },
           },
@@ -380,10 +396,11 @@ if( isset( $_GET['logfile']) ) {
           var api = this.api();
           // console.log( api.ajax.json().data );
           show_deaths_on_map(api.ajax.json());
+          update_events();
         }
         <?php endif; ?>
       }, common_options);
-      var table = $('.datatable.table-killfeed').DataTable(killfeed_options);
+      var table_killfeed = $('.datatable.table-killfeed').DataTable(killfeed_options);
     </script>
 
   </body>

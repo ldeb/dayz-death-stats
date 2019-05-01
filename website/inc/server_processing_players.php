@@ -38,6 +38,7 @@ $primaryKey = 'id';
 // indexes
 $columns = array(
   array( 'db' => 'num', 'dt' => 0 ),
+  array( 'db' => 'name', 'dt' => 1 ),
   array( 'db' => 'kills', 'dt' => 2 ),
   array( 'db' => 'deaths', 'dt' => 3 ),
   array( 'db' => 'ratio', 'dt' => 4 ),
@@ -57,18 +58,18 @@ $columns = array(
 );
 
 if( ! $CONFIG['link_to_user_steam_profile'] ) {
-  array_push($columns, array( 'db' => 'name', 'dt' => 1 ));
+  // array_push($columns, array( 'db' => 'name', 'dt' => 1 ));
 } else {
-  array_push($columns, array(
-      'db'        => 'name',
-      'dt'        => 1,
-      'formatter' => function( $d, $row ) {
-        $res = $row['name'];
-        $res.= ( isset($row['steam_id']) ) ? ' '.generete_user_link('+', $row['steam_id']) : '';
-        return $res;
-      }
-    )
-  );
+  // array_push($columns, array(
+  //     'db'        => 'name',
+  //     'dt'        => 1,
+  //     'formatter' => function( $d, $row ) {
+  //       $res = $row['name'];
+  //       $res.= ( isset($row['steam_id']) ) ? ' '.generete_user_link('+', $row['steam_id']) : '';
+  //       return $res;
+  //     }
+  //   )
+  // );
 	array_push($columns, array( 'db' => 'steam_id', 'dt' => 5 ));
 }
 

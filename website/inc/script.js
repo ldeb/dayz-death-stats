@@ -1,3 +1,4 @@
+"use strict";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Bootstrap
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6,7 +7,7 @@ var elem_with_click_tooltips = $('.elem[data-toggle="tooltip"][data-trigger="cli
 function rollout_tooltips() {
   elem_with_click_tooltips.tooltip('hide');
 }
-function update_bs_utils(){
+function update_events(){
   elem_with_click_tooltips = $('.elem[data-toggle="tooltip"][data-trigger="click"]');
   elem_with_click_tooltips.each(function( index, elem ){
     $(this).on('click', function(e){
@@ -14,13 +15,34 @@ function update_bs_utils(){
       elem_with_click_tooltips.not($(this)).tooltip('hide');
     });
   });
+  // $('[data-toggle="tooltip"]').tooltip('dispose');
+  $('.arrow, .tooltip-inner').remove();
   $('[data-toggle="tooltip"]').tooltip();
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // PLAYER link
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  $('.player_link').on('click', function(e){
+    // e.preventDefault();
+    let name = $(this).html();
+    if(table_killfeed) {
+      table_killfeed.search(name).draw();
+      setTimeout(function() { $('#killlogs input[type="search"]').focus(); }, 100);
+    }
+  });
+
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Player Steam link
+// Player links
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function generete_user_link(label, user_steamid) {
-  let link = ( parseInt(user_steamid) != NaN ) ? '<a href="https://steamcommunity.com/profiles/' + user_steamid + '" target="_blank" title="View Steam profile">' + label + '</a>' : '';
+// killfeed link
+function generete_user_killfeed_link(name) {
+  return '<a href="#killlogs" class="player_link" title="show player\'s killfeed" data-toggle="tooltip">' + name + '</a>';
+}
+
+// Steam link
+function generete_user_steam_link(label, user_steamid) {
+  let link = ( parseInt(user_steamid) != NaN ) ? '<a href="https://steamcommunity.com/profiles/' + user_steamid + '" target="_blank" title="View Steam profile" data-toggle="tooltip">' + label + '</a>' : '';
   return link;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +84,7 @@ function show_player_on_map(player_pos, legend, is_a_killer) {
 function show_deaths_on_map(json){
   $('#killmap .nbtot').html('(' + json.recordsFiltered + '/' + json.recordsTotal + ')');
   $('.map .elem').remove(); // remove previous points
-  console.log(json);
+  // console.log(json);
   for (var index in json.data) {
     let elem = json.data[index];
     // console.log(elem);
@@ -81,11 +103,10 @@ function show_deaths_on_map(json){
       show_player_on_map(elem[8], legend, true);
     }
   }
-  update_bs_utils();
+  // update_events();
 }
 
 (function($) {
-  "use strict"; // Start of use strict
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Smooth scrolling using jQuery easing
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +135,7 @@ function show_deaths_on_map(json){
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Bootstrap
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  update_bs_utils();
+  update_events();
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // MAP options
