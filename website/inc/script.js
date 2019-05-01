@@ -22,11 +22,11 @@ function update_events(){
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // PLAYER link
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  $('.player_link').on('click', function(e){
+  $('.killfeed_search_for').on('click', function(e){
     // e.preventDefault();
-    let name = $(this).html();
+    let text = $(this).html();
     if(table_killfeed) {
-      table_killfeed.search(name).draw();
+      table_killfeed.search(text).draw();
       setTimeout(function() { $('#killlogs input[type="search"]').focus(); }, 100);
     }
   });
@@ -36,8 +36,8 @@ function update_events(){
 // Player links
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // killfeed link
-function generete_user_killfeed_link(name) {
-  return '<a href="#killlogs" class="player_link" title="show player\'s killfeed" data-toggle="tooltip">' + name + '</a>';
+function generete_killfeed_search_link(name) {
+  return '<a href="#killlogs" class="killfeed_search_for" title="show related killfeed" data-toggle="tooltip">' + name + '</a>';
 }
 
 // Steam link

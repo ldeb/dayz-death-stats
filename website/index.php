@@ -341,7 +341,7 @@ if( isset( $_GET['logfile']) ) {
             "render":
               function ( data, type, row, meta ) {
                 // let name = data;
-                let name = generete_user_killfeed_link(data);
+                let name = generete_killfeed_search_link(data);
                 let steam_id_pos = meta.col + 4;
                 name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
                 return name;
@@ -365,6 +365,19 @@ if( isset( $_GET['logfile']) ) {
             dataSrc: ''
         },
         processing: true,
+        columnDefs: [
+          {
+            "targets": [1], // cause
+            "render":
+              function ( data, type, row, meta ) {
+                let text = generete_killfeed_search_link(data);
+                return text;
+              },
+          },
+        ],
+        drawCallback: function( settings ) {
+          update_events();
+        }
         // serverSide: true,
         // ajax: "inc/api.php?mode=causes"
         <?php endif; ?>
@@ -385,7 +398,7 @@ if( isset( $_GET['logfile']) ) {
             "render":
               function ( data, type, row, meta ) {
                 // let name = data;
-                let name = generete_user_killfeed_link(data);
+                let name = generete_killfeed_search_link(data);
                 let steam_id_pos = meta.col + 4;
                 name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
                 return name;
