@@ -1,8 +1,9 @@
 header {
   /* padding: 156px 0 100px; */
+  margin-top: 56px;
 }
 section {
-  padding: 20px 0;
+  padding: 66px 0 0 0;
 }
 /***************************************/
 /* MAP OPTIONS */
@@ -75,6 +76,7 @@ color: #069;
 
 /* Grid */
 .grid {
+  position: absolute;
   background-image: url(../img/cadriage.png);
   background-repeat: repeat;
   width: 1536px;
@@ -121,4 +123,25 @@ color: #069;
 }
 .map.show_killers .elem.killer {
   display: block;
+}
+.map .relation {
+  /* z-index: 3; */
+  display: none;
+}
+.map.show_relations .relation {
+  display: block;
+}
+
+/*********************/
+/* DATATABLE */
+/*********************/
+table.dataTable tr.dtrg-group.dtrg-level-0 td span {
+  font-weight: normal;
+}
+div.dataTables_wrapper div.dataTables_length label,
+div.dataTables_wrapper div.dataTables_info {
+  font-size: 0.9em;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  font-size: 0.8em;
 }

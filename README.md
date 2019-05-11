@@ -20,8 +20,9 @@
 - show log starting date
 - Possibility to generate a "deathmap" from all deaths in database
 - Generate more statistics
-- Show relation between victim/killer on map
 - Automatically add necessary tables to the database if not present
+- show more info about players using Steam API
+- do not save in cookie: search filters and other statistics then Players
 
 **FLAWS/TO FIX: *server.js***
 - can crashes when *KillFeed.log* is renamed or deleted

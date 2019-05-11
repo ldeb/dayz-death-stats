@@ -24,9 +24,9 @@ include('functions.php');
 $select_steam_ids = $CONFIG['link_to_user_steam_profile'] ? ", p.steam_id" : "";
 $table =
    "(
-      SELECT (@row_number:=@row_number + 1) AS num, p.id, p.name, p.deaths, p.kills, IF(p.deaths=0, p.kills, p.kills/p.deaths) AS ratio".$select_steam_ids."
+      SELECT (@row_number:=@row_number + 1) AS num, p.id, p.name, p.deaths, p.kills, IF(p.deaths=0, 9999, p.kills/p.deaths) AS ratio".$select_steam_ids."
       FROM players p, (SELECT @row_number:=0) AS t
-      ORDER BY ratio DESC
+      ORDER BY ratio DESC, p.deaths ASC, p.kills DESC, name ASC
     ) res";
 
 // Table's primary key
@@ -37,11 +37,11 @@ $primaryKey = 'id';
 // parameter represents the DataTables column identifier. In this case simple
 // indexes
 $columns = array(
-  array( 'db' => 'num', 'dt' => 0 ),
-  array( 'db' => 'name', 'dt' => 1 ),
-  array( 'db' => 'kills', 'dt' => 2 ),
-  array( 'db' => 'deaths', 'dt' => 3 ),
-  array( 'db' => 'ratio', 'dt' => 4 ),
+  array( 'db' => 'num', 'dt' => 'rank' ),
+  array( 'db' => 'name', 'dt' => 'name' ),
+  array( 'db' => 'kills', 'dt' => 'kills' ),
+  array( 'db' => 'deaths', 'dt' => 'deaths' ),
+  array( 'db' => 'ratio', 'dt' => 'ratio' ),
   // array(
   //     'db'        => 'deaths',  // doesn't matter
   //     'dt'        => 4,
@@ -70,7 +70,7 @@ if( ! $CONFIG['link_to_user_steam_profile'] ) {
   //     }
   //   )
   // );
-	array_push($columns, array( 'db' => 'steam_id', 'dt' => 5 ));
+	array_push($columns, array( 'db' => 'steam_id', 'dt' => 'steam_id' ));
 }
 
 // SQL server connection information

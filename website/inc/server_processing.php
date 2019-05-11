@@ -44,6 +44,7 @@ $columns = array(
   array( 'db' => 'victim_name', 'dt' => 2 ),
   array( 'db' => 'reason', 'dt' => 3 ),
   array( 'db' => 'distance', 'dt' => 4 ),
+  array( 'db' => 'id', 'dt' => 9 ),
 );
 
 if( ! $CONFIG['link_to_user_steam_profile'] ) {

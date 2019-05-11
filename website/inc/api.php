@@ -19,7 +19,7 @@ $database = new Medoo([
 if(isset($_GET) && ! empty($_GET)) {
   switch($_GET['mode']){
     case 'causes':
-      $data = $database->query("SELECT count(id) as NB, reason FROM `deaths` group by reason order by NB DESC;")->fetchAll();
+      $data = $database->query("SELECT count(id) as NB, reason FROM `deaths` group by reason order by NB DESC, reason ASC;")->fetchAll();
       echo json_encode($data);
       break;
     default:
