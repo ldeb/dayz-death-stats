@@ -32,12 +32,12 @@
 - access to *KillFeed.log*'s DayZ SA server file
   - for Unix server: create a [symbolic link](https://www.google.com/search?q=symbolic+link), next to *server.js* file for exemple
   - for Windows server: create a scheduled task (exemple .bat file to execute: `xcopy /Y C:\DAYZSERVER\logs\KillFeed.log C:\dayz-death-stats\`)
-- **[optional] Installation for browsing results in a web server**
+- **[optional] for browsing results in a web server**
   - web server running PHP (Apache, nginx, ...)
-- **[optional for posting to Discord]**
+- **[optional] for posting to Discord**
   - to be able to create a webhook on the desired channel of a Discord server
   - Node.js installed on your server
-- **[optional for logging to a database]**
+- **[optional] for logging to a database**
   - MySQL server
   - Node.js installed on your server
 
@@ -53,9 +53,9 @@
 
 ### [optional] Installation for posting to a Discord channel / logging to a database
 - Rename *config.default.json* to *config.json* and edit necessary variables and activate desired functionalities (`"LOG_TO_DISCORD": true`, `"LOG_TO_DATABASE": true`)
-- **[optional for posting to Discord]**
+- **[optional] for posting to Discord**
   - Create a Discord webhook on your discord server channel, then update your webhook URL in *config.json* (`webhook_url_errors` variable is optional)
-- **[optional for logging to a database]**
+- **[optional] for logging to a database**
   - Create a new database on your MySQL server (using an utf8 charset, exemple: `utf8_general_ci`), then update your connection info in *config.json* and *config.php* (`db_host`, `db_base`, `db_user`, `db_pass`)
   - Execute/import [dayz-death-stats.sql](https://github.com/ldeb/dayzstats/blob/master/dayz-death-stats.sql) script in your database to create the necessary tables
 - [install node.js](https://nodejs.org/en/download/) on your server
