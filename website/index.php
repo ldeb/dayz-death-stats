@@ -440,10 +440,13 @@ if( isset( $_GET['logfile']) ) {
             "targets": [1, 2], // killer, victim
             "render":
               function ( data, type, row, meta ) {
-                let name = generete_killfeed_search_link(data);
-                let steam_id_pos = meta.col + 4;
-                name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
-                return name;
+                if( data != null ) {
+                  let name = generete_killfeed_search_link(data);
+                  let steam_id_pos = meta.col + 4;
+                  name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
+                  return name;
+                }
+                else return '';
               },
           },
         ],

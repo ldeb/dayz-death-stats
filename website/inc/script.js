@@ -95,7 +95,7 @@ function generate_legend(elem, killerInvolve, is_a_killer) {
   let legend = '<em>'+elem[0]+'</em>' + ' <br>';
   // let killerInvolve = (elem[1] != null);
   if( ! is_a_killer ) {
-    legend+= killerInvolve ? '<span class=&quot;text-danger text-nowrap&quot;>'+elem[2]+'</span>' + ' <br><span class=&quot;fas fa-skull-crossbones&quot;></span> <strong>killed by</strong> <br>' + '<span class=&quot;text-success text-nowrap&quot;>'+elem[1]+'</span>' : '<span class=&quot;text-danger text-nowrap&quot;>'+elem[2]+'</span>' + ' died';
+    legend+= killerInvolve ? '<span class=&quot;text-danger text-nowrap&quot;>'+elem[2]+'</span>' + ' <br><span class=&quot;fas fa-skull-crossbones&quot;></span> <strong>killed by</strong> <br>' + '<span class=&quot;text-success text-nowrap&quot;>'+elem[1]+'</span>' : '<span class=&quot;text-danger text-nowrap&quot;>'+elem[2]+'</span>' + ' <br><span class=&quot;fas fa-skull-crossbones&quot;></span> <strong>died</strong>';
   } else {
     legend+= '<span class=&quot;text-success text-nowrap&quot;>'+elem[1]+'</span>' + ' <br><span class=&quot;fas fa-crosshairs&quot;></span> <strong>killed</strong> <br>' + '<span class=&quot;text-danger text-nowrap&quot;>'+elem[2]+'</span>';
   }
@@ -125,14 +125,16 @@ function show_deaths_on_map(json){
     if(CONFIG_show_death_details_on_map) {
       legend = generate_legend(elem, killerInvolve, false);
     }
-    if( elem[7] != null ) {                             // victim
+    if( elem[8] != null ) {                             // victim
       show_player_on_map(elem[9], elem[8], legend, false);
     }
     if( killerInvolve && elem[8] != null ) {            // killer
       if(CONFIG_show_death_details_on_map) {
         legend = generate_legend(elem, killerInvolve, true);
       }
-      show_player_on_map(elem[9], elem[7], legend, true);
+      if( elem[7] != null ) {
+        show_player_on_map(elem[9], elem[7], legend, true);
+      }
       // Relations (lines)
       show_relative_player(elem[9], true);
     }
