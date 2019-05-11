@@ -10,6 +10,7 @@
   </div>
 </header>
 
+<?php if( $CONFIG['use_info_section'] ) : ?>
 <section id="infos" class="">
   <div class="container">
     <div class="row">
@@ -27,3 +28,4 @@
     </div>
   </div>
 </section>
+<?php endif; ?>

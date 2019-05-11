@@ -39,9 +39,11 @@ if( isset( $_GET['logfile']) ) {
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+            <?php if( $CONFIG['use_info_section'] ) : ?>
             <li class="nav-item">
               <a class="nav-link btn0 btn-sm0 btn-outline-secondary0 mx-1 js-scroll-trigger" href="#infos"><span class="fas fa-info-circle"></span> Infos</a>
             </li>
+            <?php endif; ?>
             <?php if( $CONFIG['use_database'] ) : ?>
             <li class="nav-item">
               <a class="nav-link btn0 btn-sm0 btn-outline-secondary0 mx-1 js-scroll-trigger" href="#stats"><span class="fas fa-chart-bar"></span> Statistics</a>

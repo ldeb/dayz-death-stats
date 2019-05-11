@@ -44,6 +44,7 @@
 - **[optional] Installation for browsing results in a web server**
   - host `website/` folder with your web server
   - Edit *config.php* to set the filepath of the default log file and other options
+  - Edit *infos.php* file to personalize website description
 - **[optional] Installation for posting to a Discord channel / logging to a database**
   - Rename *config.default.json* to *config.json* and edit necessary variables and activate desired functionalities (`"LOG_TO_DISCORD": true`, `"LOG_TO_DATABASE": true`)
   - **[optional for posting to Discord]**
