@@ -1,8 +1,8 @@
-*Paris, France, April 2019*
+*Paris, France, April-May 2019*
 
 # dayzstats
 
-**Work currently in progress...** (made for ElCanu's ABFW DayZ SA server)
+**Work in progress...** (made for ElCanu's ABFW DayZ SA server)
 
 ![Screenshot](/screenshot.jpg?raw=true)
 
@@ -40,18 +40,18 @@
   - Node.js installed on your server
 
 ## Installation
-- `git clone https://github.com/ldeb/dayzstats.git` to your desired folder
+- `git clone https://github.com/ldeb/dayz-death-stats.git` to your desired folder
 - **[optional] Installation for browsing results in a web server**
   - host `website/` folder with your web server
-  - Edit *config.php* to set the filepath of the default log file and other options
-  - Edit *infos.php* file to personalize website description
+  - Edit *config.php* to set various options
+  - Edit *infos.php* file to personalize website info section
 - **[optional] Installation for posting to a Discord channel / logging to a database**
   - Rename *config.default.json* to *config.json* and edit necessary variables and activate desired functionalities (`"LOG_TO_DISCORD": true`, `"LOG_TO_DATABASE": true`)
   - **[optional for posting to Discord]**
     - Create a Discord webhook on your discord server channel, then update your webhook URL in *config.json* (`webhook_url_errors` variable is optional)
   - **[optional for logging to a database]**
-    - Create a new database on your MySQL server (using an utf8 charset, exemple: `utf8_general_ci`), then update your connection info in *config.json* (`db_host`, `db_base`, `db_user`, `db_pass`)
-    - Excecute [dayzstats.sql](https://github.com/ldeb/dayzstats/blob/master/dayzstats.sql) script in your database to create the necessary tables
+    - Create a new database on your MySQL server (using an utf8 charset, exemple: `utf8_general_ci`), then update your connection info in *config.json* and *config.php* (`db_host`, `db_base`, `db_user`, `db_pass`)
+    - Execute/import [dayz-death-stats.sql](https://github.com/ldeb/dayzstats/blob/master/dayz-death-stats.sql) script in your database to create the necessary tables
   - [install node.js](https://nodejs.org/en/download/) on your server
   - go to the current cloned directory and install script dependencies with `npm install`
   - run script with command `node server.js`
