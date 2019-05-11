@@ -1,6 +1,6 @@
 *Paris, France, April-May 2019*
 
-# dayzstats
+# dayz-death-stats
 
 **Work in progress...** (made for ElCanu's ABFW DayZ SA server)
 
