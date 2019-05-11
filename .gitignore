@@ -87,6 +87,7 @@ typings/
 # KillFeed / dayzstats
 website/KillFeed/*
 !website/KillFeed/KillFeed_test.log
+!website/KillFeed/index.php
 config.json
 errors.log
 conf*.js
@@ -95,6 +96,7 @@ index.js
 EX/
 Thumbs.db
 website/img/map.png
+website/img/map_3072px.jpg
 *.rar
 *.psd
 *.bat
