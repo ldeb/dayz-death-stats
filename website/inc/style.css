@@ -1,5 +1,7 @@
+/***************************************/
+/* GLOBAL */
+/***************************************/
 header {
-  /* padding: 156px 0 100px; */
   margin-top: 56px;
 }
 section {
@@ -38,17 +40,9 @@ section {
   transform: scale(1, 1);
   -webkit-transform: scale(1, 1);
 }
-/* Links */
-/* .map a:link, .map a:visited, .map a:active {
-text-decoration: none;
-color: #069;
-}
-.map a:hover {
-text-decoration: underline;
-color: #069;
-} */
-
+/*********************/
 /* Zoom */
+/*********************/
 .map.zoom_half {
   transform: scale(0.5, 0.5);
   -webkit-transform: scale(0.5, 0.5);
@@ -56,7 +50,6 @@ color: #069;
 .map.zoom_2 {
   transform: scale(2, 2);
   -webkit-transform: scale(2, 2);
-
   /* background-image: url(../img/map_3072px.jpg);
   width: 3072px;
   height: 3072px; */
@@ -65,16 +58,18 @@ color: #069;
   transform: scale(4, 4);
   -webkit-transform: scale(4, 4);
 }
-
+/*********************/
 /* Style: DayZ mod */
+/*********************/
 .map.type_mod {
   width: 1500px;
   background-image: url(../img/Chernarus4.jpg);
   background-position: 28px 22px;
   background-size: 1473px;
 }
-
+/*********************/
 /* Grid */
+/*********************/
 .grid {
   position: absolute;
   background-image: url(../img/cadriage.png);
@@ -87,7 +82,6 @@ color: #069;
 .map.show_grid .grid {
   display: block;
 }
-
 /*********************/
 /* ELEMS */
 /*********************/
@@ -124,6 +118,9 @@ color: #069;
 .map.show_killers .elem.killer {
   display: block;
 }
+/*********************/
+/* RELATIONS */
+/*********************/
 .map .relation {
   /* z-index: 3; */
   display: none;
@@ -132,9 +129,9 @@ color: #069;
   display: block;
 }
 
-/*********************/
+/***************************************/
 /* DATATABLE */
-/*********************/
+/***************************************/
 table.dataTable tr.dtrg-group.dtrg-level-0 td span {
   font-weight: normal;
 }

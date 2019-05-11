@@ -1,4 +1,6 @@
 <?php
+$VERSION = '1.0'; // update to force caching script.js/style.css
+
 include('config.php');
 include('inc/functions.php');
 if( isset( $_GET['logfile']) ) {
@@ -8,31 +10,29 @@ if( isset( $_GET['logfile']) ) {
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+    <?php if( file_exists('head.php') ) include('head.php'); ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>ElCanu's ABFW DayZ server</title>
+    <title><?=$CONFIG['WEBSITE_TITLE'];?></title>
     <link rel="icon" href="img/avatar.png" type="image/png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Datatable -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/cr-1.5.0/fh-3.1.4/rg-1.1.0/sl-1.3.0/datatables.min.css"/>
 
-    <link rel="stylesheet" type="text/css" href="inc/style.css"/>
+    <!-- dayz-death-stats -->
+    <link rel="stylesheet" type="text/css" href="inc/style.css?v=<?=$VERSION?>"/>
 
   </head>
 
   <body id="page-top">
 
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="index.php">
-          <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/89/89783c79efdebec2cbacb438c39a1439e261abc9.jpg" alt=""> ElCanu's
-          ABFW DayZ server
+          <img src="<?=$CONFIG['WEBSITE_IMG']?>" width="32" height="32" alt=""> <?=$CONFIG['WEBSITE_TITLE'];?>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@ if( isset( $_GET['logfile']) ) {
           <ul class="navbar-nav ml-auto">
             <?php if( $CONFIG['use_info_section'] ) : ?>
             <li class="nav-item">
-              <a class="nav-link btn0 btn-sm0 btn-outline-secondary0 mx-1 js-scroll-trigger" href="#infos"><span class="fas fa-info-circle"></span> Infos</a>
+              <a class="nav-link btn0 btn-sm0 btn-outline-secondary0 mx-1 js-scroll-trigger" href="#info"><span class="fas fa-info-circle"></span> Info</a>
             </li>
             <?php endif; ?>
             <?php if( $CONFIG['use_database'] ) : ?>
@@ -87,7 +87,7 @@ if( isset( $_GET['logfile']) ) {
 
             <div class="tab-content mt-4">
 
-              <button type="button" class="btn btn-sm btn-outline-secondary btn-clear-cookies float-right" title="clear cookies" data-toggle="tooltip"><span class="fas fa-trash-alt"></span></button>
+              <button type="button" class="btn btn-sm btn-outline-secondary btn-clear-cookies float-right" title="clear all cookies" data-toggle="tooltip"><span class="fas fa-trash-alt"></span></button>
 
               <div class="tab-pane fade show active" id="players" role="tabpanel" aria-labelledby="players-tab">
                 <table class="datatable table table-striped table-hover table-bordered table-sm table-responsive-sm0 table-players" width="100%">
@@ -163,7 +163,7 @@ if( isset( $_GET['logfile']) ) {
 
           <div class="col-lg-12 mx-auto my-4">
 
-            <button type="button" class="btn btn-sm btn-outline-secondary btn-clear-cookies float-right" title="clear cookies" data-toggle="tooltip"><span class="fas fa-trash-alt"></span></button>
+            <button type="button" class="btn btn-sm btn-outline-secondary btn-clear-cookies float-right" title="clear all cookies" data-toggle="tooltip"><span class="fas fa-trash-alt"></span></button>
 
             <table class="datatable table table-striped table-hover table-bordered table-sm table-responsive-sm0 table-killfeed" width="100%">
               <thead class="bg-secondary text-white">
@@ -215,7 +215,7 @@ if( isset( $_GET['logfile']) ) {
         <div class="container-fluid position-relative mx-auto map_container">
 
           <div class="map_options">
-            <!-- <label>Maps options :</label> -->
+
             <div class="btn-group btn-group-toggle input-group-sm mr-2" data-toggle="buttons">
               <label class="btn btn-primary btn-sm active">
                 <input type="radio" name="btn_map_type" value="dayz" autocomplete="off" checked> DayZ SA
@@ -276,7 +276,6 @@ if( isset( $_GET['logfile']) ) {
       </section>
     <?php endif; ?>
 
-    <!-- Footer -->
     <footer class="py-1 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">
@@ -284,7 +283,7 @@ if( isset( $_GET['logfile']) ) {
           <a class="text-light" href="https://github.com/ldeb/dayz-death-stats">dayz-death-stats</a> /
           <a class="text-light" href="https://discord.gg/xgvrRff">ABFW</a> /
           <a class="text-light" href="https://steamcommunity.com/sharedfiles/filedetails/?id=1567872567">KillFeed</a>
-          <a href="#" class="text-link btn-clear-cookies text-white float-right" title="clear cookies" data-toggle="tooltip"><span class="fas fa-trash-alt"></span></a>
+          <a href="#" class="text-link btn-clear-cookies text-white float-right" title="clear all cookies" data-toggle="tooltip"><span class="fas fa-trash-alt"></span></a>
         </p>
       </div>
     </footer>
@@ -297,21 +296,19 @@ if( isset( $_GET['logfile']) ) {
     <!-- Datatable -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/cr-1.5.0/fh-3.1.4/rg-1.1.0/sl-1.3.0/datatables.min.js"></script>
     <!-- Fontawesome -->
-    <!-- <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script> -->
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/solid.js" integrity="sha384-+2/MEhV42Ne5nONkjLVCZFGh5IaEQmfXyvGlsibBiATelTFbVGoLB1sqhczi0hlf" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/fontawesome.js" integrity="sha384-Ia7KZbX22R7DDSbxNmxHqPQ15ceNzg2U4h5A8dy3K47G2fV1k658BTxXjp7rdhXa" crossorigin="anonymous"></script>
 
-
+    <!-- dayz-death-stats -->
     <script>
       var CONFIG_show_death_details_on_map = <?=( $CONFIG['show_death_details_on_map'] ) ? 'true' : 'false' ?>;
       var CONFIG_link_to_user_steam_profile = <?=( $CONFIG['link_to_user_steam_profile'] ) ? 'true' : 'false' ?>;
     </script>
-
-    <script type="text/javascript" src="inc/script.js"></script>
+    <script type="text/javascript" src="inc/script.js?v=<?=$VERSION?>"></script>
 
     <script>
       var common_options = {
-        dom: //"<'text-right mb-3'B>" +
+        dom:
         "<'row'<'col'l><'col-12 col-sm col-md-5'f>>" +
         "<'row'<'col'i><'col'p>>" +
         "<'row'<'col-sm-12'tr>>" +
@@ -321,10 +318,9 @@ if( isset( $_GET['logfile']) ) {
           header: true,
           footer: true
         },
-        // colReorder: true,
         select: 'single',
         stateSave: true,
-        deferRender: true,  // ajax
+        deferRender: true
       };
       <?php if( $CONFIG['use_database'] ) : ?>
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -349,7 +345,8 @@ if( isset( $_GET['logfile']) ) {
             dataSrc: ['ratio'],
             startRender: function ( rows, group ) {
               let val = ( group == 9999 ) ? '∞' : group;
-              return val;//'<span>' + $('.table-players thead th').eq(0).html() + ':</span> ' + val;
+              return val;
+              // return '<span>' + $('.table-players thead th').eq(0).html() + ':</span> ' + val;
               // return '<span class="font-weight-bold" title="kill death ratio" data-toggle="tooltip"><span class="fas fa-signal"></span> ' + val + '</span>';
             }
           },
@@ -359,7 +356,7 @@ if( isset( $_GET['logfile']) ) {
               "render":
                 function ( data, type, row, meta ) {
                   let name = generete_killfeed_search_link(data);
-                  let steam_id_pos = 'steam_id';//meta.col + 4;
+                  let steam_id_pos = 'steam_id';
                   name += ( CONFIG_link_to_user_steam_profile && row[steam_id_pos] != null ) ? ' ' + generete_user_steam_link('+', row[steam_id_pos]) : '';
                   return name;
                 },
@@ -376,7 +373,7 @@ if( isset( $_GET['logfile']) ) {
               "targets": [0], // ratio (infinity?)
               "render":
                 function ( data, type, row, meta ) {
-                  let ratio = ( row['deaths'] == 0 ) ? '<strong0>∞</strong0>' : data;  //<span class="fas fa-infinity"></span>
+                  let ratio = ( row['deaths'] == 0 ) ? '∞' : data;
                   return ratio;
                 },
             },
@@ -451,7 +448,6 @@ if( isset( $_GET['logfile']) ) {
           },
         ],
         drawCallback: function( settings ) {
-          // console.log('killfeed.drawCallback()');
           var api = this.api();
           show_deaths_on_map(api.ajax.json());
           update_events();

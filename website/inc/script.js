@@ -14,17 +14,10 @@ function show_relative_player(death_id, is_killer) {
     let left = parseFloat(points.eq(0).css('left'));
     let bottom = parseFloat(points.eq(1).css('top'));
     let right = parseFloat(points.eq(1).css('left'));
-    // let height = Math.abs(bottom - top);
-    // let width = Math.abs(right - left);
-    // console.log(top, left, bottom, right);
-    let color = 'rgb(255,255,255)';//is_killer ? 'rgb(0,255,0)' : 'rgb(255,0,0)';
-    let html = '';//'<svg class="relation" height="1536" width="1536">'
-    html+='<line class="line" x1="'+ left +'" y1="'+ top +'" x2="'+ right +'" y2="'+ bottom +'" style="stroke:'+ color +';stroke-width:1" />';
-    // html+= '</svg>';
-    // $('.map').append(html);
+    let color = 'rgb(255,255,255)';
+    let html = '<line class="line" x1="'+ left +'" y1="'+ top +'" x2="'+ right +'" y2="'+ bottom +'" style="stroke:'+ color +';stroke-width:1" />';
     $('.map .relation').append(html);
-    $('.map .relation').html($('.map .relation').html());
-    // $('.map').append($('.map .relation'));
+    $('.map .relation').html($('.map .relation').html()); // trick to update SVG on page
   }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +93,7 @@ function generate_legend(elem, killerInvolve, is_a_killer) {
     legend+= '<span class=&quot;text-success text-nowrap&quot;>'+elem[1]+'</span>' + ' <br><span class=&quot;fas fa-crosshairs&quot;></span> <strong>killed</strong> <br>' + '<span class=&quot;text-danger text-nowrap&quot;>'+elem[2]+'</span>';
   }
   legend+= ( elem[3] != null ) ? ' <br>(' + elem[3] + ')' : '';   // reason
-  legend+= ( elem[4] != null ) ? ' [' + elem[4] + 'm]' : '';  // dist
+  legend+= ( elem[4] != null ) ? ' [' + elem[4] + 'm]' : '';      // dist
   return legend;
 }
 // {0: "2019-04-25 22:46:39", 1: "Player_killer ", 2: "Player_victim_spe ", 3: "WeaponName", 4: 6, 5: "xxxxxxxxxxxxxxxx", 6: "yyyyyyyyyyyyyy", 7: "1648.1, 3593.0, 133.2", 8: "1675.1, 3597.0, 133.6"}
@@ -114,12 +107,10 @@ function show_player_on_map(death_id, player_pos, legend, is_a_killer) {
 function show_deaths_on_map(json){
   $('#killmap .nbtot').html('(' + json.recordsFiltered + '/' + json.recordsTotal + ')');
   $('.map .elem').remove(); // remove previous points
-  // console.log(json);
   clear_relations();
 
   for (var index in json.data) {
     let elem = json.data[index];
-    // console.log(elem);
     let killerInvolve = (elem[1] != null);
     let legend = '';
     if(CONFIG_show_death_details_on_map) {
@@ -135,8 +126,7 @@ function show_deaths_on_map(json){
       if( elem[7] != null ) {
         show_player_on_map(elem[9], elem[7], legend, true);
       }
-      // Relations (lines)
-      show_relative_player(elem[9], true);
+      show_relative_player(elem[9], true);  // Relations (lines)
     }
   }
   // update_events();
@@ -144,7 +134,7 @@ function show_deaths_on_map(json){
 
 (function($) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Smooth scrolling using jQuery easing
+  // Smooth scrolling using jQuery easing (OFF)
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
   //   if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {

@@ -11,7 +11,7 @@
 </header>
 
 <?php if( $CONFIG['use_info_section'] ) : ?>
-<section id="infos" class="">
+<section id="info" class="">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 mx-auto">
