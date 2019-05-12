@@ -80,7 +80,7 @@ if( $CONFIG['show_deaths_on_map'] ) {
 }
 // SQL server connection information
 $sql_details = array(
-  'host' => $CONFIG['db_host'],
+  'host' => $CONFIG['db_host'].':'.$CONFIG['db_port'],
   'db'   => $CONFIG['db_base'],
   'user' => $CONFIG['db_user'],
   'pass' => $CONFIG['db_pass'],

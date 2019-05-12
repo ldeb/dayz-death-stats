@@ -9,6 +9,7 @@ $database = new Medoo([
     'database_name' => $CONFIG['db_base'],
     'username'      => $CONFIG['db_user'],
     'password'      => $CONFIG['db_pass'],
+    'port'          => $CONFIG['db_port'],
 ]);
 //
 // $data = $database->select('players', [

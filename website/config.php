@@ -15,6 +15,7 @@ $CONFIG['db_host'] = 'localhost';                   // database host
 $CONFIG['db_base'] = 'dayzstats';                   // database name
 $CONFIG['db_user'] = 'root';                        // database Login
 $CONFIG['db_pass'] = '';                            // database password
+$CONFIG['db_port'] = '3306';                        // database port
 
 // Ignore these settings if using DATABASE connexion
 $CONFIG['DEBUG'] = true;                            // show number of unpasred deaths (for debugging purposes)

@@ -75,7 +75,7 @@ if( ! $CONFIG['link_to_user_steam_profile'] ) {
 
 // SQL server connection information
 $sql_details = array(
-  'host' => $CONFIG['db_host'],
+  'host' => $CONFIG['db_host'].':'.$CONFIG['db_port'],
   'db'   => $CONFIG['db_base'],
   'user' => $CONFIG['db_user'],
   'pass' => $CONFIG['db_pass'],
