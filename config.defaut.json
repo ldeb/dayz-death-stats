@@ -9,6 +9,7 @@
     "db_base": "dayzstats",
     "db_user": "root",
     "db_pass": "",
+    "db_port": "3306",
     "tail_interval": 3000,
     "tail_blockSize": 1024
   },

@@ -74,6 +74,7 @@ if( global.gConfig.LOG_TO_DATABASE ) {
     user:             global.gConfig.db_user,
     password:         global.gConfig.db_pass,
     database:         global.gConfig.db_base,
+    port:             global.gConfig.db_port,
     timezone:         'Z'
   });
   pool.getConnection((err, connection) => {
